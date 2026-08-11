@@ -10,8 +10,8 @@
 <header class="header">
   <a class="logo" href="#inicio"><span>BRN</span>STORE</a>
   <nav><a href="#juegos">Juegos</a><a href="#ofertas">Ofertas</a><a href="#contacto">Contacto</a></nav>
-  <button class="account">MI CUENTA</button>
-  <button class="cart" id="cartBtn">🛒 <b id="cartCount">0</b></button>
+  <button class="account" type="button">MI CUENTA</button>
+  <button class="cart" id="cartBtn" type="button">🛒 <b id="cartCount">0</b></button>
 </header>
 
 <main id="inicio">
@@ -56,6 +56,15 @@
   <a class="primary-btn" href="#" id="whatsappBtn">CONTACTAR POR WHATSAPP</a>
 </section>
 </main>
+
+<div class="cart-overlay" id="cartOverlay">
+  <aside class="cart-panel" role="dialog" aria-modal="true" aria-label="Carrito">
+    <div class="cart-head"><h2>🛒 MI CARRITO</h2><button id="closeCart" type="button">✕</button></div>
+    <div id="cartItems" class="cart-items"></div>
+    <div class="cart-total">Productos: <b id="cartTotal">0</b></div>
+    <button id="checkoutBtn" class="checkout-btn" type="button">CONTINUAR COMPRA</button>
+  </aside>
+</div>
 
 <div class="toast" id="toast"></div>
 <footer><div class="logo"><span>BRN</span>STORE</div><p>© 2026 BRN STORE 💙</p></footer>
