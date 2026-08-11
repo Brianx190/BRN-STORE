@@ -1,4 +1,3 @@
-
 // Claves y Configuración del Carrito
 const cartKey = 'brnCartCount';
 const cartItemsKey = 'brnCartItems';
@@ -113,7 +112,7 @@ document.getElementById('searchBtn')?.addEventListener('click', () => {
   }
 });
 
-// --- MOVIMIENTO AUTOMÁTICO DE LOS BANNERS LIMPIOS ---
+// --- SISTEMA DESLIZANTE SUAVE DE LOS BANNERS ---
 let currentSlide = 0;
 const bannerTrack = document.getElementById('bannerTrack');
 
@@ -126,7 +125,7 @@ if (bannerTrack) {
       bannerTrack.style.transform = 'translateX(0%)';
       currentSlide = 0;
     }
-  }, 4000); // Se desplaza automáticamente cada 4 segundos
+  }, 4000); // Rueda suavemente cada 4 segundos de izquierda a derecha
 }
 
 document.addEventListener('DOMContentLoaded', () => {

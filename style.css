@@ -85,7 +85,7 @@ body {
   background-color: #e2e8f0;
 }
 
-/* --- CONTENEDOR DEL BANNER ADAPTADO A IMAGEN COMPLETA --- */
+/* --- CONTENEDOR DEL BANNER OPTIMIZADO (SIN ZOOM IN) --- */
 .banner-carousel {
   overflow: hidden; 
   width: 100%; 
@@ -105,13 +105,13 @@ body {
 
 .banner-slide {
   width: 50%; 
-  height: 160px; /* Puedes ajustar la altura para que coincida con el recorte de tu imagen */
-  background-size: cover; 
+  height: 125px; /* Altura responsiva perfecta para teléfonos móviles */
+  background-size: 100% 100%; /* Evita que la imagen se estire demasiado o haga zoom */
   background-position: center; 
   background-repeat: no-repeat;
 }
 
-/* Rutas exactas para las dos imágenes limpias del carrusel */
+/* Rutas hacia tus dos artes limpios */
 .slide-ff {
   background-image: url('assets/banner1.jpg');
 }
