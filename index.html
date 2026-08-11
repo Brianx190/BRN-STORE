@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BRN STORE 💙 | Tienda Gaming</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#">BRN<span>STORE</span></a>
+  <nav><a href="#juegos">Juegos</a><a href="#giftcards">Gift Cards</a><a href="#pedidos">Mis pedidos</a></nav>
+  <button id="loginBtn" class="outline">Iniciar sesión</button>
+  <button id="cartBtn" class="cart">🛒 <span id="cartCount">0</span></button>
+</header>
+
+<main>
+<section class="hero">
+ <div><p class="eyebrow">BRN STORE 💙</p><h1>RECARGAS GAMING<br><span>RÁPIDAS Y SEGURAS</span></h1>
+ <p>Compra tus recargas, gift cards y productos digitales desde un solo lugar.</p>
+ <a href="#juegos" class="cta">VER JUEGOS ↗</a></div>
+ <div class="hero-card"><b>OFERTA</b><h2>FREE FIRE</h2><p>Recargas disponibles</p><strong>Desde $0.90</strong></div>
+</section>
+
+<section class="section" id="juegos"><div class="title"><i></i><h2>Juegos</h2></div>
+<div class="grid" id="gameGrid"></div></section>
+
+<section class="section" id="giftcards"><div class="title blue"><i></i><h2>Gift Cards</h2></div>
+<div class="gift-grid" id="giftGrid"></div></section>
+
+<section class="section" id="pedidos"><div class="title"><i></i><h2>Mis pedidos</h2></div>
+<div id="orders" class="orders"><p class="muted">Inicia sesión para consultar tus pedidos.</p></div></section>
+</main>
+
+<div class="modal hidden" id="productModal"><div class="modalbox"><button class="close" data-close>×</button>
+<h2 id="modalTitle">Recarga</h2><p id="modalDesc" class="muted"></p>
+<label>Selecciona un paquete<select id="packageSelect"></select></label>
+<label>ID del jugador<input id="playerId" placeholder="Ej. 123456789"></label>
+<div class="total">Total: <b id="modalPrice">$0.00</b></div>
+<button id="addBtn" class="cta full">AGREGAR AL CARRITO</button>
+</div></div>
+
+<div class="modal hidden" id="cartModal"><div class="modalbox"><button class="close" data-close>×</button>
+<h2>Tu carrito</h2><div id="cartItems"></div><div class="total">Total: <b id="cartTotal">$0.00</b></div>
+<button id="checkoutBtn" class="cta full">CONTINUAR AL PAGO</button></div></div>
+
+<div class="modal hidden" id="loginModal"><div class="modalbox"><button class="close" data-close>×</button>
+<h2>Mi cuenta</h2><p class="muted">Demo local para la primera versión.</p>
+<label>Correo<input id="email" type="email" placeholder="tu@email.com"></label>
+<label>Contraseña<input id="password" type="password" placeholder="••••••••"></label>
+<button id="saveLogin" class="cta full">ENTRAR</button>
+</div></div>
+
+<footer><strong>BRN STORE 💙</strong><p>Recargas gaming y productos digitales.</p></footer>
+<script src="app.js"></script>
+</body></html>
