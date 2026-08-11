@@ -85,36 +85,39 @@ body {
   background-color: #e2e8f0;
 }
 
-/* Tipografía de los Banners */
-.banner-sub {
-  color: var(--accent-blue);
-  font-size: 0.8rem;
-  font-weight: bold;
-  letter-spacing: 1px;
+/* --- CONTENEDOR DEL BANNER ADAPTADO A IMAGEN COMPLETA --- */
+.banner-carousel {
+  overflow: hidden; 
+  width: 100%; 
+  border-radius: 16px; 
+  border: 1px solid var(--accent-blue); 
+  box-shadow: 0 0 15px var(--accent-blue-glow); 
+  position: relative; 
+  margin-top: 10px; 
+  margin-bottom: 25px;
 }
-.banner-title {
-  font-size: 1.6rem;
-  font-weight: 900;
-  color: var(--text-white);
-  margin: 4px 0;
+
+.banner-track {
+  display: flex; 
+  width: 200%; 
+  transition: transform 0.5s ease-in-out;
 }
-.banner-desc {
-  font-size: 0.95rem;
-  font-weight: bold;
-  letter-spacing: 1px;
-  color: var(--text-gray);
+
+.banner-slide {
+  width: 50%; 
+  height: 160px; /* Puedes ajustar la altura para que coincida con el recorte de tu imagen */
+  background-size: cover; 
+  background-position: center; 
+  background-repeat: no-repeat;
 }
-.dot {
-  width: 6px;
-  height: 6px;
-  background-color: #334155;
-  border-radius: 50%;
-  transition: all 0.3s ease;
+
+/* Rutas exactas para las dos imágenes limpias del carrusel */
+.slide-ff {
+  background-image: url('assets/banner1.jpg');
 }
-.dot.active {
-  width: 20px;
-  background-color: var(--accent-blue);
-  border-radius: 4px;
+
+.slide-bs {
+  background-image: url('assets/banner2.jpg');
 }
 
 /* Secciones Generales */
