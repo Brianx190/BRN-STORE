@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430">
-<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#10254b"/><stop offset=".55" stop-color="#0b6471"/><stop offset="1" stop-color="#1b1d35"/></linearGradient></defs>
-<rect width="1200" height="430" fill="url(#g)"/><circle cx="920" cy="90" r="260" fill="#38e0d0" opacity=".16"/><path d="M0 330 L320 120 530 300 800 80 1200 300V430H0Z" fill="#06101e" opacity=".55"/>
-<text x="70" y="92" fill="#9df7ef" font-family="Arial" font-weight="800" font-size="28">BRN STORE • EVENTO</text>
-<text x="70" y="190" fill="#fff" font-family="Arial" font-weight="900" font-size="70">BLOOD STRIKE</text>
-<text x="70" y="245" fill="#54f1d6" font-family="Arial" font-weight="900" font-size="43">SUPERPOWER RIVALS</text>
-<text x="70" y="300" fill="#fff" font-family="Arial" font-size="26">Nuevo modo • Nuevas recompensas</text>
-<g transform="translate(910 205)"><path d="M-100 65L-20-80 25-20 95-100 120 90 25 40-20 100Z" fill="#51f0d7" opacity=".8"/><circle cx="15" cy="0" r="42" fill="#fff" opacity=".16"/></g>
-</svg>
