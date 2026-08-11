@@ -56,12 +56,6 @@ body {
   padding: 16px;
   background-color: var(--bg-deep);
 }
-.nav-left i {
-  font-size: 1.2rem;
-  margin-right: 18px;
-  cursor: pointer;
-  color: var(--text-white);
-}
 .logo {
   font-size: 1.5rem;
   font-weight: 900;
@@ -118,11 +112,12 @@ body {
 .section-title { font-size: 1.3rem; font-weight: bold; }
 .view-all { color: var(--text-gray); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
 
-/* Grilla de Juegos Adaptable */
+/* --- GRILLA Y RECORTE DE PORTADAS CORREGIDO --- */
 .games-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
+  width: 100%;
 }
 .game-card {
   background-color: var(--bg-card);
@@ -131,19 +126,27 @@ body {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  width: 100%;
 }
 
-/* FIX DE LA LÍNEA BLANCA: Ajuste limpio para evitar bordes o cajas fantasmas */
+/* Asignamos una altura fija exacta e implementamos cover centrado para evitar desvíos */
 .game-image { 
-  height: 140px; 
-  background-size: cover; 
-  background-position: center;
+  height: 145px; 
+  background-size: cover !important; 
+  background-position: center center !important; 
   background-repeat: no-repeat;
+  width: 100%;
   border: none !important;
   outline: none !important;
 }
-.game-footer { padding: 12px; }
-.game-footer h3 { font-size: 0.95rem; margin-bottom: 6px; font-weight: bold; color: var(--text-white); }
+
+/* Clases específicas para vincular las imágenes sin interferencias de clases viejas */
+.img-ff { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/freefire.jpg'); }
+.img-bs { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/bloodstrike.jpg'); }
+.img-codm { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/codm.jpg'); }
+
+.game-footer { padding: 12px; display: flex; flex-direction: column; gap: 6px; }
+.game-footer h3 { font-size: 0.95rem; font-weight: bold; color: var(--text-white); margin: 0; }
 .region-badge {
   background-color: #161a24;
   color: var(--text-gray);
@@ -152,9 +155,10 @@ body {
   padding: 4px 8px;
   border-radius: 6px;
   display: inline-block;
+  align-self: flex-start;
 }
 
-/* --- ESTILOS DEL FOOTER CORREGIDOS --- */
+/* --- ESTILOS DEL FOOTER --- */
 .main-footer {
   background-color: #030407;
   padding: 40px 20px 20px 20px;
@@ -163,8 +167,6 @@ body {
 }
 .footer-logo { font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px; }
 .footer-slogan { color: var(--text-gray); font-size: 0.85rem; line-height: 1.5; max-width: 450px; margin: 0 auto 25px auto; }
-
-/* Caja de Redes Sociales */
 .footer-socials {
   display: flex !important;
   justify-content: center !important;
@@ -172,12 +174,10 @@ body {
   margin-bottom: 35px !important;
   width: 100% !important;
 }
-
-/* CORRECCIÓN EXTREMA: Forzamos cajas iluminadas en gris claro/blanco para que se vean sí o sí */
 .social-icon {
   width: 44px !important;
   height: 44px !important;
-  background-color: #ffffff !important; /* Cuadro de fondo blanco puro para hacer contraste */
+  background-color: #ffffff !important; 
   border: 1px solid #ffffff !important;
   border-radius: 10px !important;
   display: flex !important;
@@ -186,14 +186,9 @@ body {
   text-decoration: none !important;
   cursor: pointer !important;
 }
-
-/* Iconos de las redes en color negro dentro de la caja blanca */
-.social-icon .bi {
-  color: #000000 !important; 
-  font-size: 1.3rem !important;
-  display: inline-block !important;
+.social-icon svg {
+  display: block !important;
 }
-
 .footer-links-container { display: flex; flex-direction: column; gap: 30px; margin-bottom: 40px; }
 .footer-group h3 { font-size: 0.9rem; letter-spacing: 1px; color: var(--text-white); margin-bottom: 12px; }
 .footer-group ul { list-style: none; }
@@ -214,7 +209,6 @@ body {
   width: 100%;
   max-width: 400px;
 }
-.shield-icon { color: #00ffaa; font-size: 1.4rem; }
 .security-badge h4 { font-size: 0.8rem; color: var(--text-white); margin-bottom: 2px; }
 .security-badge p { font-size: 0.65rem; color: var(--text-gray); letter-spacing: 0.5px; }
 
@@ -235,28 +229,7 @@ body {
   justify-content: center;
 }
 .payment-badge span { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.5px; }
-.icon-binance { color: #f3ba2f; font-size: 1rem; } 
-.icon-yappy { color: #7b2cbf; font-size: 1rem; }   
 
 /* Copyright */
 .footer-copyright { border-top: 1px solid #0f1322; padding-top: 20px; margin-top: 20px; }
 .footer-copyright p { font-size: 0.75rem; color: var(--text-gray); letter-spacing: 1px; }
-
-/* Botón flotante WhatsApp */
-.whatsapp-btn {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  background-color: #25d366;
-  color: white;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-  text-decoration: none;
-  z-index: 100;
-}
