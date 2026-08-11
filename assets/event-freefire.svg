@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430">
+<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#231b66"/><stop offset=".55" stop-color="#7b1e5c"/><stop offset="1" stop-color="#f05a28"/></linearGradient><radialGradient id="r"><stop stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient></defs>
+<rect width="1200" height="430" fill="url(#g)"/><circle cx="930" cy="100" r="250" fill="url(#r)"/><circle cx="180" cy="350" r="190" fill="#16b6d4" opacity=".18"/>
+<path d="M0 350 Q300 170 570 340 T1200 270 V430H0Z" fill="#10152c" opacity=".45"/>
+<text x="70" y="92" fill="#fff" font-family="Arial" font-weight="800" font-size="28">BRN STORE • EVENTO DESTACADO</text>
+<text x="70" y="190" fill="#fff" font-family="Arial" font-weight="900" font-size="74">FREE FIRE</text>
+<text x="70" y="245" fill="#ffe65a" font-family="Arial" font-weight="900" font-size="46">9.º ANIVERSARIO</text>
+<text x="70" y="300" fill="#fff" font-family="Arial" font-size="26">Nuevas recompensas • Eventos especiales</text>
+<g transform="translate(870 170)"><circle r="92" fill="#ff2148" opacity=".8"/><path d="M-45 45L-18-40 18-8 48-60 72 55 25 25 0 65Z" fill="#fff" opacity=".9"/></g>
+</svg>
