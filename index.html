@@ -1,55 +1,64 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>BRN STORE 💙 | Tienda Gaming</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRN STORE 💙</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
-<header class="topbar">
-  <a class="brand" href="#">BRN<span>STORE</span></a>
-  <nav><a href="#juegos">Juegos</a><a href="#giftcards">Gift Cards</a><a href="#pedidos">Mis pedidos</a></nav>
-  <button id="loginBtn" class="outline">Iniciar sesión</button>
-  <button id="cartBtn" class="cart">🛒 <span id="cartCount">0</span></button>
+<header class="header">
+  <a class="logo" href="#inicio"><span>BRN</span>STORE</a>
+  <nav><a href="#juegos">Juegos</a><a href="#ofertas">Ofertas</a><a href="#contacto">Contacto</a></nav>
+  <button class="account">MI CUENTA</button>
+  <button class="cart" id="cartBtn">🛒 <b id="cartCount">0</b></button>
 </header>
 
-<main>
+<main id="inicio">
 <section class="hero">
- <div><p class="eyebrow">BRN STORE 💙</p><h1>RECARGAS GAMING<br><span>RÁPIDAS Y SEGURAS</span></h1>
- <p>Compra tus recargas, gift cards y productos digitales desde un solo lugar.</p>
- <a href="#juegos" class="cta">VER JUEGOS ↗</a></div>
- <div class="hero-card"><b>OFERTA</b><h2>FREE FIRE</h2><p>Recargas disponibles</p><strong>Desde $0.90</strong></div>
+  <div class="hero-content">
+    <p class="eyebrow">BRN STORE 💙</p>
+    <h1>RECARGAS<br>GAMING <span>RÁPIDAS Y SEGURAS</span></h1>
+    <p class="hero-text">Compra tus recargas, gift cards y productos digitales desde un solo lugar.</p>
+    <a class="primary-btn" href="#juegos">VER JUEGOS ↗</a>
+  </div>
 </section>
 
-<section class="section" id="juegos"><div class="title"><i></i><h2>Juegos</h2></div>
-<div class="grid" id="gameGrid"></div></section>
+<section class="section" id="ofertas">
+  <div class="section-title"><div><p class="eyebrow">🔥 DESTACADO</p><h2>OFERTAS</h2></div><span>Precios desde $0.90</span></div>
+  <article class="featured-card">
+    <div><span class="badge">OFERTA</span><h3>FREE FIRE</h3><p>Recargas disponibles</p><strong>Desde $0.90</strong></div>
+    <button class="product-btn" data-product="Free Fire">VER RECARGAS</button>
+  </article>
+</section>
 
-<section class="section" id="giftcards"><div class="title blue"><i></i><h2>Gift Cards</h2></div>
-<div class="gift-grid" id="giftGrid"></div></section>
+<section class="section" id="juegos">
+  <div class="section-title"><div><p class="eyebrow">🎮 BRN STORE</p><h2>JUEGOS</h2></div></div>
+  <div class="games-grid">
+    <article class="game-card"><div class="game-icon">🔥</div><h3>FREE FIRE</h3><p>Diamantes y recargas</p><button class="product-btn" data-product="Free Fire">VER PRODUCTOS</button></article>
+    <article class="game-card"><div class="game-icon">🎯</div><h3>PRÓXIMAMENTE</h3><p>Más juegos disponibles pronto</p><button class="product-btn disabled" disabled>PRÓXIMAMENTE</button></article>
+    <article class="game-card"><div class="game-icon">⚡</div><h3>PRÓXIMAMENTE</h3><p>Nuevos productos digitales</p><button class="product-btn disabled" disabled>PRÓXIMAMENTE</button></article>
+  </div>
+</section>
 
-<section class="section" id="pedidos"><div class="title"><i></i><h2>Mis pedidos</h2></div>
-<div id="orders" class="orders"><p class="muted">Inicia sesión para consultar tus pedidos.</p></div></section>
+<section class="section why">
+  <div class="section-title"><div><p class="eyebrow">💙 BRN STORE</p><h2>¿POR QUÉ COMPRAR AQUÍ?</h2></div></div>
+  <div class="benefits">
+    <div><b>⚡</b><h3>RÁPIDO</h3><p>Procesamos tus pedidos de forma ágil.</p></div>
+    <div><b>🔒</b><h3>SEGURO</h3><p>Tu compra y tus datos son tratados con cuidado.</p></div>
+    <div><b>💬</b><h3>SOPORTE</h3><p>Estamos disponibles para ayudarte.</p></div>
+  </div>
+</section>
+
+<section class="contact section" id="contacto">
+  <p class="eyebrow">¿NECESITAS AYUDA?</p><h2>HABLEMOS 💙</h2>
+  <p>Si tienes dudas sobre una recarga o producto, contáctanos.</p>
+  <a class="primary-btn" href="#" id="whatsappBtn">CONTACTAR POR WHATSAPP</a>
+</section>
 </main>
 
-<div class="modal hidden" id="productModal"><div class="modalbox"><button class="close" data-close>×</button>
-<h2 id="modalTitle">Recarga</h2><p id="modalDesc" class="muted"></p>
-<label>Selecciona un paquete<select id="packageSelect"></select></label>
-<label>ID del jugador<input id="playerId" placeholder="Ej. 123456789"></label>
-<div class="total">Total: <b id="modalPrice">$0.00</b></div>
-<button id="addBtn" class="cta full">AGREGAR AL CARRITO</button>
-</div></div>
-
-<div class="modal hidden" id="cartModal"><div class="modalbox"><button class="close" data-close>×</button>
-<h2>Tu carrito</h2><div id="cartItems"></div><div class="total">Total: <b id="cartTotal">$0.00</b></div>
-<button id="checkoutBtn" class="cta full">CONTINUAR AL PAGO</button></div></div>
-
-<div class="modal hidden" id="loginModal"><div class="modalbox"><button class="close" data-close>×</button>
-<h2>Mi cuenta</h2><p class="muted">Demo local para la primera versión.</p>
-<label>Correo<input id="email" type="email" placeholder="tu@email.com"></label>
-<label>Contraseña<input id="password" type="password" placeholder="••••••••"></label>
-<button id="saveLogin" class="cta full">ENTRAR</button>
-</div></div>
-
-<footer><strong>BRN STORE 💙</strong><p>Recargas gaming y productos digitales.</p></footer>
+<div class="toast" id="toast"></div>
+<footer><div class="logo"><span>BRN</span>STORE</div><p>© 2026 BRN STORE 💙</p></footer>
 <script src="app.js"></script>
-</body></html>
+</body>
+</html>
