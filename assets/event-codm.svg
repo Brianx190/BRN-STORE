@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 430">
-<defs><linearGradient id="g" x1="0" x2="1"><stop stop-color="#20242a"/><stop offset=".52" stop-color="#4d4f3b"/><stop offset="1" stop-color="#15181e"/></linearGradient></defs>
-<rect width="1200" height="430" fill="url(#g)"/><rect x="720" y="-80" width="600" height="600" fill="#f0b52b" opacity=".14" transform="rotate(15 720 -80)"/><path d="M0 360 Q350 170 650 340 T1200 240V430H0Z" fill="#07090c" opacity=".6"/>
-<text x="70" y="92" fill="#ffd65a" font-family="Arial" font-weight="800" font-size="28">BRN STORE • EVENTO</text>
-<text x="70" y="190" fill="#fff" font-family="Arial" font-weight="900" font-size="66">CALL OF DUTY</text>
-<text x="70" y="245" fill="#ffd65a" font-family="Arial" font-weight="900" font-size="43">MOBILE</text>
-<text x="70" y="300" fill="#fff" font-family="Arial" font-size="26">Temporada y contenido nuevo</text>
-<g transform="translate(920 210)"><circle r="105" fill="#0b0d10" stroke="#ffd65a" stroke-width="8"/><path d="M-65 45L-35-55 5-20 48-75 72 55 15 25-20 75Z" fill="#ffd65a" opacity=".9"/></g>
-</svg>
