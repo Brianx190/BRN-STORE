@@ -15,18 +15,14 @@ const cartTotal = document.getElementById('cartTotal');
 
 // --- 1. FUNCIÓN PRINCIPAL: ACTUALIZAR EL CARRITO ---
 function updateCart() {
-  // Actualizar los contadores visuales en la interfaz
   if (count) count.textContent = cartCount;
-  if (cartTotal) cartTotal.textContent = cartCount; // Muestra la cantidad total por ahora
+  if (cartTotal) cartTotal.textContent = cartCount; 
   
-  // Guardar cantidad actual en LocalStorage
   localStorage.setItem(cartKey, cartCount);
   localStorage.setItem(cartItemsKey, JSON.stringify(savedItems));
   
-  // Validar si el contenedor de los items existe en el HTML
   if (!cartItems) return;
 
-  // Renderizar la lista de productos de forma dinámica
   if (savedItems.length > 0) {
     cartItems.innerHTML = savedItems.map(item => `
       <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #1a1f2c;">
@@ -40,10 +36,8 @@ function updateCart() {
 }
 
 // --- 2. LOGICÁ DE INTERACCIÓN: AGREGAR Y ELIMINAR ---
-// Evento para capturar el clic en las tarjetas de juego (.game-card)
 document.querySelectorAll('.game-card').forEach(card => {
   card.addEventListener('click', () => {
-    // Si tienes un atributo 'data-product' en tu HTML lo lee, si no, toma el texto del título h3 de la tarjeta
     const productName = card.dataset.product || card.querySelector('h3')?.textContent || 'Producto';
     
     cartCount++;
@@ -54,7 +48,6 @@ document.querySelectorAll('.game-card').forEach(card => {
   });
 });
 
-// Función para remover un producto individual desde el carrito
 window.removeProduct = function(productName) {
   const index = savedItems.indexOf(productName);
   if (index > -1) {
@@ -69,38 +62,35 @@ window.removeProduct = function(productName) {
 function openCart() {
   updateCart();
   if (overlay) overlay.classList.add('show');
+  if (overlay) overlay.style.display = 'flex';
 }
 
 function closeCart() {
   if (overlay) overlay.classList.remove('show');
+  if (overlay) overlay.style.display = 'none';
 }
 
 function showToast(text) {
   if (!toast) return;
   toast.textContent = text;
-  toast.classList.add('show');
+  toast.style.display = 'block';
   
-  // Quitar la notificación después de 3 segundos
   setTimeout(() => {
-    toast.classList.remove('show');
+    toast.style.display = 'none';
   }, 3000);
 }
 
-// Escuchadores de eventos para los botones de abrir/cerrar carrito
 document.getElementById('cartBtn')?.addEventListener('click', openCart);
 document.getElementById('closeCart')?.addEventListener('click', closeCart);
 
-// Cerrar carrito al hacer clic fuera del contenedor (en el fondo oscuro)
 overlay?.addEventListener('click', (e) => {
   if (e.target === overlay) closeCart();
 });
 
-// Cerrar carrito presionando la tecla Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === 'Escape') closeCart();
 });
 
-// Botón de Checkout / Pagar
 document.getElementById('checkoutBtn')?.addEventListener('click', () => {
   if (!cartCount) {
     showToast('Tu carrito está vacío 🛒');
@@ -115,13 +105,11 @@ const mobileMenu = document.getElementById('mobileMenu');
 
 if (menuBtn && mobileMenu) {
   menuBtn.addEventListener('click', () => {
-    mobileMenu.classList.toggle('show');
-  });
-
-  mobileMenu.querySelectorAll('a').forEach(link => {
-    link.addEventListener('click', () => {
-      mobileMenu.classList.remove('show');
-    });
+    if (mobileMenu.style.display === 'none') {
+      mobileMenu.style.display = 'block';
+    } else {
+      mobileMenu.style.display = 'none';
+    }
   });
 }
 
@@ -134,7 +122,28 @@ document.getElementById('searchBtn')?.addEventListener('click', () => {
   }
 });
 
-// Inicializar el estado del carrito al cargar la página por primera vez
+// --- 6. SISTEMA DE BANNER AUTOMÁTICO (SLIDER) ---
+let currentSlide = 0;
+const bannerTrack = document.getElementById('bannerTrack');
+const dot1 = document.getElementById('dot1');
+const dot2 = document.getElementById('dot2');
+
+if (bannerTrack && dot1 && dot2) {
+  setInterval(() => {
+    if (currentSlide === 0) {
+      bannerTrack.style.transform = 'translateX(-50%)';
+      dot1.classList.remove('active');
+      dot2.classList.add('active');
+      currentSlide = 1;
+    } else {
+      bannerTrack.style.transform = 'translateX(0%)';
+      dot2.classList.remove('active');
+      dot1.classList.add('active');
+      currentSlide = 0;
+    }
+  }, 4000); // Cambia cada 4 segundos de forma automática
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   updateCart();
 });

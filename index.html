@@ -34,7 +34,7 @@
     </div>
   </header>
 
-  <!-- Menú Desplegable Móvil (Controlado por app.js) -->
+  <!-- Menú Desplegable Móvil -->
   <nav id="mobileMenu" class="mobile-menu" style="display: none; background: #0a0c10; padding: 20px; border-bottom: 1px solid #1a1f2c;">
     <ul style="list-style: none; display: flex; flex-direction: column; gap: 15px;">
       <li><a href="#" style="color: white; text-decoration: none; font-weight: bold;">Inicio</a></li>
@@ -45,19 +45,34 @@
 
   <main class="container">
     
-    <!-- Banner Principal Slider -->
-    <section class="banner-carousel">
-      <div class="banner-slide">
-        <div class="banner-content">
-          <p class="banner-sub">FREE FIRE</p>
-          <h1 class="banner-title">AGRIDULCE</h1>
-          <p class="banner-desc">PASE BOOYAH</p>
+    <!-- Banner Principal Slider (Con 2 Banners Interactivos) -->
+    <section class="banner-carousel" style="overflow: hidden; width: 100%; border-radius: 16px; border: 1px solid var(--accent-blue); box-shadow: 0 0 15px var(--accent-blue-glow); position: relative; margin-top: 10px; margin-bottom: 25px;">
+      <div class="banner-track" id="bannerTrack" style="display: flex; width: 200%; transition: transform 0.5s ease-in-out;">
+        
+        <!-- Banner 1: Free Fire -->
+        <div class="banner-slide" style="width: 50%; background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.2)), url('assets/banner1.jpg'); background-size: cover; background-position: center; padding: 35px 24px; box-sizing: border-box; height: 160px; display: flex; align-items: center;">
+          <div class="banner-content">
+            <p class="banner-sub">FREE FIRE</p>
+            <h1 class="banner-title">AGRIDULCE</h1>
+            <p class="banner-desc">PASE BOOYAH</p>
+          </div>
         </div>
-        <div class="carousel-dots">
-          <span class="dot active"></span>
-          <span class="dot"></span>
-          <span class="dot"></span>
+
+        <!-- Banner 2: Blood Strike (¡CORREGIDO!) -->
+        <div class="banner-slide" style="width: 50%; background: linear-gradient(to right, rgba(0, 0, 0, 0.85) 40%, rgba(0, 0, 0, 0.2)), url('assets/banner2.jpg'); background-size: cover; background-position: center; padding: 35px 24px; box-sizing: border-box; height: 160px; display: flex; align-items: center;">
+          <div class="banner-content">
+            <p class="banner-sub" style="color: #0066ff;">BLOOD STRIKE</p>
+            <h1 class="banner-title">NUEVO PASE</h1>
+            <p class="banner-desc">RECARGA YA</p>
+          </div>
         </div>
+
+      </div>
+
+      <!-- Puntos del carrusel indicando cuál banner está activo -->
+      <div class="carousel-dots" style="position: absolute; bottom: 15px; left: 50%; transform: translateX(-50%); display: flex; gap: 6px; z-index: 10;">
+        <span class="dot active" id="dot1"></span>
+        <span class="dot" id="dot2"></span>
       </div>
     </section>
 
@@ -69,9 +84,9 @@
       </div>
       
       <div class="games-grid">
-        <!-- Tarjeta 1 (Free Fire) - ¡CORREGIDO A .JPG AQUÍ! -->
+        <!-- Tarjeta 1 (Free Fire) -->
         <div class="game-card" data-product="Free Fire (Norte/Sur)">
-          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #080a12), url('assets/freefire.jpg');"></div>
+          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/freefire.jpg');"></div>
           <div class="game-footer">
             <h3>Free fire</h3>
             <span class="region-badge">NORTE / SUR</span>
@@ -80,7 +95,7 @@
 
         <!-- Tarjeta 2 (Blood Strike) -->
         <div class="game-card" data-product="Blood Strike (Global)">
-          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #080a12), url('assets/bloodstrike.jpg');"></div>
+          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/bloodstrike.jpg');"></div>
           <div class="game-footer">
             <h3>Blood Strike</h3>
             <span class="region-badge">GLOBAL</span>
@@ -89,7 +104,7 @@
 
         <!-- Tarjeta 3 (Call of Duty: Mobile) -->
         <div class="game-card" data-product="Call of Duty: Mobile (Global)">
-          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #080a12), url('assets/codm.jpg');"></div>
+          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/codm.jpg');"></div>
           <div class="game-footer">
             <h3>Call of Duty: Mobile</h3>
             <span class="region-badge">GLOBAL</span>

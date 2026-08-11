@@ -1,12 +1,12 @@
 /* Paleta de Colores: Negro, Blanco y Azul Eléctrico */
 :root {
-  --bg-deep: #000000;          /* Negro absoluto de fondo */
-  --bg-card: #0a0c10;          /* Gris oscuro azulado muy sutil para separar tarjetas */
-  --bg-card-border: #1a1f2c;   /* Borde fino para las tarjetas */
-  --accent-blue: #0066ff;      /* Azul Eléctrico para destacar */
+  --bg-deep: #000000;          
+  --bg-card: #0a0c10;          
+  --bg-card-border: #1a1f2c;   
+  --accent-blue: #0066ff;      
   --accent-blue-glow: rgba(0, 102, 255, 0.3);
-  --text-white: #ffffff;       /* Blanco puro para títulos */
-  --text-gray: #94a3b8;        /* Gris claro para textos secundarios */
+  --text-white: #ffffff;       
+  --text-gray: #94a3b8;        
 }
 
 * {
@@ -85,20 +85,7 @@ body {
   background-color: #e2e8f0;
 }
 
-/* Slider Banner */
-.banner-carousel {
-  margin-top: 10px;
-  margin-bottom: 25px;
-}
-.banner-slide {
-  background: linear-gradient(135deg, #0f172a 0%, #000000 100%);
-  border-radius: 16px;
-  padding: 30px 20px;
-  position: relative;
-  border: 1px solid var(--accent-blue);
-  overflow: hidden;
-  box-shadow: 0 0 15px var(--accent-blue-glow);
-}
+/* Tipografía de los Banners */
 .banner-sub {
   color: var(--accent-blue);
   font-size: 0.8rem;
@@ -106,30 +93,23 @@ body {
   letter-spacing: 1px;
 }
 .banner-title {
-  font-size: 2.2rem;
+  font-size: 1.6rem;
   font-weight: 900;
   color: var(--text-white);
   margin: 4px 0;
 }
 .banner-desc {
-  font-size: 1.1rem;
+  font-size: 0.95rem;
   font-weight: bold;
   letter-spacing: 1px;
   color: var(--text-gray);
-}
-.carousel-dots {
-  position: absolute;
-  bottom: 15px;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  gap: 6px;
 }
 .dot {
   width: 6px;
   height: 6px;
   background-color: #334155;
   border-radius: 50%;
+  transition: all 0.3s ease;
 }
 .dot.active {
   width: 20px;
@@ -162,87 +142,10 @@ body {
   color: var(--text-white);
 }
 
-/* Clases de colores específicas para títulos */
-.text-purple { color: var(--text-white); } /* Se unifica a blanco para el look limpio */
-.text-yellow { color: var(--text-white); } /* Se unifica a blanco para el look limpio */
-.text-cyan { color: var(--accent-blue); }
-
-/* Tarjeta Loot Relámpago */
-.loot-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--bg-card-border);
-  border-radius: 14px;
-  padding: 16px;
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-.discount-badge {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  background-color: rgba(0, 102, 255, 0.15);
-  color: var(--accent-blue);
-  border: 1px solid rgba(0, 102, 255, 0.3);
-  padding: 3px 8px;
-  border-radius: 6px;
-  font-size: 0.75rem;
-  font-weight: bold;
-}
-.loot-info {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-}
-.loot-icon-container {
-  width: 52px;
-  height: 52px;
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid #222222;
-  border-radius: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.lock-icon {
-  color: var(--text-white);
-  font-size: 1.2rem;
-}
-.loot-text .loot-category {
-  color: var(--text-gray);
-  font-size: 0.7rem;
-  font-weight: bold;
-}
-.loot-text h3 {
-  font-size: 1rem;
-  margin: 2px 0 4px 0;
-}
-.countdown {
-  font-size: 0.8rem;
-  font-weight: bold;
-}
-.loot-prices {
-  display: flex;
-  gap: 12px;
-  align-items: center;
-  border-top: 1px solid var(--bg-card-border);
-  padding-top: 12px;
-}
-.price-old {
-  color: var(--text-gray);
-  text-decoration: line-through;
-  font-size: 0.85rem;
-}
-.price-new {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-/* Grilla de Juegos de Recarga */
+/* Grilla de Juegos Adaptable */
 .games-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
   gap: 12px;
 }
 .game-card {
@@ -278,7 +181,7 @@ body {
   display: inline-block;
 }
 
-/* Botón flotante WhatsApp (Mantener verde oficial para reconocimiento instantáneo) */
+/* Botón flotante WhatsApp */
 .whatsapp-btn {
   position: fixed;
   bottom: 20px;
