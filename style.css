@@ -132,7 +132,16 @@ body {
   display: flex;
   flex-direction: column;
 }
-.game-image { height: 140px; background-size: cover; background-position: center; }
+
+/* FIX DE LA LÍNEA BLANCA: Ajuste limpio para evitar bordes o cajas fantasmas */
+.game-image { 
+  height: 140px; 
+  background-size: cover; 
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none !important;
+  outline: none !important;
+}
 .game-footer { padding: 12px; }
 .game-footer h3 { font-size: 0.95rem; margin-bottom: 6px; font-weight: bold; color: var(--text-white); }
 .region-badge {
@@ -155,33 +164,32 @@ body {
 .footer-logo { font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px; }
 .footer-slogan { color: var(--text-gray); font-size: 0.85rem; line-height: 1.5; max-width: 450px; margin: 0 auto 25px auto; }
 
-/* Contenedor de iconos sociales */
+/* Caja de Redes Sociales */
 .footer-socials {
   display: flex !important;
   justify-content: center !important;
   gap: 15px !important;
   margin-bottom: 35px !important;
-  width: 100%;
+  width: 100% !important;
 }
 
-/* FIX DEFINTIVO: Propiedades físicas obligatorias para los botones de las redes */
+/* CORRECCIÓN EXTREMA: Forzamos cajas iluminadas en gris claro/blanco para que se vean sí o sí */
 .social-icon {
-  width: 46px !important;
-  height: 46px !important;
-  background-color: #0c101d !important;
-  border: 1px solid #1e293b !important;
+  width: 44px !important;
+  height: 44px !important;
+  background-color: #ffffff !important; /* Cuadro de fondo blanco puro para hacer contraste */
+  border: 1px solid #ffffff !important;
   border-radius: 10px !important;
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
   text-decoration: none !important;
   cursor: pointer !important;
-  z-index: 10 !important;
 }
 
-/* Forzar que los símbolos internos se pinten en blanco de forma obligatoria */
-.social-icon i {
-  color: #ffffff !important;
+/* Iconos de las redes en color negro dentro de la caja blanca */
+.social-icon .bi {
+  color: #000000 !important; 
   font-size: 1.3rem !important;
   display: inline-block !important;
 }
