@@ -181,19 +181,29 @@ body {
   gap: 15px;
   margin-bottom: 35px;
 }
+
+/* CORRECCIÓN DE ICONOS INVISIBLES: Aseguramos visibilidad y colores */
 .social-icon {
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   background-color: #0c101d;
   border: 1px solid #1e293b;
-  color: var(--text-gray);
   border-radius: 10px;
-  display: flex;
+  display: flex !important; /* Forzar el contenedor */
   align-items: center;
   justify-content: center;
-  font-size: 1.1rem;
   text-decoration: none;
+  transition: all 0.2s;
 }
+.social-icon i {
+  color: #ffffff !important; /* Forzar iconos blancos */
+  font-size: 1.2rem;
+}
+.social-icon:hover {
+  border-color: var(--accent-blue);
+  background-color: #111827;
+}
+
 .footer-links-container {
   display: flex;
   flex-direction: column;
@@ -240,7 +250,7 @@ body {
 .security-badge h4 { font-size: 0.8rem; color: var(--text-white); margin-bottom: 2px; }
 .security-badge p { font-size: 0.65rem; color: var(--text-gray); letter-spacing: 0.5px; }
 
-/* --- BLOQUE DE MÉTODOS DE PAGO ACTUALIZADOS --- */
+/* Bloque Métodos de Pago */
 .payment-methods-container {
   display: flex;
   flex-direction: column;
@@ -279,8 +289,8 @@ body {
   font-weight: bold;
   letter-spacing: 0.5px;
 }
-.icon-binance { color: #f3ba2f; font-size: 1rem; } /* Amarillo Binance */
-.icon-yappy { color: #7b2cbf; font-size: 1rem; }   /* Morado distintivo */
+.icon-binance { color: #f3ba2f; font-size: 1rem; } 
+.icon-yappy { color: #7b2cbf; font-size: 1rem; }   
 
 /* Sección de Copyright */
 .footer-copyright {
