@@ -3,58 +3,94 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>BRN STORE 💙</title>
+<meta name="theme-color" content="#090a0d">
+<title>BRN STORE 💙 | Recargas Gaming</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 <header class="header">
-  <a class="logo" href="#inicio"><span>BRN</span>STORE</a>
-  <nav><a href="#juegos">Juegos</a><a href="#ofertas">Ofertas</a><a href="#contacto">Contacto</a></nav>
-  <button class="account" type="button">MI CUENTA</button>
-  <button class="cart" id="cartBtn" type="button">🛒 <b id="cartCount">0</b></button>
+  <button class="icon-btn menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+  <button class="icon-btn search-btn" id="searchBtn" aria-label="Buscar">⌕</button>
+  <a class="brand" href="#inicio" aria-label="BRN STORE"><span>BRN</span> STORE</a>
+  <div class="header-actions">
+    <button class="icon-btn language-btn" type="button" title="Idioma">◎</button>
+    <button class="account" type="button">ENTRAR</button>
+    <button class="cart" id="cartBtn" type="button" aria-label="Carrito">🛒 <b id="cartCount">0</b></button>
+  </div>
 </header>
 
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#eventos">Eventos</a>
+  <a href="#ofertas">Boss Deals</a>
+  <a href="#juegos">Juegos</a>
+  <a href="#contacto">Contacto</a>
+</div>
+
 <main id="inicio">
-<section class="hero">
-  <div class="hero-content">
-    <p class="eyebrow">BRN STORE 💙</p>
-    <h1>RECARGAS<br>GAMING <span>RÁPIDAS Y SEGURAS</span></h1>
-    <p class="hero-text">Compra tus recargas, gift cards y productos digitales desde un solo lugar.</p>
-    <a class="primary-btn" href="#juegos">VER JUEGOS ↗</a>
-  </div>
-</section>
+  <!-- Eventos destacados -->
+  <section class="events-section" id="eventos">
+    <div class="event-carousel" id="eventCarousel">
+      <button class="carousel-arrow prev" id="prevEvent" aria-label="Evento anterior">‹</button>
+      <div class="event-track" id="eventTrack">
+        <article class="event-card" data-index="0"><img src="assets/event-freefire.svg" alt="Evento destacado de Free Fire"><div class="event-overlay"><span>EVENTO DESTACADO</span><strong>FREE FIRE</strong></div></article>
+        <article class="event-card active" data-index="1"><img src="assets/event-bloodstrike.svg" alt="Evento destacado de Blood Strike"><div class="event-overlay"><span>EVENTO DESTACADO</span><strong>BLOOD STRIKE</strong></div></article>
+        <article class="event-card" data-index="2"><img src="assets/event-codm.svg" alt="Evento destacado de Call of Duty Mobile"><div class="event-overlay"><span>EVENTO DESTACADO</span><strong>CALL OF DUTY: MOBILE</strong></div></article>
+      </div>
+      <button class="carousel-arrow next" id="nextEvent" aria-label="Siguiente evento">›</button>
+    </div>
+    <div class="event-dots" id="eventDots" aria-label="Selector de eventos"></div>
+  </section>
 
-<section class="section" id="ofertas">
-  <div class="section-title"><div><p class="eyebrow">🔥 DESTACADO</p><h2>OFERTAS</h2></div><span>Precios desde $0.90</span></div>
-  <article class="featured-card">
-    <div><span class="badge">OFERTA</span><h3>FREE FIRE</h3><p>Recargas disponibles</p><strong>Desde $0.90</strong></div>
-    <button class="product-btn" data-product="Free Fire">VER RECARGAS</button>
-  </article>
-</section>
+  <!-- Ofertas -->
+  <section class="section deals-section" id="ofertas">
+    <div class="section-heading"><h2><i></i>Boss <em>Deals</em> <span>ϟ</span></h2></div>
+    <div class="deals-grid">
+      <article class="deal-card">
+        <div class="deal-main">
+          <img src="assets/freefire-game.svg" alt="Free Fire" class="deal-icon">
+          <div><p>FREE FIRE</p><h3>100+10</h3></div>
+          <span class="discount">-24%</span>
+        </div>
+        <div class="deal-price"><s>$1.18</s><strong>$0.90</strong></div>
+      </article>
+      <article class="deal-card">
+        <div class="deal-main">
+          <img src="assets/freefire-game.svg" alt="Free Fire" class="deal-icon">
+          <div><p>FREE FIRE</p><h3>310+31</h3></div>
+          <span class="discount">-29%</span>
+        </div>
+        <div class="deal-price"><s>$3.82</s><strong>$2.71</strong></div>
+      </article>
+    </div>
+  </section>
 
-<section class="section" id="juegos">
-  <div class="section-title"><div><p class="eyebrow">🎮 BRN STORE</p><h2>JUEGOS</h2></div></div>
-  <div class="games-grid">
-    <article class="game-card"><div class="game-icon">🔥</div><h3>FREE FIRE</h3><p>Diamantes y recargas</p><button class="product-btn" data-product="Free Fire">VER PRODUCTOS</button></article>
-    <article class="game-card"><div class="game-icon">🎯</div><h3>PRÓXIMAMENTE</h3><p>Más juegos disponibles pronto</p><button class="product-btn disabled" disabled>PRÓXIMAMENTE</button></article>
-    <article class="game-card"><div class="game-icon">⚡</div><h3>PRÓXIMAMENTE</h3><p>Nuevos productos digitales</p><button class="product-btn disabled" disabled>PRÓXIMAMENTE</button></article>
-  </div>
-</section>
+  <!-- Juegos -->
+  <section class="section games-section" id="juegos">
+    <div class="section-heading"><h2><i></i>Juegos</h2></div>
+    <div class="games-grid">
+      <article class="game-card" data-product="Free Fire">
+        <div class="game-image"><img src="assets/freefire-game.svg" alt="Free Fire"><span>-29%</span></div>
+        <div class="game-info"><h3>Free Fire</h3><p>LATAM</p></div>
+      </article>
+      <article class="game-card" data-product="Blood Strike">
+        <div class="game-image"><img src="assets/bloodstrike-game.svg" alt="Blood Strike"><span>-30%</span></div>
+        <div class="game-info"><h3>Blood Strike</h3><p>GLOBAL</p></div>
+      </article>
+      <article class="game-card" data-product="Call of Duty: Mobile">
+        <div class="game-image"><img src="assets/codm-game.svg" alt="Call of Duty Mobile"></div>
+        <div class="game-info"><h3>Call of Duty: Mobile</h3><p>GLOBAL</p></div>
+      </article>
+    </div>
+  </section>
 
-<section class="section why">
-  <div class="section-title"><div><p class="eyebrow">💙 BRN STORE</p><h2>¿POR QUÉ COMPRAR AQUÍ?</h2></div></div>
-  <div class="benefits">
-    <div><b>⚡</b><h3>RÁPIDO</h3><p>Procesamos tus pedidos de forma ágil.</p></div>
-    <div><b>🔒</b><h3>SEGURO</h3><p>Tu compra y tus datos son tratados con cuidado.</p></div>
-    <div><b>💬</b><h3>SOPORTE</h3><p>Estamos disponibles para ayudarte.</p></div>
-  </div>
-</section>
-
-<section class="contact section" id="contacto">
-  <p class="eyebrow">¿NECESITAS AYUDA?</p><h2>HABLEMOS 💙</h2>
-  <p>Si tienes dudas sobre una recarga o producto, contáctanos.</p>
-  <a class="primary-btn" href="#" id="whatsappBtn">CONTACTAR POR WHATSAPP</a>
-</section>
+  <section class="section why" id="contacto">
+    <div class="section-heading"><h2><i></i>Compra con confianza</h2></div>
+    <div class="benefits">
+      <div><b>⚡</b><h3>RÁPIDO</h3><p>Procesamos tus pedidos de forma ágil.</p></div>
+      <div><b>🔒</b><h3>SEGURO</h3><p>Tu compra y tus datos son tratados con cuidado.</p></div>
+      <div><b>💬</b><h3>SOPORTE</h3><p>Estamos disponibles para ayudarte.</p></div>
+    </div>
+  </section>
 </main>
 
 <div class="cart-overlay" id="cartOverlay">
@@ -67,7 +103,7 @@
 </div>
 
 <div class="toast" id="toast"></div>
-<footer><div class="logo"><span>BRN</span>STORE</div><p>© 2026 BRN STORE 💙</p></footer>
+<footer><div class="brand"><span>BRN</span> STORE</div><p>© 2026 BRN STORE 💙</p></footer>
 <script src="app.js"></script>
 </body>
 </html>
