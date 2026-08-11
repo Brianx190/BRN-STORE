@@ -59,18 +59,20 @@
       </div>
       
       <div class="games-grid">
-        <!-- Tarjeta 1 (Free Fire) -->
-        <div class="game-card" data-product="Free Fire (Norte/Sur)">
-          <div class="game-image img-ff"></div>
-          <div class="game-footer">
-            <h3>Free fire</h3>
-            <span class="region-badge">NORTE / SUR</span>
+        <!-- Tarjeta 1 (Free Fire) - CONEXIÓN CON APARTADO INTERNO -->
+        <a href="freefire.html" style="text-decoration: none; color: inherit; display: block; width: 100%;">
+          <div class="game-card" data-product="Free Fire (Norte/Sur)">
+            <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/freefire.jpg');"></div>
+            <div class="game-footer">
+              <h3>Free fire</h3>
+              <span class="region-badge">NORTE / SUR</span>
+            </div>
           </div>
-        </div>
+        </a>
 
         <!-- Tarjeta 2 (Blood Strike) -->
         <div class="game-card" data-product="Blood Strike (Global)">
-          <div class="game-image img-bs"></div>
+          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/bloodstrike.jpg');"></div>
           <div class="game-footer">
             <h3>Blood Strike</h3>
             <span class="region-badge">GLOBAL</span>
@@ -79,7 +81,7 @@
 
         <!-- Tarjeta 3 (Call of Duty: Mobile) -->
         <div class="game-card" data-product="Call of Duty: Mobile (Global)">
-          <div class="game-image img-codm"></div>
+          <div class="game-image" style="background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/codm.jpg');"></div>
           <div class="game-footer">
             <h3>Call of Duty: Mobile</h3>
             <span class="region-badge">GLOBAL</span>
@@ -97,7 +99,7 @@
       <p class="footer-slogan">Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.</p>
     </div>
 
-    <!-- Cajas con iconos en código SVG nativo -->
+    <!-- Cajas con iconos en código SVG -->
     <div class="footer-socials">
       <a href="https://instagram.com" target="_blank" class="social-icon">
         <svg xmlns="http://w3.org" width="22" height="22" fill="#000000" viewBox="0 0 16 16">
@@ -176,6 +178,3 @@
 
   <!-- Carrito Overlay -->
   <div id="cartOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: none; justify-content: center; align-items: center; z-index: 1000;">
-    <div style="background: #0a0c10; width: 90%; max-width: 400px; padding: 20px; border-radius: 14px; border: 1px solid #1a1f2c; position: relative;">
-      <h2 style="margin-bottom: 15px; font-size: 1.2rem;">Tu Carrito 🛒</h2>
-      <button id="closeCart" style="position: absolute; top: 15px; right: 15px; background: transparent; border: none; color: white; font-size: 1.1rem; cursor: pointer;">✕</button>
