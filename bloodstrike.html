@@ -5,7 +5,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>BRN STORE | Blood Strike</title>
 
+<!-- Fuente añadida -->
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+
 <style>
+/* Fuente Bebas Neue para el apartado Blood Strike */
+.blood-font {
+  font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
+  letter-spacing: 1px;
+}
+
+/* Excepción: sección de reseñas y todo su contenido volverá a la fuente por defecto */
+.blood-font .reviews-section,
+.blood-font .reviews-section * {
+  font-family: Arial, Helvetica, sans-serif !important;
+}
+
+/* Resto del CSS (sin cambios funcionales) */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;padding-bottom:180px}
@@ -115,32 +131,38 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   box-shadow:0 0 20px rgba(0,102,255,.22)
 }
 
-/* BARRA INFERIOR - Actualizada */
+/* BARRA INFERIOR - Ajustada a tamaño más compacto */
 .summary-bar{
   position:fixed;left:0;right:0;bottom:0;display:none;
   background:rgba(5,7,15,.98);border-top:1px solid #1a1f2c;
-  padding:16px 16px 18px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
+  padding:12px 16px 14px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
 }
 .summary-content{width:100%;max-width:900px;margin:auto}
-.summary-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}
+.summary-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:10px}
 .selected-product{display:flex;align-items:center;gap:10px;min-width:0}
-.summary-icon{width:43px;height:43px;display:flex;align-items:center;justify-content:center;background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;font-size:1.2rem;flex-shrink:0}
+.summary-icon{
+  width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;font-size:1rem;flex-shrink:0
+}
 .summary-label{color:#64748b;font-size:.6rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
 .summary-name{color:#fff;font-size:.95rem;font-weight:900}
 .summary-total{text-align:right;flex-shrink:0}
-.summary-price{color:#00ff83;font-size:1.18rem;font-weight:900} /* Precio verde */
+.summary-price{color:#00ff83;font-size:1.15rem;font-weight:900} /* Precio verde */
 .summary-actions{display:flex;align-items:center;gap:12px}
-/* Controles de cantidad */
+/* Controles de cantidad (más compactos) */
 .quantity-controls{display:flex;align-items:center;gap:10px}
-.qty-button{width:46px;height:46px;border-radius:10px;background:#0a0c10;border:1px solid #1a1f2c;color:#fff;font-size:1.25rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
-.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9)} /* rojo para + */
-.qty-number{min-width:34px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
+.qty-button{
+  width:40px;height:40px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;
+  color:#fff;font-size:1.15rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center
+}
+.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9);font-size:1.1rem}
+.qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:0.98rem}
 
-/* Botón principal (ahora AZUL) */
+/* Botón principal (AZUL) más compacto */
 .summary-button{
-  height:52px;background:#0066ff;color:#001b10;border:none;
-  border-radius:12px;padding:0 28px;font-size:1rem;font-weight:900;cursor:pointer;
-  box-shadow:0 6px 30px rgba(0,102,255,.22);display:flex;align-items:center;justify-content:center;
+  height:44px;background:#0066ff;color:#001b10;border:none;
+  border-radius:12px;padding:0 20px;font-size:0.98rem;font-weight:900;cursor:pointer;
+  box-shadow:0 6px 24px rgba(0,102,255,.22);display:flex;align-items:center;justify-content:center;
   flex:1;white-space:nowrap
 }
 
@@ -177,9 +199,10 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   .reviews-box{padding:24px 15px}
   .rating-number{font-size:3.5rem}
   .rating-stars{font-size:1.5rem}
-  .summary-bar{padding:12px 12px 14px}
+  .summary-bar{padding:10px 12px 13px}
   .summary-actions{flex-direction:column;align-items:stretch;gap:10px}
-  .summary-button{width:100%}
+  .summary-button{width:100%;height:44px}
+  .qty-button{width:44px;height:44px}
   .site-footer{padding:40px 20px 20px}
 }
 </style>
@@ -193,7 +216,8 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   <div style="width:55px;"></div>
 </header>
 
-<main class="container">
+<!-- Aplico la fuente Bebas Neue a todo el main (Blood Strike) -->
+<main class="container blood-font">
 
   <div class="game-header">
     <div class="game-image"></div>
@@ -376,7 +400,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   </div>
 </footer>
 
-<!-- BARRA INFERIOR -->
+<!-- BARRA INFERIOR (la dejamos fuera del main porque es global en el layout) -->
 <div id="summaryBar" class="summary-bar" aria-live="polite">
   <div class="summary-content">
     <div class="summary-top">
@@ -409,42 +433,27 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 </div>
 
 <script>
-/*
-  Script actualizado:
-  - Ordena automáticamente las tarjetas .package-card por la cantidad (número antes del '+')
-  - Delegación para selección de paquete
-  - Barra inferior muestra controles de cantidad y recalcula total
-  - Botón principal es azul y cambia texto según verificación
-  - Precio en la barra inferior aparece en verde
-*/
+/* Mantengo la lógica JS previa: orden, selección, cantidad, verificación */
 document.addEventListener('DOMContentLoaded', function() {
   const packagesContainer = document.querySelector('.packages');
 
-  // Ordena las tarjetas por la cantidad (primer número en data-name, ej. "300 + 20")
   function sortPackagesByAmount() {
     const cards = Array.from(packagesContainer.querySelectorAll('.package-card'));
     const parsed = cards.map(card => {
       const name = card.dataset.name || '';
-      const match = name.match(/^(\d[\d.,]*)/); // toma el primer número
+      const match = name.match(/^(\d[\d.,]*)/);
       let amount = 0;
       if (match) {
-        // Extrae sólo dígitos por si hay puntos/comas
         amount = parseInt(match[1].replace(/[^\d]/g, ''), 10) || 0;
       } else {
-        // fallback: usa el precio si no se puede parsear
         amount = Math.round((parseFloat(card.dataset.price) || 0) * 100);
       }
       return { card, amount };
     });
-
-    // Orden menor a mayor (cambia a b.amount - a.amount si quieres mayor->menor)
     parsed.sort((a, b) => a.amount - b.amount);
-
-    // Re-append en el contenedor en el nuevo orden
     parsed.forEach(p => packagesContainer.appendChild(p.card));
   }
 
-  // Estado
   let selectedPackageName = "";
   let selectedPackagePrice = 0;
   let playerVerified = false;
@@ -479,7 +488,6 @@ document.addEventListener('DOMContentLoaded', function() {
     summaryButton.textContent = playerVerified ? "SIGUIENTE  ›" : "VERIFICAR ID  ›";
   }
 
-  // Delegated click handler para paquetes
   packagesContainer.addEventListener('click', function(e) {
     const card = e.target.closest('.package-card');
     if (!card) return;
@@ -489,7 +497,6 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedPackageName = card.dataset.name || '';
     selectedPackagePrice = parseFloat(card.dataset.price) || 0;
 
-    // reset cantidad a 1 cada vez que se elige paquete
     quantity = 1;
     qtyNumber.textContent = quantity;
 
@@ -499,9 +506,7 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSummaryButtonText();
   });
 
-  // Controles de cantidad
   qtyPlus.addEventListener('click', function() {
-    // ejemplo: límite superior 99
     if (quantity < 99) {
       quantity++;
       qtyNumber.textContent = quantity;
@@ -517,7 +522,6 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  // Botones de verificación / cambiar ID
   document.getElementById("verifyButton").addEventListener("click", function() {
     const id = document.getElementById("playerId").value.trim();
 
@@ -542,18 +546,15 @@ document.addEventListener('DOMContentLoaded', function() {
     updateSummaryButtonText();
   });
 
-  // Comportamiento del botón de la barra inferior
   summaryButton.addEventListener('click', function() {
     if (!selectedPackageName) return;
 
     if (!playerVerified) {
-      // En caso de no verificado, enfocamos el input para que el usuario verifique
       document.getElementById("playerId").focus();
       alert("Primero verifica tu ID de Blood Strike.");
       return;
     }
 
-    // Si ya verificó, aquí continúa el flujo (ej: pago / resumen final)
     alert(
       "Pedido seleccionado:\n" +
       selectedPackageName + " × " + quantity + "\n" +
@@ -562,7 +563,6 @@ document.addEventListener('DOMContentLoaded', function() {
     );
   });
 
-  // Inicializaciones
   updateSummaryButtonText();
   sortPackagesByAmount();
   openSummaryBar(false);
