@@ -5,241 +5,1207 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>BRN STORE | Recarga Free Fire</title>
   <link rel="stylesheet" href="style.css">
+
   <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      background: #000000;
+      color: #ffffff;
+      padding-bottom: 145px;
+    }
+
     .badge-step {
       background: #0066ff;
       color: white;
-      width: 24px;
-      height: 24px;
+      width: 34px;
+      height: 34px;
       display: flex;
       align-items: center;
       justify-content: center;
-      border-radius: 6px;
-      font-weight: bold;
-      font-size: 0.9rem;
+      border-radius: 8px;
+      font-weight: 900;
+      font-size: 1rem;
+      flex-shrink: 0;
     }
-    
-    /* Estilo Base de las Tarjetas de Paquetes */
+
+    /* =========================
+       ID DEL JUGADOR
+    ========================= */
+
+    .player-input {
+      flex: 1;
+      min-width: 0;
+      background: #0a0c10;
+      border: 1px solid #1a1f2c;
+      border-radius: 12px;
+      padding: 15px 18px;
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      outline: none;
+    }
+
+    .player-input:focus {
+      border-color: #0066ff;
+      box-shadow: 0 0 0 2px rgba(0, 102, 255, 0.12);
+    }
+
+    .verify-top-btn {
+      background: #111522;
+      color: #0066ff;
+      border: 1px solid #1a1f2c;
+      padding: 0 20px;
+      border-radius: 12px;
+      font-weight: 900;
+      font-size: 0.85rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* =========================
+       CUENTA VERIFICADA
+    ========================= */
+
+    .account-found {
+      display: none;
+      align-items: center;
+      gap: 14px;
+      background: #061b10;
+      border: 1px solid #00b95c;
+      border-left: 5px solid #00d66b;
+      border-radius: 16px;
+      padding: 15px;
+      margin-top: 5px;
+      box-shadow: 0 0 15px rgba(0, 214, 107, 0.08);
+    }
+
+    .account-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 13px;
+      background: #073d25;
+      border: 1px solid #00a957;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+
+    .account-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .account-label {
+      color: #00c968;
+      font-size: 0.68rem;
+      font-weight: 900;
+      letter-spacing: 0.7px;
+      margin-bottom: 4px;
+    }
+
+    .account-name {
+      color: white;
+      font-size: 1rem;
+      font-weight: 900;
+      word-break: break-word;
+    }
+
+    .account-id {
+      color: #94a3b8;
+      font-weight: 600;
+      margin-left: 5px;
+    }
+
+    .account-close {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      border: 1px solid #64748b;
+      background: transparent;
+      color: #94a3b8;
+      font-size: 1.1rem;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    /* =========================
+       PAQUETES
+    ========================= */
+
     .package-card {
       background: #0a0c10;
       border: 1px solid #1a1f2c;
       border-radius: 14px;
-      padding: 16px;
+      padding: 18px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       cursor: pointer;
       margin-bottom: 12px;
-      transition: all 0.2s ease;
-    }
-    
-    /* Color inicial del precio en amarillo */
-    .package-price {
-      font-weight: bold;
-      color: #ffe600;
-      font-size: 1.05rem;
-      transition: color 0.2s ease;
+      min-height: 82px;
+      transition: all 0.18s ease;
+      -webkit-tap-highlight-color: transparent;
+      user-select: none;
     }
 
-    /* --- ESTILO SELECCIONADO (ACTIVO) --- */
+    .package-card:active {
+      transform: scale(0.985);
+    }
+
     .package-card.selected {
       background: #0d1527 !important;
       border-color: #0066ff !important;
-      box-shadow: 0 0 12px rgba(0, 102, 255, 0.2);
+      box-shadow: 0 0 14px rgba(0, 102, 255, 0.22);
     }
-    
-    /* Fuerza al precio a cambiar a BLANCO al seleccionar */
+
+    .package-price {
+      font-weight: 900;
+      color: #ffe600;
+      font-size: 1.08rem;
+      transition: color 0.18s ease;
+    }
+
     .package-card.selected .package-price {
       color: #ffffff !important;
     }
 
-    /* --- NUEVA BARRA FIJA DE CONFIRMACIÓN INFERIOR --- */
+    .package-name {
+      font-weight: 900;
+      font-size: 0.98rem;
+    }
+
+    /* =========================
+       BARRA INFERIOR
+    ========================= */
+
     .fixed-summary-bar {
       position: fixed;
       bottom: 0;
       left: 0;
       width: 100%;
-      background: #05070f;
+      background: rgba(5, 7, 15, 0.98);
       border-top: 1px solid #1a1f2c;
-      padding: 14px 16px;
-      box-shadow: 0 -5px 25px rgba(0,0,0,0.6);
+      padding: 12px 16px 14px;
+      box-shadow: 0 -8px 30px rgba(0, 0, 0, 0.65);
       z-index: 2000;
-      display: none; /* Se mantiene oculta hasta que el usuario elija un paquete */
-      flex-direction: column;
-      gap: 12px;
+      display: none;
+    }
+
+    .summary-inner {
+      max-width: 900px;
+      margin: auto;
     }
 
     .summary-info {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      width: 100%;
+      gap: 15px;
+      margin-bottom: 11px;
     }
 
     .summary-product-box {
       display: flex;
       align-items: center;
       gap: 10px;
+      min-width: 0;
+    }
+
+    .summary-icon {
+      width: 43px;
+      height: 43px;
+      background: #0a0c10;
+      border: 1px solid #1a1f2c;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.2rem;
     }
 
     .summary-title-label {
-      font-size: 0.65rem;
+      font-size: 0.62rem;
       color: #64748b;
-      font-weight: bold;
-      letter-spacing: 0.5px;
+      font-weight: 900;
+      letter-spacing: 0.6px;
       text-transform: uppercase;
+      margin: 0 0 3px;
     }
 
     .summary-product-name {
       font-size: 0.95rem;
-      font-weight: bold;
+      font-weight: 900;
       color: #ffffff;
+      margin: 0;
     }
 
     .summary-total-box {
       text-align: right;
+      flex-shrink: 0;
     }
 
     .summary-total-price {
-      font-size: 1.15rem;
+      font-size: 1.2rem;
       font-weight: 900;
-      color: #00ffaa; /* Verde vibrante idéntico a tu referencia */
+      color: #00ffaa;
+      margin: 0;
     }
 
-    /* Botón de pago estilo inline interactivo abajo */
-    .btn-yappy-submit {
+    .summary-action {
       width: 100%;
+      display: flex;
+      gap: 8px;
+    }
+
+    .quantity-box {
+      display: flex;
+      align-items: center;
+      background: #0a0c10;
+      border: 1px solid #1a1f2c;
+      border-radius: 10px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .quantity-btn {
+      width: 43px;
+      height: 43px;
+      border: none;
+      background: transparent;
+      color: white;
+      font-size: 1.2rem;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .quantity-number {
+      width: 30px;
+      text-align: center;
+      font-weight: 900;
+    }
+
+    .next-btn {
+      flex: 1;
+      border: none;
+      border-radius: 10px;
       background: #0066ff;
       color: white;
-      border: none;
-      padding: 14px;
-      border-radius: 10px;
-      font-weight: bold;
-      font-size: 0.95rem;
+      font-weight: 900;
+      font-size: 0.9rem;
       cursor: pointer;
-      text-align: center;
-      letter-spacing: 0.5px;
-      box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+      letter-spacing: 0.3px;
+      box-shadow: 0 0 15px rgba(0, 102, 255, 0.25);
+    }
+
+    @media (max-width: 500px) {
+
+      .player-input {
+        padding: 14px;
+      }
+
+      .verify-top-btn {
+        padding: 0 15px;
+      }
+
+      .package-card {
+        padding: 17px 14px;
+      }
+
+      .fixed-summary-bar {
+        padding: 10px 12px 12px;
+      }
+
+      .summary-product-name {
+        font-size: 0.9rem;
+      }
+
+      .summary-total-price {
+        font-size: 1.1rem;
+      }
     }
   </style>
 </head>
-<body style="background: #000000; color: #ffffff; padding-bottom: 140px;"> <!-- Espacio amplio abajo para que la barra no cubra los productos -->
 
-  <!-- Navbar Superior -->
-  <header class="navbar" style="padding: 16px; border-bottom: 1px solid #1a1f2c; margin-bottom: 25px;">
+<body>
+
+  <!-- =========================
+       NAVBAR
+  ========================= -->
+
+  <header
+    class="navbar"
+    style="
+      padding:16px;
+      border-bottom:1px solid #1a1f2c;
+      margin-bottom:25px;
+    "
+  >
+
     <div class="nav-left">
-      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.1rem; font-weight: bold;">✕ Volver</a>
+      <a
+        href="index.html"
+        style="
+          color:white;
+          text-decoration:none;
+          font-size:1.1rem;
+          font-weight:bold;
+        "
+      >
+        ✕ Volver
+      </a>
     </div>
+
     <div class="logo">
-      <span class="logo-brn">BRN</span><span class="logo-x" style="color: #0066ff;"> STORE</span>
+      <span class="logo-brn">BRN</span>
+      <span
+        class="logo-x"
+        style="color:#0066ff;"
+      >
+        STORE
+      </span>
     </div>
-    <button class="btn-entrar" style="visibility: hidden;">ENTRAR</button>
+
+    <button
+      class="btn-entrar"
+      style="visibility:hidden;"
+    >
+      ENTRAR
+    </button>
+
   </header>
 
-  <main class="container" style="padding: 0 16px;">
-    <!-- Detalles de Cabecera -->
-    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 30px;">
-      <div style="width: 75px; height: 75px; background-image: url('assets/freefire.jpg'); background-size: cover; background-position: center; border-radius: 16px; border: 1px solid #1a1f2c;"></div>
+
+  <main
+    class="container"
+    style="padding:0 16px;"
+  >
+
+    <!-- =========================
+         CABECERA
+    ========================= -->
+
+    <div
+      style="
+        display:flex;
+        align-items:center;
+        gap:16px;
+        margin-bottom:30px;
+      "
+    >
+
+      <div
+        style="
+          width:75px;
+          height:75px;
+          background-image:url('assets/freefire.jpg');
+          background-size:cover;
+          background-position:center;
+          border-radius:16px;
+          border:1px solid #1a1f2c;
+          flex-shrink:0;
+        "
+      ></div>
+
       <div>
-        <h1 style="font-size: 1.6rem; font-weight: 900; letter-spacing: 1px;">FREE FIRE</h1>
-        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
-          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">🌐 LATAM</span>
-          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">⚡ Entrega Instantánea</span>
+
+        <h1
+          style="
+            font-size:1.6rem;
+            font-weight:900;
+            letter-spacing:1px;
+            margin:0;
+          "
+        >
+          FREE FIRE
+        </h1>
+
+        <div
+          style="
+            display:flex;
+            gap:8px;
+            flex-wrap:wrap;
+            margin-top:6px;
+          "
+        >
+
+          <span
+            style="
+              background:#0a0c10;
+              border:1px solid #1a1f2c;
+              color:#94a3b8;
+              font-size:0.7rem;
+              padding:4px 8px;
+              border-radius:6px;
+            "
+          >
+            🌐 LATAM
+          </span>
+
+          <span
+            style="
+              background:#0a0c10;
+              border:1px solid #1a1f2c;
+              color:#94a3b8;
+              font-size:0.7rem;
+              padding:4px 8px;
+              border-radius:6px;
+            "
+          >
+            ⚡ Entrega Instantánea
+          </span>
+
         </div>
+
       </div>
+
     </div>
 
-    <!-- PASO 1: Datos del Jugador -->
-    <section style="margin-bottom: 35px;">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-        <span class="badge-step">1</span>
-        <h2 style="font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; color: #0066ff;">DATOS DEL JUGADOR</h2>
+
+    <!-- =========================
+         PASO 1
+    ========================= -->
+
+    <section style="margin-bottom:35px;">
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          gap:10px;
+          margin-bottom:15px;
+        "
+      >
+
+        <span class="badge-step">
+          1
+        </span>
+
+        <h2
+          style="
+            font-size:1.1rem;
+            font-weight:bold;
+            letter-spacing:0.5px;
+            color:#0066ff;
+            margin:0;
+          "
+        >
+          DATOS DEL JUGADOR
+        </h2>
+
       </div>
-      <p style="color: #94a3b8; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px;">PLAYER ID</p>
-      <div style="display: flex; gap: 12px; width: 100%;">
-        <input type="number" id="playerId" placeholder="Ingresa tu ID" style="flex: 1; background: #0a0c10; border: 1px solid #1a1f2c; border-radius: 12px; padding: 14px; color: white; font-size: 1rem; outline: none;">
-        <button style="background: #111522; color: #0066ff; border: 1px solid #1a1f2c; padding: 0 20px; border-radius: 12px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">VERIFICAR ></button>
+
+
+      <!-- FORMULARIO -->
+
+      <div id="playerForm">
+
+        <p
+          style="
+            color:#94a3b8;
+            font-size:0.8rem;
+            font-weight:bold;
+            margin:0 0 8px;
+            letter-spacing:0.5px;
+          "
+        >
+          PLAYER ID
+        </p>
+
+        <div
+          style="
+            display:flex;
+            gap:12px;
+            width:100%;
+          "
+        >
+
+          <input
+            type="number"
+            id="playerId"
+            class="player-input"
+            placeholder="Ingresa tu ID"
+            inputmode="numeric"
+          >
+
+          <button
+            class="verify-top-btn"
+            onclick="verifyPlayer()"
+          >
+            VERIFICAR &gt;
+          </button>
+
+        </div>
+
       </div>
+
+
+      <!-- CUENTA VERIFICADA -->
+
+      <div
+        id="accountFound"
+        class="account-found"
+      >
+
+        <div class="account-icon">
+          🛡️
+        </div>
+
+        <div class="account-info">
+
+          <div class="account-label">
+            CUENTA ENCONTRADA
+          </div>
+
+          <div class="account-name">
+
+            <span id="playerName">
+              Rayitaa UwU
+            </span>
+
+            <span class="account-id">
+              (<span id="verifiedId">000000000</span>)
+            </span>
+
+          </div>
+
+        </div>
+
+        <button
+          class="account-close"
+          onclick="resetPlayer()"
+        >
+          ×
+        </button>
+
+      </div>
+
     </section>
 
-    <!-- PASO 2: Selección de Paquetes -->
-    <section style="margin-bottom: 30px;">
-      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
-        <span class="badge-step">2</span>
-        <h2 style="font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; color: #0066ff;">SELECCIONA TU PAQUETE</h2>
+
+    <!-- =========================
+         PASO 2
+    ========================= -->
+
+    <section style="margin-bottom:30px;">
+
+      <div
+        style="
+          display:flex;
+          align-items:center;
+          gap:10px;
+          margin-bottom:15px;
+        "
+      >
+
+        <span class="badge-step">
+          2
+        </span>
+
+        <h2
+          style="
+            font-size:1.1rem;
+            font-weight:bold;
+            letter-spacing:0.5px;
+            color:#0066ff;
+            margin:0;
+          "
+        >
+          SELECCIONA TU PAQUETE
+        </h2>
+
       </div>
 
-      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
-        <button style="background: #0066ff; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">DIAMANTES</button>
-        <button style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">MEMBRESÍAS</button>
+
+      <!-- TABS -->
+
+      <div
+        style="
+          display:flex;
+          gap:10px;
+          margin-bottom:20px;
+        "
+      >
+
+        <button
+          style="
+            background:#0066ff;
+            color:white;
+            border:none;
+            padding:9px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            font-size:0.85rem;
+          "
+        >
+          DIAMANTES
+        </button>
+
+        <button
+          style="
+            background:#0a0c10;
+            border:1px solid #1a1f2c;
+            color:#94a3b8;
+            padding:9px 16px;
+            border-radius:8px;
+            font-weight:bold;
+            font-size:0.85rem;
+          "
+        >
+          MEMBRESÍAS
+        </button>
+
       </div>
 
-      <!-- Lista de Diamantes -->
-      <div style="display: flex; flex-direction: column;">
-        
-        <div class="package-card" onclick="selectPackage(this, '100+10 Diamantes', '0.90')">
-          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">100+10</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span class="package-price">$ 0,90</span></div>
+
+      <!-- =========================
+           PAQUETES
+      ========================= -->
+
+      <div>
+
+        <!-- 100 + 10 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '100+10', '1.00')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              100+10
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 1,00
+            </span>
+          </div>
+
         </div>
 
-        <div class="package-card" onclick="selectPackage(this, '310+31 Diamantes', '2.71')">
-          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">310+31</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 29%</span><span class="package-price">$ 2,71</span></div>
+
+        <!-- 310 + 31 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '310+31', '3.15')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              310+31
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 3,15
+            </span>
+          </div>
+
         </div>
 
-        <div class="package-card" onclick="selectPackage(this, '520+52 Diamantes', '4.51')">
-          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">520+52</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span class="package-price">$ 4,51</span></div>
+
+        <!-- 520 + 52 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '520+52', '5.00')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              520+52
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 5,00
+            </span>
+          </div>
+
         </div>
 
-        <div class="package-card" onclick="selectPackage(this, '1060+106 Diamantes', '9.02')">
-          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">1060+106</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 22%</span><span class="package-price">$ 9,02</span></div>
+
+        <!-- 1060 + 106 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '1060+106', '9.00')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              1060+106
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 9,00
+            </span>
+          </div>
+
         </div>
-        
+
+
+        <!-- 2180 + 218 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '2180+218', '18.00')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              2180+218
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 18,00
+            </span>
+          </div>
+
+        </div>
+
+
+        <!-- 5600 + 560 -->
+
+        <div
+          class="package-card"
+          onclick="selectPackage(this, '5600+560', '44.00')"
+        >
+
+          <div
+            style="
+              display:flex;
+              align-items:center;
+              gap:12px;
+            "
+          >
+
+            <span style="font-size:1.25rem;">
+              💎
+            </span>
+
+            <span class="package-name">
+              5600+560
+            </span>
+
+          </div>
+
+          <div>
+            <span class="package-price">
+              $ 44,00
+            </span>
+          </div>
+
+        </div>
+
       </div>
+
     </section>
+
   </main>
 
-  <!-- --- NUEVA BARRA DE CONFIRMACIÓN INFERIOR DINÁMICA --- -->
-  <div id="summaryBar" class="fixed-summary-bar">
-    <div class="summary-info">
-      <div class="summary-product-box">
-        <span style="font-size: 1.2rem;">💎</span>
-        <div>
-          <p class="summary-title-label">Paquete Seleccionado</p>
-          <p id="summaryName" class="summary-product-name">---</p>
+
+  <!-- =========================
+       BARRA INFERIOR
+  ========================= -->
+
+  <div
+    id="summaryBar"
+    class="fixed-summary-bar"
+  >
+
+    <div class="summary-inner">
+
+      <div class="summary-info">
+
+        <div class="summary-product-box">
+
+          <div class="summary-icon">
+            💎
+          </div>
+
+          <div>
+
+            <p class="summary-title-label">
+              PAQUETE SELECCIONADO
+            </p>
+
+            <p
+              id="summaryName"
+              class="summary-product-name"
+            >
+              ---
+            </p>
+
+          </div>
+
         </div>
+
+
+        <div class="summary-total-box">
+
+          <p class="summary-title-label">
+            TOTAL
+          </p>
+
+          <p
+            id="summaryPrice"
+            class="summary-total-price"
+          >
+            $ 0,00
+          </p>
+
+        </div>
+
       </div>
-      <div class="summary-total-box">
-        <p class="summary-title-label">Total</p>
-        <p id="summaryPrice" class="summary-total-price">$ 0.00</p>
+
+
+      <!-- BOTONES -->
+
+      <div class="summary-action">
+
+        <div class="quantity-box">
+
+          <button
+            class="quantity-btn"
+            onclick="changeQuantity(-1)"
+          >
+            −
+          </button>
+
+          <span
+            id="quantity"
+            class="quantity-number"
+          >
+            1
+          </span>
+
+          <button
+            class="quantity-btn"
+            onclick="changeQuantity(1)"
+          >
+            +
+          </button>
+
+        </div>
+
+
+        <button
+          id="nextButton"
+          class="next-btn"
+          onclick="summaryAction()"
+        >
+          VERIFICAR ID &gt;
+        </button>
+
       </div>
+
     </div>
-    <!-- Botón que ejecuta la acción final -->
-    <button class="btn-yappy-submit" onclick="sendOrder()">VERIFICAR ID / PAGAR CON YAPPY 🚀</button>
+
   </div>
 
+
+  <!-- =========================
+       JAVASCRIPT
+  ========================= -->
+
   <script>
+
     let selectedPackageName = "";
-    let selectedPackagePrice = "";
+    let selectedPackagePrice = 0;
+    let playerVerified = false;
+    let quantity = 1;
+
+
+    /* =========================
+       SELECCIONAR PAQUETE
+    ========================= */
 
     function selectPackage(element, name, price) {
-      // Limpiar selección previa
-      document.querySelectorAll('.package-card').forEach(card => {
-        card.classList.remove('selected');
-      });
-      
-      // Activar clase visual (borde azul y precio blanco)
-      element.classList.add('selected');
-      
-      selectedPackageName = name;
-      selectedPackagePrice = price;
 
-      // Inyectar datos reales dentro de la barra inferior y mostrarla con Flexbox
-      document.getElementById('summaryName').textContent = name;
-      document.getElementById('summaryPrice').textContent = `$ ${price}`;
-      document.getElementById('summaryBar').style.display = 'flex';
+      document
+        .querySelectorAll(".package-card")
+        .forEach(function(card) {
+          card.classList.remove("selected");
+        });
+
+
+      element.classList.add("selected");
+
+
+      selectedPackageName = name;
+      selectedPackagePrice = parseFloat(price);
+
+
+      quantity = 1;
+
+      document.getElementById("quantity")
+        .textContent = quantity;
+
+
+      updateSummary();
+
+
+      document.getElementById("summaryBar")
+        .style.display = "block";
+
     }
 
+
+    /* =========================
+       ACTUALIZAR RESUMEN
+    ========================= */
+
+    function updateSummary() {
+
+      if (!selectedPackageName) {
+        return;
+      }
+
+
+      const total =
+        selectedPackagePrice * quantity;
+
+
+      document.getElementById("summaryName")
+        .textContent =
+        selectedPackageName;
+
+
+      document.getElementById("summaryPrice")
+        .textContent =
+        "$ " + total.toFixed(2).replace(".", ",");
+
+    }
+
+
+    /* =========================
+       VERIFICAR ID
+    ========================= */
+
+    function verifyPlayer() {
+
+      const input =
+        document.getElementById("playerId");
+
+
+      const id =
+        input.value.trim();
+
+
+      if (!id) {
+
+        alert("Ingresa tu ID de Free Fire.");
+
+        input.focus();
+
+        return;
+
+      }
+
+
+      /*
+       * VERIFICACIÓN TEMPORAL
+       * 
+       * Más adelante podremos conectar
+       * aquí la API real.
+       */
+
+
+      document.getElementById("verifiedId")
+        .textContent = id;
+
+
+      document.getElementById("playerForm")
+        .style.display = "none";
+
+
+      document.getElementById("accountFound")
+        .style.display = "flex";
+
+
+      playerVerified = true;
+
+
+      document.getElementById("nextButton")
+
+.textContent =
+
+"SIGUIENTE >";
+    }
+
+    /* ========================
+   CAMBIAR ID
+======================== */
+
+function resetPlayer() {
     
+    playerVerified = false;
+    
+    document.getElementById("playerForm")
+      .style.display = "block";
+      
+    document.getElementById("accountFound")
+      .style.display = "none";
+      
+    document.getElementById("nextButton")
+      .textContent = 
+      "VERIFICAR ID >";
+      
+    document.getElementById("playerId")
+      .value = "";
+      
+}
+
+
+/* ========================
+   CANTIDAD
+======================== */
+
+function changeQuantity(change) {
+    
+    if (!selectedPackageName) {
+        return;
+    }
+    
+    quantity += change;
+    
+    if (quantity < 1) {
+        quantity = 1;
+    }
+    
+}
+        if (quantity > 10) {
+        quantity = 10;
+    }
+
+    document.getElementById("quantity")
+      .textContent = 
+      quantity;
+
+    updateSummary();
+
+}
+
+
+/* ========================
+   BOTÓN INFERIOR
+======================== */
+
+function summaryAction() {
+
+    if (!selectedPackageName) {
+        return;
+    }
+
+    /*
+     * SI NO HA VERIFICADO EL ID
+     */
+
+    if (!playerVerified) {
+
+        document.getElementById("playerForm")
+          .scrollIntoView({
+             behavior: "smooth",
+             block: "center"
+          });
+
+        document.getElementById("playerId")
+          .focus();
+
+        return;
+
+    }
+    /*
+ * SI YA VERIFICÓ EL ID
+ */
+
+const id = document.getElementById("verifiedId").textContent;
+
+const total = selectedPackagePrice * quantity;
+
+alert(
+    "ID: " + id +
+    "\nPaquete: " + selectedPackageName +
+    "\nCantidad: " + quantity +
+    "\nTotal: COP$ " + total.toFixed(2)
+);
+
+}
+</script>
+</body>
+</html>
