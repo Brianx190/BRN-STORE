@@ -115,24 +115,33 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   box-shadow:0 0 20px rgba(0,102,255,.22)
 }
 
-/* BARRA INFERIOR */
+/* BARRA INFERIOR - Actualizada */
 .summary-bar{
   position:fixed;left:0;right:0;bottom:0;display:none;
   background:rgba(5,7,15,.98);border-top:1px solid #1a1f2c;
-  padding:12px 16px 15px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
+  padding:16px 16px 18px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
 }
 .summary-content{width:100%;max-width:900px;margin:auto}
-.summary-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:10px}
+.summary-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:12px}
 .selected-product{display:flex;align-items:center;gap:10px;min-width:0}
 .summary-icon{width:43px;height:43px;display:flex;align-items:center;justify-content:center;background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;font-size:1.2rem;flex-shrink:0}
 .summary-label{color:#64748b;font-size:.6rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
 .summary-name{color:#fff;font-size:.95rem;font-weight:900}
 .summary-total{text-align:right;flex-shrink:0}
-.summary-price{color:#00ffaa;font-size:1.15rem;font-weight:900}
+.summary-price{color:#00ff83;font-size:1.18rem;font-weight:900} /* Precio verde */
+.summary-actions{display:flex;align-items:center;gap:12px}
+/* Controles de cantidad */
+.quantity-controls{display:flex;align-items:center;gap:10px}
+.qty-button{width:46px;height:46px;border-radius:10px;background:#0a0c10;border:1px solid #1a1f2c;color:#fff;font-size:1.25rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9)} /* rojo para + */
+.qty-number{min-width:34px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
+
+/* Botón principal (ahora AZUL) */
 .summary-button{
-  width:100%;height:46px;background:#00c878;color:#001b10;border:none;
-  border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;
-  box-shadow:0 0 15px rgba(0,200,120,.25)
+  height:52px;background:#0066ff;color:#001b10;border:none;
+  border-radius:12px;padding:0 28px;font-size:1rem;font-weight:900;cursor:pointer;
+  box-shadow:0 6px 30px rgba(0,102,255,.22);display:flex;align-items:center;justify-content:center;
+  flex:1;white-space:nowrap
 }
 
 /* FOOTER — mismo estilo */
@@ -168,7 +177,9 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   .reviews-box{padding:24px 15px}
   .rating-number{font-size:3.5rem}
   .rating-stars{font-size:1.5rem}
-  .summary-bar{padding:10px 12px 13px}
+  .summary-bar{padding:12px 12px 14px}
+  .summary-actions{flex-direction:column;align-items:stretch;gap:10px}
+  .summary-button{width:100%}
   .site-footer{padding:40px 20px 20px}
 }
 </style>
@@ -366,7 +377,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 </footer>
 
 <!-- BARRA INFERIOR -->
-<div id="summaryBar" class="summary-bar">
+<div id="summaryBar" class="summary-bar" aria-live="polite">
   <div class="summary-content">
     <div class="summary-top">
       <div class="selected-product">
@@ -383,9 +394,17 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
       </div>
     </div>
 
-    <button id="summaryButton" class="summary-button" type="button">
-      VERIFICAR ID &gt;
-    </button>
+    <div class="summary-actions">
+      <div class="quantity-controls" aria-label="Selector de cantidad">
+        <button id="qtyMinus" class="qty-button" type="button" aria-label="Disminuir">−</button>
+        <div id="qtyNumber" class="qty-number">1</div>
+        <button id="qtyPlus" class="qty-button plus" type="button" aria-label="Aumentar">+</button>
+      </div>
+
+      <button id="summaryButton" class="summary-button" type="button">
+        VERIFICAR ID &nbsp;›
+      </button>
+    </div>
   </div>
 </div>
 
@@ -393,8 +412,10 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 /*
   Script actualizado:
   - Ordena automáticamente las tarjetas .package-card por la cantidad (número antes del '+')
-  - Usa delegación de eventos para manejar la selección (funciona después de reordenar)
-  - Mantiene la lógica de verificación de ID y la barra inferior
+  - Delegación para selección de paquete
+  - Barra inferior muestra controles de cantidad y recalcula total
+  - Botón principal es azul y cambia texto según verificación
+  - Precio en la barra inferior aparece en verde
 */
 document.addEventListener('DOMContentLoaded', function() {
   const packagesContainer = document.querySelector('.packages');
@@ -423,27 +444,42 @@ document.addEventListener('DOMContentLoaded', function() {
     parsed.forEach(p => packagesContainer.appendChild(p.card));
   }
 
-  // Manejo de selección usando delegación (funciona aunque reordenes DOM)
+  // Estado
   let selectedPackageName = "";
   let selectedPackagePrice = 0;
   let playerVerified = false;
+  let quantity = 1;
+
+  const summaryBar = document.getElementById('summaryBar');
+  const summaryName = document.getElementById('summaryName');
+  const summaryPrice = document.getElementById('summaryPrice');
+  const summaryButton = document.getElementById('summaryButton');
+  const qtyNumber = document.getElementById('qtyNumber');
+  const qtyPlus = document.getElementById('qtyPlus');
+  const qtyMinus = document.getElementById('qtyMinus');
 
   function formatPriceForDisplay(num) {
     return "$ " + num.toFixed(2).replace(".", ",");
+  }
+
+  function updateTotalDisplay() {
+    const total = (selectedPackagePrice || 0) * (quantity || 1);
+    summaryPrice.textContent = formatPriceForDisplay(total);
+  }
+
+  function openSummaryBar(show) {
+    summaryBar.style.display = show ? 'block' : 'none';
   }
 
   function clearSelected() {
     packagesContainer.querySelectorAll('.package-card').forEach(item => item.classList.remove('selected'));
   }
 
-  function updateSummaryBar() {
-    document.getElementById("summaryName").textContent = selectedPackageName || '---';
-    document.getElementById("summaryPrice").textContent = formatPriceForDisplay(selectedPackagePrice || 0);
-    document.getElementById("summaryBar").style.display = selectedPackageName ? 'block' : 'none';
-    updateSummaryButton();
+  function updateSummaryButtonText() {
+    summaryButton.textContent = playerVerified ? "SIGUIENTE  ›" : "VERIFICAR ID  ›";
   }
 
-  // Delegated click handler
+  // Delegated click handler para paquetes
   packagesContainer.addEventListener('click', function(e) {
     const card = e.target.closest('.package-card');
     if (!card) return;
@@ -453,10 +489,35 @@ document.addEventListener('DOMContentLoaded', function() {
     selectedPackageName = card.dataset.name || '';
     selectedPackagePrice = parseFloat(card.dataset.price) || 0;
 
-    updateSummaryBar();
+    // reset cantidad a 1 cada vez que se elige paquete
+    quantity = 1;
+    qtyNumber.textContent = quantity;
+
+    summaryName.textContent = selectedPackageName;
+    updateTotalDisplay();
+    openSummaryBar(true);
+    updateSummaryButtonText();
   });
 
-  // Inicializa verificación / botones (mantengo la lógica que ya tenías)
+  // Controles de cantidad
+  qtyPlus.addEventListener('click', function() {
+    // ejemplo: límite superior 99
+    if (quantity < 99) {
+      quantity++;
+      qtyNumber.textContent = quantity;
+      updateTotalDisplay();
+    }
+  });
+
+  qtyMinus.addEventListener('click', function() {
+    if (quantity > 1) {
+      quantity--;
+      qtyNumber.textContent = quantity;
+      updateTotalDisplay();
+    }
+  });
+
+  // Botones de verificación / cambiar ID
   document.getElementById("verifyButton").addEventListener("click", function() {
     const id = document.getElementById("playerId").value.trim();
 
@@ -470,7 +531,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("playerForm").style.display = "none";
     document.getElementById("verifiedAccount").style.display = "flex";
     playerVerified = true;
-    updateSummaryButton();
+    updateSummaryButtonText();
   });
 
   document.getElementById("changeIdButton").addEventListener("click", function() {
@@ -478,36 +539,33 @@ document.addEventListener('DOMContentLoaded', function() {
     document.getElementById("playerForm").style.display = "block";
     document.getElementById("verifiedAccount").style.display = "none";
     document.getElementById("playerId").value = "";
-    updateSummaryButton();
+    updateSummaryButtonText();
   });
 
-  document.getElementById("summaryButton").addEventListener("click", function() {
+  // Comportamiento del botón de la barra inferior
+  summaryButton.addEventListener('click', function() {
     if (!selectedPackageName) return;
 
     if (!playerVerified) {
+      // En caso de no verificado, enfocamos el input para que el usuario verifique
       document.getElementById("playerId").focus();
       alert("Primero verifica tu ID de Blood Strike.");
       return;
     }
 
+    // Si ya verificó, aquí continúa el flujo (ej: pago / resumen final)
     alert(
       "Pedido seleccionado:\n" +
-      selectedPackageName + "\n" +
-      "ID: " + document.getElementById("verifiedPlayerId").textContent +
-      "\nTotal: " + formatPriceForDisplay(selectedPackagePrice)
+      selectedPackageName + " × " + quantity + "\n" +
+      "ID: " + document.getElementById("verifiedPlayerId").textContent + "\n" +
+      "Total: " + formatPriceForDisplay((selectedPackagePrice || 0) * quantity)
     );
   });
 
-  function updateSummaryButton() {
-    const button = document.getElementById("summaryButton");
-    button.textContent = playerVerified ? "SIGUIENTE >" : "VERIFICAR ID >";
-  }
-
-  // Ejecuta ordenamiento al inicio
+  // Inicializaciones
+  updateSummaryButtonText();
   sortPackagesByAmount();
-
-  // Si más adelante necesitas reordenar (por ejemplo, agregas paquetes dinámicamente),
-  // puedes llamar sortPackagesByAmount() de nuevo.
+  openSummaryBar(false);
 });
 </script>
 
