@@ -1,394 +1,174 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>BRN STORE | Free Fire</title>
-
 <style>
+/* ---------- Base ---------- */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{
-  margin:0;background:#000;color:#fff;
-  font-family:Arial,Helvetica,sans-serif;
-  padding-bottom:180px
-}
+body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;padding-bottom:260px}
 
 /* NAVBAR */
-.navbar{
-  display:flex;align-items:center;justify-content:space-between;
-  padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:25px
-}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:25px}
 .back-button{color:#fff;text-decoration:none;font-size:1rem;font-weight:700}
 .logo{font-size:1.15rem;font-weight:900}
 .logo-store{color:#0066ff}
 
-/* CONTENEDOR */
-.container{width:100%;max-width:900px;margin:auto;padding:0 16px}
+/* CONTAINER */
+.container{width:100%;max-width:980px;margin:auto;padding:0 16px}
 
-/* CABECERA */
-.game-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
-.game-image{
-  width:75px;height:75px;border-radius:16px;
-  background-image:url("assets/freefire.jpg");
-  background-size:cover;background-position:center;
-  border:1px solid #1a1f2c;flex-shrink:0
-}
+/* HEADER */
+.game-header{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.game-image{width:75px;height:75px;border-radius:16px;background-image:url("assets/freefire.jpg");background-size:cover;background-position:center;border:1px solid #1a1f2c;flex-shrink:0}
 .game-title{margin:0;font-size:1.6rem;font-weight:900;letter-spacing:1px}
 .game-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:7px}
-.game-tag{
-  background:#0a0c10;border:1px solid #1a1f2c;color:#94a3b8;
-  font-size:.7rem;padding:5px 8px;border-radius:6px
-}
+.game-tag{background:#0a0c10;border:1px solid #1a1f2c;color:#94a3b8;font-size:.7rem;padding:5px 8px;border-radius:6px}
 
-/* PASOS */
-.step-section{margin-bottom:35px}
-.step-title{display:flex;align-items:center;gap:10px;margin-bottom:16px}
-.step-number{
-  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
-  background:#0066ff;border-radius:8px;font-size:1rem;font-weight:900;flex-shrink:0
-}
+/* STEPS */
+.step-section{margin-bottom:22px}
+.step-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+.step-number{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#0066ff;border-radius:8px;font-size:1rem;font-weight:900;flex-shrink:0}
 .step-heading{margin:0;color:#0066ff;font-size:1.05rem;font-weight:900;letter-spacing:.5px}
 
 /* ID */
-.field-label{
-  display:block;color:#94a3b8;font-size:.78rem;font-weight:900;
-  letter-spacing:.5px;margin-bottom:8px
-}
+.field-label{display:block;color:#94a3b8;font-size:.78rem;font-weight:900;letter-spacing:.5px;margin-bottom:8px}
 .id-row{display:flex;gap:10px;width:100%}
-.id-input{
-  flex:1;min-width:0;background:#0a0c10;border:1px solid #1a1f2c;
-  border-radius:12px;padding:15px;color:#fff;font-size:1rem;outline:none
-}
+.id-input{flex:1;min-width:0;background:#0a0c10;border:1px solid #1a1f2c;border-radius:12px;padding:15px;color:#fff;font-size:1rem;outline:none}
+.id-input::placeholder{color:#6b6f73}
 .id-input:focus{border-color:#0066ff}
-.verify-button{
-  background:#111522;color:#0066ff;border:1px solid #1a1f2c;
-  border-radius:12px;padding:0 18px;font-weight:900;cursor:pointer;white-space:nowrap
-}
+.verify-button{background:#111522;color:#0066ff;border:1px solid #1a1f2c;border-radius:12px;padding:0 18px;font-weight:900;cursor:pointer;white-space:nowrap}
 
-/* CUENTA VERIFICADA */
-.verified-account{
-  display:none;align-items:center;gap:13px;background:#061b10;
-  border:1px solid #00b95c;border-left:5px solid #00d66b;
-  border-radius:15px;padding:14px
-}
-.verified-icon{
-  width:45px;height:45px;display:flex;align-items:center;justify-content:center;
-  background:#073d25;border:1px solid #00a957;border-radius:12px;
-  font-size:1.35rem;flex-shrink:0
-}
+/* VERIFIED */
+.verified-account{display:none;align-items:center;gap:13px;background:#061b10;border:1px solid #00b95c;border-left:5px solid #00d66b;border-radius:15px;padding:14px;margin-top:12px}
+.verified-icon{width:45px;height:45px;display:flex;align-items:center;justify-content:center;background:#073d25;border:1px solid #00a957;border-radius:12px;font-size:1.35rem;flex-shrink:0}
 .verified-info{flex:1;min-width:0}
 .verified-label{color:#00d66b;font-size:.65rem;font-weight:900;margin-bottom:4px}
 .verified-name{font-size:.95rem;font-weight:900;word-break:break-word}
 .verified-id{color:#94a3b8;font-weight:600}
-.change-id{
-  width:32px;height:32px;border-radius:50%;border:1px solid #64748b;
-  background:transparent;color:#94a3b8;font-size:1.1rem;cursor:pointer
-}
+.change-id{width:32px;height:32px;border-radius:50%;border:1px solid #64748b;background:transparent;color:#94a3b8;font-size:1.1rem;cursor:pointer}
 
 /* TABS */
-.tabs{display:flex;gap:9px;margin-bottom:18px}
-.tab{border-radius:8px;padding:9px 16px;font-size:.82rem;font-weight:900;cursor:pointer}
-.tab-active{background:#0066ff;color:#fff;border:1px solid #0066ff}
-.tab-disabled{background:#0a0c10;color:#94a3b8;border:1px solid #1a1f2c}
+.tabs{display:flex;justify-content:center;align-items:center;gap:16px;margin-bottom:18px}
+.tab{display:inline-flex;align-items:center;justify-content:center;min-width:140px;padding:10px 22px;border-radius:26px;background:#0d0f12;border:1px solid #1a1f2c;color:#94a3b8;font-weight:900;letter-spacing:1.8px;font-size:0.95rem;cursor:pointer;text-transform:uppercase;transition:all .12s ease}
+.tab:focus{outline:2px solid rgba(0,102,255,.18)}
+.tab-active{background:#e83b3b;color:#fff;border-color:#e83b3b;box-shadow:0 12px 30px rgba(232,59,59,.12)}
+.tab-alt-active{background:#0066ff;color:#fff;border-color:#0066ff;box-shadow:0 12px 30px rgba(0,102,255,.12)}
+.tab-disabled{background:#0a0c10;color:#6b7786;border:1px solid #12151a}
 
-/* PAQUETES */
+/* PACK CARDS */
 .packages{width:100%}
-.package-card{
-  width:100%;min-height:78px;margin-bottom:12px;padding:17px 16px;
-  display:flex;align-items:center;justify-content:space-between;
-  background:#0a0c10;border:1px solid #1a1f2c;border-radius:14px;
-  cursor:pointer;user-select:none;
-  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .12s ease;
-  -webkit-tap-highlight-color:transparent
-}
-.package-card:active{transform:scale(.985)}
-.package-card.selected{
-  background:#0d1527;border-color:#0066ff;
-  box-shadow:0 0 14px rgba(0,102,255,.25)
-}
-.package-left{display:flex;align-items:center;gap:12px}
-.diamond-icon{font-size:1.25rem}
-.package-name{font-size:.98rem;font-weight:900}
-.package-price{color:#ffe600;font-size:1.08rem;font-weight:900;transition:color .18s ease}
-.package-card.selected .package-price{color:#fff}
+.package-card{width:100%;min-height:78px;margin-bottom:12px;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;background:#0a0c10;border:1px solid #1a1f2c;border-radius:14px;cursor:pointer;user-select:none;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.package-card:active{transform:scale(.995)}
+.package-card[role="button"]:focus{outline:3px solid rgba(0,102,255,.12);outline-offset:4px}
+.package-left{display:flex;align-items:center;gap:12px;min-width:0}
+.package-name{font-size:.98rem;font-weight:900;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.package-price{color:#ffe600;font-size:1.08rem;font-weight:900;transition:color .12s ease;flex-shrink:0}
+.package-card.selected-diam{background:linear-gradient(180deg,#071426,#0a1a2a);border:2px solid #0066ff;box-shadow:0 18px 40px rgba(0,102,255,.14)}
+.package-card.selected-diam .package-price{color:#fff}
+.package-card.selected-memb{background:linear-gradient(180deg,#071426,#0a1a2a);border:2px solid #0066ff;box-shadow:0 18px 40px rgba(0,102,255,.14)}
+.package-card.selected-memb .package-price{color:#fff}
 
-/* RESEÑAS */
-.reviews-section{margin-top:60px;margin-bottom:40px}
-.reviews-box{
-  background:#101116;border:1px solid #202431;border-radius:22px;padding:28px 22px
+/* icon inside card */
+.package-icon{
+  width:52px;height:52px;border-radius:12px;background-size:cover;background-position:center;background-color:#071018;border:1px solid rgba(255,255,255,.03);box-shadow: inset 0 -6px 12px rgba(0,0,0,.45), 0 6px 18px rgba(0,0,0,.6), 0 10px 30px rgba(0,102,255,0.06);flex-shrink:0;display:inline-block
 }
-.reviews-title{
-  margin:0 0 28px;color:#fff;font-size:1.15rem;font-weight:900;letter-spacing:.5px
-}
-.rating-main{text-align:center;margin-bottom:28px}
-.rating-number{color:#fff;font-size:4rem;line-height:1;font-weight:900;margin-bottom:12px}
-.rating-stars{color:#fff;font-size:1.8rem;letter-spacing:4px;margin-bottom:10px}
+@media(max-width:500px){ .package-icon{width:44px;height:44px} .package-name{font-size:.9rem} }
+
+/* RESEÑAS - estilo Blood Strike */
+.reviews-section{margin-top:40px;margin-bottom:40px}
+.reviews-box{background:#101116;border:1px solid #202431;border-radius:22px;padding:22px}
+.reviews-title{margin:0 0 18px;color:#fff;font-size:1.15rem;font-weight:900;letter-spacing:.5px}
+.rating-main{text-align:center;margin-bottom:18px;padding-top:6px}
+.rating-number{color:#fff;font-size:3.6rem;line-height:1;font-weight:900;margin-bottom:8px}
+.rating-stars{color:#fff;font-size:1.6rem;letter-spacing:8px;margin-bottom:6px}
 .rating-text{color:#718096;font-size:.78rem;font-weight:900;text-transform:uppercase}
-.rating-bars{display:flex;flex-direction:column;gap:10px}
-.rating-row{
-  display:flex;align-items:center;gap:10px;padding:10px 12px;
-  border-radius:20px;background:#0a0b0e;border:1px solid #171a21
-}
+.rating-bars{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.rating-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:20px;background:#0a0b0e;border:1px solid #171a21}
 .rating-number-small{width:18px;color:#94a3b8;font-size:.9rem;font-weight:900}
 .rating-star-small{color:#fff;font-size:1rem}
-.rating-progress{
-  flex:1;height:7px;background:#25282e;border-radius:20px;overflow:hidden
-}
-.rating-progress-fill{height:100%;width:0%;background:#0066ff;border-radius:20px}
-.rating-count{width:25px;text-align:right;color:#718096;font-size:.85rem;font-weight:900}
-.review-button{
-  width:100%;height:52px;margin-top:28px;background:#0066ff;color:#fff;
-  border:none;border-radius:13px;font-size:.9rem;font-weight:900;cursor:pointer;
-  box-shadow:0 0 20px rgba(0,102,255,.22)
-}
+.rating-progress{flex:1;height:7px;background:#25282e;border-radius:20px;overflow:hidden}
+.rating-progress-fill{height:100%;width:0%;background:#0066ff;border-radius:20px;transition:width .3s ease}
+.rating-count{width:28px;text-align:right;color:#718096;font-size:.85rem;font-weight:900}
+.review-button{width:100%;height:48px;margin-top:18px;background:#0066ff;color:#fff;border:none;border-radius:12px;font-size:0.95rem;font-weight:900;cursor:pointer;box-shadow:0 8px 30px rgba(0,102,255,.18)}
 
-/* BARRA INFERIOR */
-.summary-bar{
-  position:fixed;left:0;right:0;bottom:0;display:none;
-  background:rgba(5,7,15,.98);border-top:1px solid #1a1f2c;
-  padding:12px 16px 15px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
-}
-.summary-content{width:100%;max-width:900px;margin:auto}
-.summary-top{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:15px;margin-bottom:10px
-}
+/* recent reviews list */
+#recentReviews .review-item{margin-top:12px;padding:12px;border-radius:12px;background:#0b0d11;border:1px solid #14161a}
+.review-meta{font-size:.8rem;color:#94a3b8;margin-bottom:6px}
+.review-text{color:#e6eef3;font-weight:700}
+
+/* Modal */
+.modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:9998}
+#reviewModal{position:fixed;inset:0;display:none;align-items:center;justify-content:center;z-index:9999}
+.modal{width:calc(100% - 40px);max-width:520px;background:#0f1113;border-radius:14px;padding:18px;box-shadow:0 20px 60px rgba(0,0,0,.6);position:relative;border:1px solid #1d2026}
+.modal-title{margin:0 0 8px;font-size:1.05rem;font-weight:900}
+.modal-close{position:absolute;right:10px;top:8px;background:transparent;border:none;color:#94a3b8;font-size:1.5rem;cursor:pointer}
+.modal-stars{display:flex;gap:8px}
+.modal-stars .star{background:transparent;border:none;color:#9aa6b3;font-size:1.6rem;cursor:pointer;padding:6px;border-radius:6px}
+.modal-stars .star.active{color:#ffd166;text-shadow:0 3px 10px rgba(255,209,102,.05)}
+.btn{padding:8px 12px;border-radius:8px;border:1px solid transparent;cursor:pointer;font-weight:900}
+.btn-ghost{background:#0b0d10;color:#cbd5e1;border:1px solid #1a1f27}
+.btn-primary{background:#0066ff;color:#fff;border:1px solid rgba(0,102,255,.9)}
+
+/* SUMMARY BAR */
+.summary-bar{position:fixed;left:0;right:0;bottom:0;display:none;background:linear-gradient(180deg, rgba(5,7,15,0.98), rgba(5,7,15,0.98));border-top:1px solid rgba(26,31,44,0.9);padding:12px 16px 14px;box-shadow:0 -10px 30px rgba(0,0,0,.7);z-index:9999;transition:transform .18s ease}
+.summary-content{width:100%;max-width:980px;margin:auto}
+.summary-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .selected-product{display:flex;align-items:center;gap:10px;min-width:0}
-.summary-icon{
-  width:43px;height:43px;display:flex;align-items:center;justify-content:center;
-  background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;
-  font-size:1.2rem;flex-shrink:0
-}
-.summary-label{color:#64748b;font-size:.6rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
-.summary-name{color:#fff;font-size:.95rem;font-weight:900}
+.summary-icon{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;font-size:1rem;flex-shrink:0;background-size:cover;background-position:center;color:#fff}
+.summary-label{color:#64748b;font-size:.63rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
+.summary-name{color:#fff;font-size:0.95rem;font-weight:900}
 .summary-total{text-align:right;flex-shrink:0}
-.summary-price{color:#00ffaa;font-size:1.15rem;font-weight:900}
-.summary-button{
-  width:100%;height:46px;background:#00c878;color:#001b10;border:none;
-  border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;
-  box-shadow:0 0 15px rgba(0,200,120,.25)
-}
+.summary-price{color:#00ff83;font-size:1.45rem;font-weight:900;line-height:1}
 
-/* RESPONSIVE */
+/* quantity + actions */
+.summary-actions{display:flex;align-items:center;gap:12px;justify-content:space-between}
+.controls{display:flex;align-items:center;gap:10px}
+.qty-button{width:44px;height:44px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;color:#fff;font-size:1.2rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.qty-button.plus{background:#0066ff;border:1px solid rgba(0,102,255,.95);box-shadow:0 8px 24px rgba(0,102,255,.12)}
+.qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
+.summary-button{height:56px;background:#00c878;color:#001b10;border:none;border-radius:28px;padding:0 28px;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 40px rgba(0,200,120,.18),0 2px 0 rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;flex:1}
+
+/* FOOTER */
+.site-footer{background-color:#030407;padding:40px 20px 20px;border-top:1px solid #0f1322;text-align:center;margin-top:28px}
+.footer-brand{margin:0 0 10px;font-size:1.6rem;font-weight:900;letter-spacing:1px}
+.footer-brand-blue{color:#0066ff}
+.footer-description{color:#94a3b8;font-size:.85rem;line-height:1.5;max-width:680px;margin:0 auto 20px;font-weight:700}
+.footer-socials{display:flex;justify-content:center;gap:15px;margin-bottom:20px}
+.footer-social{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;color:#000;border:1px solid #fff;border-radius:10px;text-decoration:none;font-size:1.35rem;font-weight:900}
+.footer-column{margin-bottom:18px}
+.footer-heading{margin:0 0 12px;color:#fff;font-size:.9rem;font-weight:900;letter-spacing:1px}
+.footer-link{display:block;margin:0 0 10px;color:#94a3b8;text-decoration:none;font-size:.85rem;font-weight:700}
+.footer-security{width:100%;max-width:640px;display:flex;align-items:center;gap:15px;padding:12px 20px;margin:20px auto 25px;background:#090d16;border:1px solid #131929;border-radius:12px;text-align:left}
+.footer-security-icon{font-size:1.4rem;flex-shrink:0}
+.footer-security-title{color:#fff;font-size:.9rem;font-weight:900;margin-bottom:2px}
+.footer-security-text{color:#94a3b8;font-size:.75rem;letter-spacing:.5px;font-weight:700}
+.footer-payments{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;width:100%;max-width:640px;margin:0 auto 20px}
+.footer-payment{background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;padding:10px 18px;min-width:150px;flex:1;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:.85rem;font-weight:900;letter-spacing:.5px}
+.footer-bottom{border-top:1px solid #0f1322;padding-top:20px;margin-top:20px;color:#94a3b8;font-size:.75rem;letter-spacing:1px;font-weight:700}
+
+/* responsive adjustments */
 @media(max-width:500px){
-  .navbar{padding:14px 12px}
-  .container{padding:0 12px}
-  .game-title{font-size:1.4rem}
-  .game-image{width:68px;height:68px}
-  .package-card{min-height:74px;padding:16px 14px}
-  .package-price{font-size:1rem}
-  .reviews-box{padding:24px 15px}
-  .rating-number{font-size:3.5rem}
-  .rating-stars{font-size:1.5rem}
-  .summary-bar{padding:10px 12px 13px}
-}
-
-/* FOOTER - mismo tamaño y proporciones que la pantalla principal */
-.site-footer{
-  background-color:#030407;
-  padding:40px 20px 20px;
-  border-top:1px solid #0f1322;
-  text-align:center;
-  margin-top:40px;
-}
-
-.footer-brand{margin-bottom:10px;}
-.footer-brand h2{
-  margin:0 0 10px;
-  font-size:1.6rem;
-  font-weight:900;
-  letter-spacing:1px;
-}
-.footer-brand-blue{color:#0066ff;}
-
-.footer-description{
-  color:#94a3b8;
-  font-size:.85rem;
-  line-height:1.5;
-  max-width:450px;
-  margin:0 auto 25px;
-  font-weight:700;
-}
-
-.footer-socials{
-  display:flex;
-  justify-content:center;
-  gap:15px;
-  margin-bottom:35px;
-}
-
-.footer-social{
-  width:44px;
-  height:44px;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  background:#fff;
-  color:#000;
-  border:1px solid #fff;
-  border-radius:10px;
-  text-decoration:none;
-  font-size:1.35rem;
-  font-weight:900;
-}
-
-.footer-column{
-  margin-bottom:30px;
-}
-
-.footer-heading{
-  margin:0 0 12px;
-  color:#fff;
-  font-size:.9rem;
-  font-weight:900;
-  letter-spacing:1px;
-}
-
-.footer-link{
-  display:block;
-  margin:0 0 10px;
-  color:#94a3b8;
-  text-decoration:none;
-  font-size:.85rem;
-  font-weight:700;
-}
-
-.footer-security{
-  width:100%;
-  max-width:400px;
-  display:flex;
-  align-items:center;
-  gap:15px;
-  padding:12px 20px;
-  margin:20px auto 25px;
-  background:#090d16;
-  border:1px solid #131929;
-  border-radius:12px;
-  text-align:left;
-}
-
-.footer-security-icon{
-  font-size:1.4rem;
-  flex-shrink:0;
-}
-
-.footer-security-title{
-  color:#fff;
-  font-size:.8rem;
-  font-weight:900;
-  margin-bottom:2px;
-}
-
-.footer-security-text{
-  color:#94a3b8;
-  font-size:.65rem;
-  letter-spacing:.5px;
-  font-weight:700;
-}
-
-.footer-pay-title{
-  margin:0 0 12px;
-  color:#94a3b8;
-  font-size:.8rem;
-  font-weight:900;
-  letter-spacing:1.5px;
-}
-
-.footer-payments{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:12px;
-  width:100%;
-  max-width:450px;
-  margin:0 auto 35px;
-}
-
-.footer-payment{
-  background:#0a0c10;
-  border:1px solid #1a1f2c;
-  border-radius:10px;
-  padding:10px 18px;
-  min-width:150px;
-  flex:1;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:10px;
-  color:#fff;
-  font-size:.8rem;
-  font-weight:900;
-  letter-spacing:.5px;
-}
-
-.footer-payment-icon{font-size:1rem;}
-
-.footer-bottom{
-  border-top:1px solid #0f1322;
-  padding-top:20px;
-  margin-top:20px;
-  color:#94a3b8;
-  font-size:.75rem;
-  letter-spacing:1px;
-  font-weight:700;
-}
-
-@media(max-width:500px){
-  .site-footer{
-    padding:40px 20px 20px;
-  }
-
-  .footer-brand h2{
-    font-size:1.6rem;
-  }
-
-  .footer-description{
-    font-size:.85rem;
-  }
-
-  .footer-socials{
-    gap:15px;
-    margin-bottom:35px;
-  }
-
-  .footer-social{
-    width:44px;
-    height:44px;
-    border-radius:10px;
-    font-size:1.35rem;
-  }
-
-  .footer-security{
-    max-width:400px;
-    padding:12px 20px;
-  }
-
-  .footer-payments{
-    max-width:450px;
-    gap:12px;
-  }
-
-  .footer-payment{
-    min-width:150px;
-    padding:10px 18px;
-  }
+  .tab{min-width:120px;padding:10px 18px}
+  .summary-button{height:52px;border-radius:22px;font-size:1rem;padding:0 18px}
+  .qty-button{width:40px;height:40px}
+  .summary-price{font-size:1.25rem}
 }
 </style>
 </head>
-
 <body>
 
 <header class="navbar">
   <a href="index.html" class="back-button">✕ Volver</a>
-  <div class="logo"><span>BRN</span><span class="logo-store"> STORE</span></div>
-  <div style="width:55px;"></div>
+  <div class="logo">BRN <span class="logo-store"> STORE</span></div>
+  <div style="width:55px"></div>
 </header>
 
 <main class="container">
 
   <div class="game-header">
-    <div class="game-image"></div>
+    <div class="game-image" role="img" aria-label="Free Fire"></div>
     <div>
       <h1 class="game-title">FREE FIRE</h1>
       <div class="game-tags">
@@ -408,24 +188,18 @@ body{
     <div id="playerForm">
       <label class="field-label">PLAYER ID</label>
       <div class="id-row">
-        <input type="number" id="playerId" class="id-input"
-               placeholder="Ingresa tu ID" inputmode="numeric">
-        <button id="verifyButton" class="verify-button" type="button">
-          VERIFICAR &gt;
-        </button>
+        <input id="playerId" class="id-input" placeholder="Ingresa tu ID" inputmode="numeric" aria-label="Player ID">
+        <button id="verifyButton" class="verify-button" type="button">VERIFICAR &gt;</button>
       </div>
     </div>
 
-    <div id="verifiedAccount" class="verified-account">
+    <div id="verifiedAccount" class="verified-account" aria-hidden="true">
       <div class="verified-icon">🛡️</div>
       <div class="verified-info">
         <div class="verified-label">ID VERIFICADO</div>
-        <div class="verified-name">
-          <span id="playerName">Jugador</span>
-          <span class="verified-id">(<span id="verifiedPlayerId"></span>)</span>
-        </div>
+        <div class="verified-name"><span id="playerName">Jugador</span> <span class="verified-id">(<span id="verifiedPlayerId"></span>)</span></div>
       </div>
-      <button id="changeIdButton" class="change-id" type="button">×</button>
+      <button id="changeIdButton" class="change-id" type="button" aria-label="Cambiar ID">×</button>
     </div>
   </section>
 
@@ -436,165 +210,192 @@ body{
       <h2 class="step-heading">SELECCIONA TU PAQUETE</h2>
     </div>
 
-    <div class="tabs">
-      <button type="button" class="tab tab-active">DIAMANTES</button>
-      <button type="button" class="tab tab-disabled">MEMBRESÍAS</button>
+    <div class="tabs" role="tablist" aria-label="Categorias">
+      <button id="tab-diam" class="tab tab-alt-active" role="tab" aria-selected="true">DIAMANTES</button>
+      <button id="tab-memb" class="tab tab-disabled" role="tab" aria-selected="false">MEMBRESÍAS</button>
     </div>
 
-    <div class="packages">
-
-      <div class="package-card" data-name="100+10" data-price="1.00">
+    <div id="packagesList" class="packages" aria-live="polite">
+      <!-- DIAMANTES -->
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="100 + 10" data-price="1.00" data-icon="100 + 10.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">100+10</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">100 + 10</div>
         </div>
-        <span class="package-price">$ 1,00</span>
+        <div class="package-price">$ 1,00</div>
       </div>
 
-      <div class="package-card" data-name="310+31" data-price="3.15">
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="310 + 31" data-price="3.15" data-icon="310 + 31.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">310+31</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">310 + 31</div>
         </div>
-        <span class="package-price">$ 3,15</span>
+        <div class="package-price">$ 3,15</div>
       </div>
 
-      <div class="package-card" data-name="520+52" data-price="5.00">
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="520 + 52" data-price="5.00" data-icon="520 + 52.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">520+52</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">520 + 52</div>
         </div>
-        <span class="package-price">$ 5,00</span>
+        <div class="package-price">$ 5,00</div>
       </div>
 
-      <div class="package-card" data-name="1060+106" data-price="9.00">
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="1060 + 106" data-price="9.00" data-icon="1060 + 106.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">1060+106</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">1060 + 106</div>
         </div>
-        <span class="package-price">$ 9,00</span>
+        <div class="package-price">$ 9,00</div>
       </div>
 
-      <div class="package-card" data-name="2180+218" data-price="18.00">
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="2180 + 218" data-price="18.00" data-icon="2180 + 218.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">2180+218</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">2180 + 218</div>
         </div>
-        <span class="package-price">$ 18,00</span>
+        <div class="package-price">$ 18,00</div>
       </div>
 
-      <div class="package-card" data-name="5600+560" data-price="44.00">
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="diamantes" data-name="5600 + 560" data-price="44.00" data-icon="5600 + 560.png">
         <div class="package-left">
-          <span class="diamond-icon">💎</span>
-          <span class="package-name">5600+560</span>
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">5600 + 560</div>
         </div>
-        <span class="package-price">$ 44,00</span>
+        <div class="package-price">$ 44,00</div>
+      </div>
+
+      <!-- MEMBRESÍAS (ocultas al inicio) -->
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="membresias" data-name="Tarjeta Semanal basica" data-price="0.50" data-icon="Tarjeta Semanal basica.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">Tarjeta Semanal basica</div>
+        </div>
+        <div class="package-price">$ 0,50</div>
+      </div>
+
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="membresias" data-name="Tarjeta Semanal" data-price="1.95" data-icon="Tarjeta Semanal.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">Tarjeta Semanal</div>
+        </div>
+        <div class="package-price">$ 1,95</div>
+      </div>
+
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="membresias" data-name="Tarjeta Mensual" data-price="10.50" data-icon="Tarjeta Mensual.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">Tarjeta Mensual</div>
+        </div>
+        <div class="package-price">$ 10,50</div>
+      </div>
+
+      <div class="package-card" role="button" tabindex="0" aria-pressed="false" data-category="membresias" data-name="Pase Booyah" data-price="2.80" data-icon="Pase Booyah.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" aria-hidden="true"></div>
+          <div class="package-name">Pase Booyah</div>
+        </div>
+        <div class="package-price">$ 2,80</div>
       </div>
 
     </div>
   </section>
 
-  <!-- RESEÑAS: SIN RESEÑAS -->
-  <section class="reviews-section">
+  <!-- RESEÑAS (mejorada igual que Blood Strike) -->
+  <section id="reviewsSection" class="reviews-section" aria-labelledby="reviews-title">
     <div class="reviews-box">
+      <h2 id="reviews-title" class="reviews-title">CALIFICACIÓN GENERAL</h2>
 
-      <h2 class="reviews-title">CALIFICACIÓN GENERAL</h2>
-
-      <div class="rating-main">
-        <div class="rating-number">0.0</div>
-        <div class="rating-stars">☆ ☆ ☆ ☆ ☆</div>
-        <div class="rating-text">0 RESEÑAS</div>
+      <div class="rating-main" aria-hidden="false">
+        <div id="ratingNumber" class="rating-number">0.0</div>
+        <div id="ratingStars" class="rating-stars" aria-hidden="true">☆ ☆ ☆ ☆ ☆</div>
+        <div id="reviewsCount" class="rating-text">0 RESEÑAS</div>
       </div>
 
-      <div class="rating-bars">
-
-        <div class="rating-row">
-          <span class="rating-number-small">5</span>
-          <span class="rating-star-small">☆</span>
-          <div class="rating-progress">
-            <div class="rating-progress-fill" style="width:0%;"></div>
-          </div>
-          <span class="rating-count">0</span>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-number-small">4</span>
-          <span class="rating-star-small">☆</span>
-          <div class="rating-progress">
-            <div class="rating-progress-fill" style="width:0%;"></div>
-          </div>
-          <span class="rating-count">0</span>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-number-small">3</span>
-          <span class="rating-star-small">☆</span>
-          <div class="rating-progress">
-            <div class="rating-progress-fill" style="width:0%;"></div>
-          </div>
-          <span class="rating-count">0</span>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-number-small">2</span>
-          <span class="rating-star-small">☆</span>
-          <div class="rating-progress">
-            <div class="rating-progress-fill" style="width:0%;"></div>
-          </div>
-          <span class="rating-count">0</span>
-        </div>
-
-        <div class="rating-row">
-          <span class="rating-number-small">1</span>
-          <span class="rating-star-small">☆</span>
-          <div class="rating-progress">
-            <div class="rating-progress-fill" style="width:0%;"></div>
-          </div>
-          <span class="rating-count">0</span>
-        </div>
-
+      <div class="rating-bars" id="ratingBars" aria-hidden="true">
+        <div class="rating-row"><span class="rating-number-small">5</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" data-rate="5" style="width:0%"></div></div><span class="rating-count" data-rate="5">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">4</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" data-rate="4" style="width:0%"></div></div><span class="rating-count" data-rate="4">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">3</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" data-rate="3" style="width:0%"></div></div><span class="rating-count" data-rate="3">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">2</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" data-rate="2" style="width:0%"></div></div><span class="rating-count" data-rate="2">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">1</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" data-rate="1" style="width:0%"></div></div><span class="rating-count" data-rate="1">0</span></div>
       </div>
 
-      <button type="button" class="review-button"
-              onclick="alert('Próximamente podrás dejar tu reseña.')">
-        ✎ &nbsp; ESCRIBIR RESEÑA
-      </button>
+      <button id="openReviewBtn" class="review-button" type="button" aria-haspopup="dialog">✎ &nbsp; ESCRIBIR RESEÑA</button>
 
+      <!-- listado corto de reseñas (últimas 3) -->
+      <div id="recentReviews" style="margin-top:18px"></div>
     </div>
   </section>
 
 </main>
 
+<!-- SUMMARY BAR -->
+<div id="summaryBar" class="summary-bar" aria-live="polite" aria-hidden="true">
+  <div class="summary-content">
+    <div class="summary-top">
+      <div class="selected-product">
+        <div class="summary-icon" aria-hidden="true">💎</div>
+        <div>
+          <div class="summary-label">PAQUETE SELECCIONADO</div>
+          <div id="summaryName" class="summary-name">---</div>
+        </div>
+      </div>
+      <div class="summary-total">
+        <div class="summary-label">TOTAL</div>
+        <div id="summaryPrice" class="summary-price">$ 0,00</div>
+      </div>
+    </div>
+
+    <div class="summary-actions">
+      <div class="controls">
+        <button id="qtyMinus" class="qty-button" aria-label="Disminuir cantidad">−</button>
+        <div id="qtyNumber" class="qty-number" aria-live="polite">1</div>
+        <button id="qtyPlus" class="qty-button plus" aria-label="Aumentar cantidad">+</button>
+      </div>
+      <button id="summaryButton" class="summary-button" type="button">VERIFICAR ID &nbsp;›</button>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para escribir reseña -->
+<div id="reviewModal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="reviewModalBack" class="modal-backdrop" style="display:none"></div>
+  <div class="modal" style="display:none">
+    <button id="closeReviewModal" class="modal-close" aria-label="Cerrar reseña">×</button>
+    <h3 class="modal-title">Escribe tu reseña</h3>
+    <div class="modal-stars" id="modalStars" aria-label="Puntuación. Selecciona estrellas" role="radiogroup">
+      <button class="star" data-value="5" aria-label="5 estrellas" role="radio">☆</button>
+      <button class="star" data-value="4" aria-label="4 estrellas" role="radio">☆</button>
+      <button class="star" data-value="3" aria-label="3 estrellas" role="radio">☆</button>
+      <button class="star" data-value="2" aria-label="2 estrellas" role="radio">☆</button>
+      <button class="star" data-value="1" aria-label="1 estrella" role="radio">☆</button>
+    </div>
+    <textarea id="reviewText" placeholder="Escribe tu opinión..." rows="4" style="width:100%;margin-top:12px;padding:10px;border-radius:8px;border:1px solid #1a1f2c;background:#0b0d11;color:#fff"></textarea>
+    <div style="display:flex;gap:10px;margin-top:12px;justify-content:flex-end">
+      <button id="cancelReview" class="btn btn-ghost">Cancelar</button>
+      <button id="submitReview" class="btn btn-primary">Enviar reseña</button>
+    </div>
+  </div>
+</div>
 
 <!-- FOOTER -->
 <footer class="site-footer">
-
-  <h2 class="footer-brand">
-    BRN <span class="footer-brand-blue">STORE</span>
-  </h2>
-
-  <p class="footer-description">
-    Tu arsenal gamer premium. Entregas al instante y el mejor precio
-    garantizado en toda Latinoamérica.
-  </p>
-
+  <h2 class="footer-brand">BRN <span class="footer-brand-blue">STORE</span></h2>
+  <p class="footer-description">Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.</p>
   <div class="footer-socials">
     <a href="#" class="footer-social" aria-label="Instagram">◎</a>
     <a href="#" class="footer-social" aria-label="Facebook">f</a>
     <a href="#" class="footer-social" aria-label="WhatsApp">◔</a>
   </div>
-
   <div class="footer-column">
     <h3 class="footer-heading">AYUDA</h3>
     <a href="#" class="footer-link">¿Cómo comprar?</a>
     <a href="#" class="footer-link">Contactar Agente</a>
   </div>
-
   <div class="footer-column">
     <h3 class="footer-heading">CATEGORÍAS</h3>
     <a href="#" class="footer-link">Juegos de Recarga</a>
   </div>
-
   <div class="footer-security">
     <div class="footer-security-icon">🛡️</div>
     <div>
@@ -602,129 +403,280 @@ body{
       <div class="footer-security-text">ENCRIPCIÓN SSL DE GRADO BANCARIO</div>
     </div>
   </div>
-
   <h3 class="footer-pay-title">ACEPTAMOS:</h3>
-
   <div class="footer-payments">
-    <div class="footer-payment">
-      <span class="footer-payment-icon">🌐</span>
-      BINANCE PAY
-    </div>
-    <div class="footer-payment">
-      <span class="footer-payment-icon">📱</span>
-      YAPPY
-    </div>
+    <div class="footer-payment"><span class="footer-payment-icon">🌐</span> BINANCE PAY</div>
+    <div class="footer-payment"><span class="footer-payment-icon">📱</span> YAPPY</div>
   </div>
-
-  <div class="footer-bottom">
-    © 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.
-  </div>
-
+  <div class="footer-bottom">© 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.</div>
 </footer>
 
-<!-- BARRA INFERIOR -->
-<div id="summaryBar" class="summary-bar">
-  <div class="summary-content">
-
-    <div class="summary-top">
-
-      <div class="selected-product">
-        <div class="summary-icon">💎</div>
-        <div>
-          <div class="summary-label">PAQUETE SELECCIONADO</div>
-          <div id="summaryName" class="summary-name">---</div>
-        </div>
-      </div>
-
-      <div class="summary-total">
-        <div class="summary-label">TOTAL</div>
-        <div id="summaryPrice" class="summary-price">$ 0,00</div>
-      </div>
-
-    </div>
-
-    <button id="summaryButton" class="summary-button" type="button">
-      VERIFICAR ID &gt;
-    </button>
-
-  </div>
-</div>
-
 <script>
-let selectedPackageName = "";
-let selectedPackagePrice = 0;
-let playerVerified = false;
+/* ---------- Main script: icons, tabs, selection, summary, verification, quantity, reviews (localStorage) ---------- */
+document.addEventListener('DOMContentLoaded', function() {
+  /* Elements */
+  const packagesContainer = document.getElementById('packagesList');
+  const tabDiam = document.getElementById('tab-diam');
+  const tabMemb = document.getElementById('tab-memb');
+  const summaryBar = document.getElementById('summaryBar');
+  const summaryIcon = document.querySelector('.summary-icon');
+  const summaryName = document.getElementById('summaryName');
+  const summaryPrice = document.getElementById('summaryPrice');
+  const qtyNumber = document.getElementById('qtyNumber');
+  const qtyPlus = document.getElementById('qtyPlus');
+  const qtyMinus = document.getElementById('qtyMinus');
+  const summaryButton = document.getElementById('summaryButton');
+  const verifyButton = document.getElementById('verifyButton');
+  const playerForm = document.getElementById('playerForm');
+  const verifiedAccount = document.getElementById('verifiedAccount');
+  const verifiedPlayerId = document.getElementById('verifiedPlayerId');
+  const changeIdButton = document.getElementById('changeIdButton');
+  const openReviewBtn = document.getElementById('openReviewBtn');
 
-const packageCards = document.querySelectorAll(".package-card");
+  const modal = document.querySelector('#reviewModal .modal');
+  const modalBack = document.getElementById('reviewModalBack');
+  const reviewModalRoot = document.getElementById('reviewModal');
+  const closeReviewModal = document.getElementById('closeReviewModal');
+  const cancelReview = document.getElementById('cancelReview');
+  const submitReview = document.getElementById('submitReview');
+  const modalStars = Array.from(document.querySelectorAll('#modalStars .star'));
+  const reviewText = document.getElementById('reviewText');
 
-packageCards.forEach(function(card) {
-  card.addEventListener("click", function() {
+  let playerVerified = false;
+  let quantity = 1;
+  let selectedCard = null;
+  let currentRating = 5;
 
-    packageCards.forEach(function(item) {
-      item.classList.remove("selected");
+  /* Helper: format $ with comma */
+  function fmt(n){ return "$ " + Number(n).toFixed(2).replace('.',','); }
+
+  /* Assign icons from data-icon attribute (supports spaces and '+') */
+  document.querySelectorAll('.package-card').forEach(card => {
+    const iconFile = card.dataset.icon;
+    const iconEl = card.querySelector('.package-icon');
+    if (!iconFile || !iconEl) return;
+    const encoded = encodeURIComponent(iconFile);
+    iconEl.style.backgroundImage = `url('assets/icons/${encoded}'), radial-gradient(circle at 30% 30%, rgba(0,102,255,0.14) 0%, rgba(0,102,255,0.06) 30%, rgba(0,0,0,0) 60%)`;
+    iconEl.style.backgroundRepeat = 'no-repeat';
+    iconEl.style.backgroundSize = 'cover, 120% 120%';
+    iconEl.style.backgroundPosition = 'center, 30% 30%';
+  });
+
+  /* Show category: show/hide package cards by data-category */
+  function showCategory(cat){
+    document.querySelectorAll('.package-card').forEach(card=>{
+      if(card.dataset.category === cat) { card.style.display = ''; }
+      else { card.style.display = 'none'; card.classList.remove('selected-diam','selected-memb'); card.setAttribute('aria-pressed','false'); }
     });
+    // auto-select first visible
+    const first = Array.from(document.querySelectorAll('.package-card')).find(c=>c.style.display !== 'none');
+    selectCard(first, false);
+  }
 
-    card.classList.add("selected");
+  /* Select card */
+  function selectCard(card, openSummary){
+    if (!card) {
+      document.querySelectorAll('.package-card').forEach(c=>c.classList.remove('selected-diam','selected-memb'));
+      selectedCard = null;
+      summaryBar.style.display = 'none';
+      summaryBar.setAttribute('aria-hidden','true');
+      return;
+    }
+    // deselect
+    document.querySelectorAll('.package-card').forEach(c=>{
+      c.classList.remove('selected-diam','selected-memb');
+      c.setAttribute('aria-pressed','false');
+    });
+    const cat = card.dataset.category;
+    if (cat === 'diamantes') card.classList.add('selected-diam');
+    else card.classList.add('selected-memb');
+    card.setAttribute('aria-pressed','true');
+    selectedCard = card;
+    quantity = 1;
+    qtyNumber.textContent = quantity;
+    // update summary
+    summaryName.textContent = card.dataset.name || '---';
+    summaryPrice.textContent = fmt(parseFloat(card.dataset.price || 0) * quantity);
+    // update summary icon
+    const iconFile = card.dataset.icon;
+    if (iconFile && summaryIcon){
+      summaryIcon.style.backgroundImage = `url('assets/icons/${encodeURIComponent(iconFile)}'), radial-gradient(circle at 30% 30%, rgba(0,102,255,0.14) 0%, rgba(0,102,255,0.06) 30%, rgba(0,0,0,0) 60%)`;
+      summaryIcon.style.backgroundRepeat = 'no-repeat';
+      summaryIcon.style.backgroundSize = 'cover, 150% 150%';
+      summaryIcon.style.backgroundPosition = 'center, 30% 30%';
+      summaryIcon.textContent = '';
+    }
+    if (openSummary) {
+      summaryBar.style.display = 'block';
+      summaryBar.setAttribute('aria-hidden','false');
+    }
+    updateSummaryButton();
+  }
 
-    selectedPackageName = card.dataset.name;
-    selectedPackagePrice = parseFloat(card.dataset.price);
+  /* Click + keyboard on packages */
+  packagesContainer.addEventListener('click', function(e){
+    const card = e.target.closest('.package-card');
+    if (!card || card.style.display === 'none') return;
+    selectCard(card, true);
+  });
+  packagesContainer.addEventListener('keydown', function(e){
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.closest('.package-card')){
+      e.preventDefault();
+      const card = e.target.closest('.package-card');
+      card.click();
+    }
+  });
 
-    document.getElementById("summaryName").textContent =
-      selectedPackageName;
+  /* Tabs */
+  tabDiam.addEventListener('click', function(){
+    tabDiam.classList.add('tab-alt-active'); tabDiam.classList.remove('tab-disabled');
+    tabMemb.classList.remove('tab-alt-active'); tabMemb.classList.add('tab-disabled');
+    tabDiam.setAttribute('aria-selected','true'); tabMemb.setAttribute('aria-selected','false');
+    showCategory('diamantes');
+  });
+  tabMemb.addEventListener('click', function(){
+    tabMemb.classList.add('tab-alt-active'); tabMemb.classList.remove('tab-disabled');
+    tabDiam.classList.remove('tab-alt-active'); tabDiam.classList.add('tab-disabled');
+    tabMemb.setAttribute('aria-selected','true'); tabDiam.setAttribute('aria-selected','false');
+    showCategory('membresias');
+  });
 
-    document.getElementById("summaryPrice").textContent =
-      "$ " + selectedPackagePrice.toFixed(2).replace(".", ",");
+  /* Quantity */
+  qtyPlus.addEventListener('click', function(){ if(quantity < 99){ quantity++; qtyNumber.textContent = quantity; recalc(); }});
+  qtyMinus.addEventListener('click', function(){ if(quantity > 1){ quantity--; qtyNumber.textContent = quantity; recalc(); }});
+  function recalc(){ if(!selectedCard) return; summaryPrice.textContent = fmt(parseFloat(selectedCard.dataset.price || 0) * quantity); }
 
-    document.getElementById("summaryBar").style.display = "block";
-
+  /* Verify ID behavior */
+  verifyButton.addEventListener('click', function(){
+    const id = document.getElementById('playerId').value.trim();
+    if (!id){ alert('Ingresa tu ID de Free Fire.'); document.getElementById('playerId').focus(); return; }
+    verifiedPlayerId.textContent = id;
+    playerForm.style.display = 'none';
+    verifiedAccount.style.display = 'flex';
+    playerVerified = true;
     updateSummaryButton();
   });
-});
+  changeIdButton.addEventListener('click', function(){
+    playerVerified = false;
+    playerForm.style.display = 'block';
+    verifiedAccount.style.display = 'none';
+    document.getElementById('playerId').value = '';
+    updateSummaryButton();
+  });
 
-document.getElementById("verifyButton").addEventListener("click", function() {
+  /* Summary button state */
+  function updateSummaryButton(){
+    if (playerVerified) summaryButton.textContent = 'SIGUIENTE >';
+    else summaryButton.textContent = 'VERIFICAR ID >';
+  }
+  summaryButton.addEventListener('click', function(){
+    if (!selectedCard){ alert('Selecciona un paquete.'); return; }
+    if (!playerVerified){ alert('Primero verifica tu ID.'); return; }
+    alert('Continuar con: ' + selectedCard.dataset.name + ' × ' + quantity + '\nTotal: ' + summaryPrice.textContent);
+  });
 
-  const id = document.getElementById("playerId").value.trim();
+  /* ---------- Reviews: localStorage + modal ---------- */
+  const STORAGE_KEY = 'freefire_reviews_v1';
+  const ratingNumberEl = document.getElementById('ratingNumber');
+  const ratingStarsEl = document.getElementById('ratingStars');
+  const reviewsCountEl = document.getElementById('reviewsCount');
+  const progressFills = Array.from(document.querySelectorAll('.rating-progress-fill'));
+  const progressCounts = Array.from(document.querySelectorAll('.rating-count'));
+  const recentEl = document.getElementById('recentReviews');
 
-  if (!id) {
-    alert("Ingresa tu ID de Free Fire.");
-    document.getElementById("playerId").focus();
-    return;
+  function loadReviews(){
+    try{ const raw = localStorage.getItem(STORAGE_KEY); return raw ? JSON.parse(raw) : []; } catch(e){ return []; }
+  }
+  function saveReviews(list){ localStorage.setItem(STORAGE_KEY, JSON.stringify(list)); }
+  function calcStats(list){
+    const total = list.length || 0;
+    const counts = {1:0,2:0,3:0,4:0,5:0}; let sum = 0;
+    list.forEach(r=>{ counts[r.rating]=(counts[r.rating]||0)+1; sum += r.rating; });
+    const avg = total ? (sum/total) : 0;
+    return { total, counts, avg };
+  }
+  function escapeHtml(s){ if(!s) return ''; return s.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;').replaceAll('"','&quot;'); }
+
+  function renderStats(){
+    const list = loadReviews();
+    const { total, counts, avg } = calcStats(list);
+    ratingNumberEl.textContent = avg ? (Math.round(avg*10)/10).toFixed(1) : '0.0';
+    const full = Math.round(avg);
+    ratingStarsEl.innerHTML = Array.from({length:5},(_,i)=> i < full ? '★' : '☆').join(' ');
+    reviewsCountEl.textContent = total + (total === 1 ? ' RESEÑA' : ' RESEÑAS');
+    progressFills.forEach(fill => {
+      const r = fill.dataset.rate;
+      const pct = total ? Math.round((counts[r] / total) * 100) : 0;
+      fill.style.width = pct + '%';
+    });
+    progressCounts.forEach(el => {
+      const r = el.dataset.rate;
+      el.textContent = counts[r] || 0;
+    });
+    recentEl.innerHTML = '';
+    if (list.length === 0) return;
+    const last3 = list.slice(-3).reverse();
+    last3.forEach(r => {
+      const d = new Date(r.date);
+      const item = document.createElement('div');
+      item.className = 'review-item';
+      item.innerHTML = `<div class="review-meta">★ ${r.rating} · ${d.toLocaleDateString()} ${d.toLocaleTimeString([], {hour:'2-digit',minute:'2-digit'})}</div><div class="review-text">${escapeHtml(r.text)}</div>`;
+      recentEl.appendChild(item);
+    });
   }
 
-  document.getElementById("verifiedPlayerId").textContent = id;
-
-  document.getElementById("playerForm").style.display = "none";
-
-  document.getElementById("verifiedAccount").style.display = "flex";
-
-  playerVerified = true;
-
-  updateSummaryButton();
-});
-
-document.getElementById("changeIdButton").addEventListener("click", function() {
-
-  playerVerified = false;
-
-  document.getElementById("playerForm").style.display = "block";
-
-  document.getElementById("verifiedAccount").style.display = "none";
-
-  document.getElementById("playerId").value = "";
-
-  updateSummaryButton();
-});
-
-function updateSummaryButton() {
-
-  const button = document.getElementById("summaryButton");
-
-  if (playerVerified) {
-    button.textContent = "SIGUIENTE >";
-  } else {
-    button.textContent = "VERIFICAR ID >";
+  /* Modal handlers */
+  function openModal(){
+    reviewModalRoot.style.display = 'block';
+    modal.style.display = 'block';
+    modalBack.style.display = 'block';
+    reviewModalRoot.setAttribute('aria-hidden','false');
+    reviewText.value = '';
+    currentRating = 5;
+    updateModalStars();
+    reviewText.focus();
   }
-}
+  function closeModal(){
+    reviewModalRoot.style.display = 'none';
+    modal.style.display = 'none';
+    modalBack.style.display = 'none';
+    reviewModalRoot.setAttribute('aria-hidden','true');
+  }
+  function updateModalStars(){
+    modalStars.forEach(btn => {
+      const v = Number(btn.dataset.value);
+      if (v <= currentRating) { btn.classList.add('active'); btn.textContent = '★'; } else { btn.classList.remove('active'); btn.textContent = '☆'; }
+      btn.setAttribute('aria-checked', v === currentRating ? 'true' : 'false');
+    });
+  }
+
+  modalStars.forEach(btn => {
+    btn.addEventListener('click', () => { currentRating = Number(btn.dataset.value); updateModalStars(); });
+    btn.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); btn.click(); }});
+  });
+
+  openReviewBtn.addEventListener('click', openModal);
+  modalBack.addEventListener('click', closeModal);
+  closeReviewModal.addEventListener('click', closeModal);
+  cancelReview.addEventListener('click', closeModal);
+
+  submitReview.addEventListener('click', function(){
+    const text = reviewText.value.trim();
+    const list = loadReviews();
+    const newReview = { rating: currentRating, text: text, date: (new Date()).toISOString() };
+    list.push(newReview);
+    saveReviews(list);
+    renderStats();
+    closeModal();
+  });
+
+  /* Initialize */
+  renderStats();
+  showCategory('diamantes'); // show diamonds by default
+  summaryBar.style.display = 'none';
+  summaryBar.setAttribute('aria-hidden','true');
+  updateSummaryButton();
+});
 </script>
 
 </body>
