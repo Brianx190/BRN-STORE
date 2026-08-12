@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>BRN STORE | Blood Strike</title>
+
+<style>
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:#000;color:#fff;
+  font-family:Arial,Helvetica,sans-serif;
+  padding-bottom:180px
+}
+
+/* NAVBAR */
+.navbar{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:25px
+}
+.back-button{color:#fff;text-decoration:none;font-size:1rem;font-weight:700}
+.logo{font-size:1.15rem;font-weight:900}
+.logo-store{color:#0066ff}
+
+/* CONTENEDOR */
+.container{width:100%;max-width:900px;margin:auto;padding:0 16px}
+
+/* CABECERA */
+.game-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.game-image{
+  width:75px;height:75px;border-radius:16px;
+  background-image:url("assets/bloodstrike.jpg");
+  background-size:cover;background-position:center;
+  border:1px solid #1a1f2c;flex-shrink:0
+}
+.game-title{margin:0;font-size:1.6rem;font-weight:900;letter-spacing:1px}
+.game-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:7px}
+.game-tag{
+  background:#0a0c10;border:1px solid #1a1f2c;color:#94a3b8;
+  font-size:.7rem;padding:5px 8px;border-radius:6px
+}
+
+/* PASOS */
+.step-section{margin-bottom:35px}
+.step-title{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.step-number{
+  width:34px;height:34px;display:flex;align-items:center;justify-content:center;
+  background:#0066ff;border-radius:8px;font-size:1rem;font-weight:900;flex-shrink:0
+}
+.step-heading{margin:0;color:#0066ff;font-size:1.05rem;font-weight:900;letter-spacing:.5px}
+
+/* ID */
+.field-label{
+  display:block;color:#94a3b8;font-size:.78rem;font-weight:900;
+  letter-spacing:.5px;margin-bottom:8px
+}
+.id-row{display:flex;gap:10px;width:100%}
+.id-input{
+  flex:1;min-width:0;background:#0a0c10;border:1px solid #1a1f2c;
+  border-radius:12px;padding:15px;color:#fff;font-size:1rem;outline:none
+}
+.id-input:focus{border-color:#0066ff}
+.verify-button{
+  background:#111522;color:#0066ff;border:1px solid #1a1f2c;
+  border-radius:12px;padding:0 18px;font-weight:900;cursor:pointer;white-space:nowrap
+}
+
+/* CUENTA VERIFICADA */
+.verified-account{
+  display:none;align-items:center;gap:13px;background:#061b10;
+  border:1px solid #00b95c;border-left:5px solid #00d66b;
+  border-radius:15px;padding:14px
+}
+.verified-icon{
+  width:45px;height:45px;display:flex;align-items:center;justify-content:center;
+  background:#073d25;border:1px solid #00a957;border-radius:12px;
+  font-size:1.35rem;flex-shrink:0
+}
+.verified-info{flex:1;min-width:0}
+.verified-label{color:#00d66b;font-size:.65rem;font-weight:900;margin-bottom:4px}
+.verified-name{font-size:.95rem;font-weight:900;word-break:break-word}
+.verified-id{color:#94a3b8;font-weight:600}
+.change-id{
+  width:32px;height:32px;border-radius:50%;border:1px solid #64748b;
+  background:transparent;color:#94a3b8;font-size:1.1rem;cursor:pointer
+}
+
+/* TABS */
+.tabs{display:flex;gap:9px;margin-bottom:18px}
+.tab{border-radius:8px;padding:9px 16px;font-size:.82rem;font-weight:900;cursor:pointer}
+.tab-active{background:#0066ff;color:#fff;border:1px solid #0066ff}
+.tab-disabled{background:#0a0c10;color:#94a3b8;border:1px solid #1a1f2c}
+
+/* PAQUETES */
+.packages{width:100%}
+.package-card{
+  width:100%;min-height:78px;margin-bottom:12px;padding:17px 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:#0a0c10;border:1px solid #1a1f2c;border-radius:14px;
+  cursor:pointer;user-select:none;
+  transition:background .18s ease,border-color .18s ease,box-shadow .18s ease,transform .12s ease;
+  -webkit-tap-highlight-color:transparent
+}
+.package-card:active{transform:scale(.985)}
+.package-card.selected{
+  background:#0d1527;border-color:#0066ff;
+  box-shadow:0 0 14px rgba(0,102,255,.25)
+}
+.package-left{display:flex;align-items:center;gap:12px}
+.diamond-icon{font-size:1.25rem}
+.package-name{font-size:.98rem;font-weight:900}
+.package-price{color:#ffe600;font-size:1.08rem;font-weight:900;transition:color .18s ease}
+.package-card.selected .package-price{color:#fff}
+
+/* RESEÑAS */
+.reviews-section{margin-top:60px;margin-bottom:40px}
+.reviews-box{
+  background:#101116;border:1px solid #202431;border-radius:22px;padding:28px 22px
+}
+.reviews-title{
+  margin:0 0 28px;color:#fff;font-size:1.15rem;font-weight:900;letter-spacing:.5px
+}
+.rating-main{text-align:center;margin-bottom:28px}
+.rating-number{color:#fff;font-size:4rem;line-height:1;font-weight:900;margin-bottom:12px}
+.rating-stars{color:#fff;font-size:1.8rem;letter-spacing:4px;margin-bottom:10px}
+.rating-text{color:#718096;font-size:.78rem;font-weight:900;text-transform:uppercase}
+.rating-bars{display:flex;flex-direction:column;gap:10px}
+.rating-row{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:20px;background:#0a0b0e;border:1px solid #171a21
+}
+.rating-number-small{width:18px;color:#94a3b8;font-size:.9rem;font-weight:900}
+.rating-star-small{color:#fff;font-size:1rem}
+.rating-progress{
+  flex:1;height:7px;background:#25282e;border-radius:20px;overflow:hidden
+}
+.rating-progress-fill{height:100%;width:0%;background:#0066ff;border-radius:20px}
+.rating-count{width:25px;text-align:right;color:#718096;font-size:.85rem;font-weight:900}
+.review-button{
+  width:100%;height:52px;margin-top:28px;background:#0066ff;color:#fff;
+  border:none;border-radius:13px;font-size:.9rem;font-weight:900;cursor:pointer;
+  box-shadow:0 0 20px rgba(0,102,255,.22)
+}
+
+/* BARRA INFERIOR */
+.summary-bar{
+  position:fixed;left:0;right:0;bottom:0;display:none;
+  background:rgba(5,7,15,.98);border-top:1px solid #1a1f2c;
+  padding:12px 16px 15px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
+}
+.summary-content{width:100%;max-width:900px;margin:auto}
+.summary-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:15px;margin-bottom:10px
+}
+.selected-product{display:flex;align-items:center;gap:10px;min-width:0}
+.summary-icon{
+  width:43px;height:43px;display:flex;align-items:center;justify-content:center;
+  background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;
+  font-size:1.2rem;flex-shrink:0
+}
+.summary-label{color:#64748b;font-size:.6rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
+.summary-name{color:#fff;font-size:.95rem;font-weight:900}
+.summary-total{text-align:right;flex-shrink:0}
+.summary-price{color:#00ffaa;font-size:1.15rem;font-weight:900}
+.summary-button{
+  width:100%;height:46px;background:#00c878;color:#001b10;border:none;
+  border-radius:10px;font-size:.9rem;font-weight:900;cursor:pointer;
+  box-shadow:0 0 15px rgba(0,200,120,.25)
+}
+
+/* RESPONSIVE */
+@media(max-width:500px){
+  .navbar{padding:14px 12px}
+  .container{padding:0 12px}
+  .game-title{font-size:1.4rem}
+  .game-image{width:68px;height:68px}
+  .package-card{min-height:74px;padding:16px 14px}
+  .package-price{font-size:1rem}
+  .reviews-box{padding:24px 15px}
+  .rating-number{font-size:3.5rem}
+  .rating-stars{font-size:1.5rem}
+  .summary-bar{padding:10px 12px 13px}
+}
+
+/* FOOTER - mismo tamaño y proporciones que la pantalla principal */
+.site-footer{
+  background-color:#030407;
+  padding:40px 20px 20px;
+  border-top:1px solid #0f1322;
+  text-align:center;
+  margin-top:40px;
+}
+
+.footer-brand{margin-bottom:10px;}
+.footer-brand h2{
+  margin:0 0 10px;
+  font-size:1.6rem;
+  font-weight:900;
+  letter-spacing:1px;
+}
+.footer-brand-blue{color:#0066ff;}
+
+.footer-description{
+  color:#94a3b8;
+  font-size:.85rem;
+  line-height:1.5;
+  max-width:450px;
+  margin:0 auto 25px;
+  font-weight:700;
+}
+
+.footer-socials{
+  display:flex;
+  justify-content:center;
+  gap:15px;
+  margin-bottom:35px;
+}
+
+.footer-social{
+  width:44px;
+  height:44px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background:#fff;
+  color:#000;
+  border:1px solid #fff;
+  border-radius:10px;
+  text-decoration:none;
+  font-size:1.35rem;
+  font-weight:900;
+}
+
+.footer-column{
+  margin-bottom:30px;
+}
+
+.footer-heading{
+  margin:0 0 12px;
+  color:#fff;
+  font-size:.9rem;
+  font-weight:900;
+  letter-spacing:1px;
+}
+
+.footer-link{
+  display:block;
+  margin:0 0 10px;
+  color:#94a3b8;
+  text-decoration:none;
+  font-size:.85rem;
+  font-weight:700;
+}
+
+.footer-security{
+  width:100%;
+  max-width:400px;
+  display:flex;
+  align-items:center;
+  gap:15px;
+  padding:12px 20px;
+  margin:20px auto 25px;
+  background:#090d16;
+  border:1px solid #131929;
+  border-radius:12px;
+  text-align:left;
+}
+
+.footer-security-icon{
+  font-size:1.4rem;
+  flex-shrink:0;
+}
+
+.footer-security-title{
+  color:#fff;
+  font-size:.8rem;
+  font-weight:900;
+  margin-bottom:2px;
+}
+
+.footer-security-text{
+  color:#94a3b8;
+  font-size:.65rem;
+  letter-spacing:.5px;
+  font-weight:700;
+}
+
+.footer-pay-title{
+  margin:0 0 12px;
+  color:#94a3b8;
+  font-size:.8rem;
+  font-weight:900;
+  letter-spacing:1.5px;
+}
+
+.footer-payments{
+  display:flex;
+  justify-content:center;
+  flex-wrap:wrap;
+  gap:12px;
+  width:100%;
+  max-width:450px;
+  margin:0 auto 35px;
+}
+
+.footer-payment{
+  background:#0a0c10;
+  border:1px solid #1a1f2c;
+  border-radius:10px;
+  padding:10px 18px;
+  min-width:150px;
+  flex:1;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  color:#fff;
+  font-size:.8rem;
+  font-weight:900;
+  letter-spacing:.5px;
+}
+
+.footer-payment-icon{font-size:1rem;}
+
+.footer-bottom{
+  border-top:1px solid #0f1322;
+  padding-top:20px;
+  margin-top:20px;
+  color:#94a3b8;
+  font-size:.75rem;
+  letter-spacing:1px;
+  font-weight:700;
+}
+
+@media(max-width:500px){
+  .site-footer{
+    padding:40px 20px 20px;
+  }
+
+  .footer-brand h2{
+    font-size:1.6rem;
+  }
+
+  .footer-description{
+    font-size:.85rem;
+  }
+
+  .footer-socials{
+    gap:15px;
+    margin-bottom:35px;
+  }
+
+  .footer-social{
+    width:44px;
+    height:44px;
+    border-radius:10px;
+    font-size:1.35rem;
+  }
+
+  .footer-security{
+    max-width:400px;
+    padding:12px 20px;
+  }
+
+  .footer-payments{
+    max-width:450px;
+    gap:12px;
+  }
+
+  .footer-payment{
+    min-width:150px;
+    padding:10px 18px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header class="navbar">
+  <a href="index.html" class="back-button">✕ Volver</a>
+  <div class="logo"><span>BRN</span><span class="logo-store"> STORE</span></div>
+  <div style="width:55px;"></div>
+</header>
+
+<main class="container">
+
+  <div class="game-header">
+    <div class="game-image"></div>
+    <div>
+      <h1 class="game-title">BLOOD STRIKE</h1>
+      <div class="game-tags">
+        <span class="game-tag">🌐 LATAM</span>
+        <span class="game-tag">⚡ Entrega Instantánea</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASO 1 -->
+  <section class="step-section">
+    <div class="step-title">
+      <div class="step-number">1</div>
+      <h2 class="step-heading">DATOS DEL JUGADOR</h2>
+    </div>
+
+    <div id="playerForm">
+      <label class="field-label">PLAYER ID</label>
+      <div class="id-row">
+        <input type="number" id="playerId" class="id-input"
+               placeholder="Ingresa tu ID" inputmode="numeric">
+        <button id="verifyButton" class="verify-button" type="button">
+          VERIFICAR &gt;
+        </button>
+      </div>
+    </div>
+
+    <div id="verifiedAccount" class="verified-account">
+      <div class="verified-icon">🛡️</div>
+      <div class="verified-info">
+        <div class="verified-label">ID VERIFICADO</div>
+        <div class="verified-name">
+          <span id="playerName">Jugador</span>
+          <span class="verified-id">(<span id="verifiedPlayerId"></span>)</span>
+        </div>
+      </div>
+      <button id="changeIdButton" class="change-id" type="button">×</button>
+    </div>
+  </section>
+
+  <!-- PASO 2 -->
+  <section class="step-section">
+    <div class="step-title">
+      <div class="step-number">2</div>
+      <h2 class="step-heading">SELECCIONA TU PAQUETE</h2>
+    </div>
+
+    <div class="tabs">
+      <button type="button" class="tab tab-active">ORO</button>
+      <button type="button" class="tab tab-disabled">MEMBRESÍAS</button>
+    </div>
+
+    <div class="packages">
+
+      <div class="package-card" data-name="100+5" data-price="1.00">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">100+5</span>
+        </div>
+        <span class="package-price">$ 1,00</span>
+      </div>
+
+      <div class="package-card" data-name="300+20" data-price="3.50">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">300+20</span>
+        </div>
+        <span class="package-price">$ 3,50</span>
+      </div>
+
+      <div class="package-card" data-name="500+40" data-price="5.00">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">500+40</span>
+        </div>
+        <span class="package-price">$ 5,00</span>
+      </div>
+
+      <div class="package-card" data-name="1000+100" data-price="10.25">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">1000+100</span>
+        </div>
+        <span class="package-price">$ 10,25</span>
+      </div>
+
+      <div class="package-card" data-name="2000+260" data-price="20.00">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">2000+260</span>
+        </div>
+        <span class="package-price">$ 20,00</span>
+      </div>
+
+      <div class="package-card" data-name="5000+580" data-price="49.00">
+        <div class="package-left">
+          <span class="diamond-icon">🪙</span>
+          <span class="package-name">5000+580</span>
+        </div>
+        <span class="package-price">$ 49,00</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- RESEÑAS: SIN RESEÑAS -->
+  <section class="reviews-section">
+    <div class="reviews-box">
+
+      <h2 class="reviews-title">CALIFICACIÓN GENERAL</h2>
+
+      <div class="rating-main">
+        <div class="rating-number">0.0</div>
+        <div class="rating-stars">☆ ☆ ☆ ☆ ☆</div>
+        <div class="rating-text">0 RESEÑAS</div>
+      </div>
+
+      <div class="rating-bars">
+
+        <div class="rating-row">
+          <span class="rating-number-small">5</span>
+          <span class="rating-star-small">☆</span>
+          <div class="rating-progress">
+            <div class="rating-progress-fill" style="width:0%;"></div>
+          </div>
+          <span class="rating-count">0</span>
+        </div>
+
+        <div class="rating-row">
+          <span class="rating-number-small">4</span>
+          <span class="rating-star-small">☆</span>
+          <div class="rating-progress">
+            <div class="rating-progress-fill" style="width:0%;"></div>
+          </div>
+          <span class="rating-count">0</span>
+        </div>
+
+        <div class="rating-row">
+          <span class="rating-number-small">3</span>
+          <span class="rating-star-small">☆</span>
+          <div class="rating-progress">
+            <div class="rating-progress-fill" style="width:0%;"></div>
+          </div>
+          <span class="rating-count">0</span>
+        </div>
+
+        <div class="rating-row">
+          <span class="rating-number-small">2</span>
+          <span class="rating-star-small">☆</span>
+          <div class="rating-progress">
+            <div class="rating-progress-fill" style="width:0%;"></div>
+          </div>
+          <span class="rating-count">0</span>
+        </div>
+
+        <div class="rating-row">
+          <span class="rating-number-small">1</span>
+          <span class="rating-star-small">☆</span>
+          <div class="rating-progress">
+            <div class="rating-progress-fill" style="width:0%;"></div>
+          </div>
+          <span class="rating-count">0</span>
+        </div>
+
+      </div>
+
+      <button type="button" class="review-button"
+              onclick="alert('Próximamente podrás dejar tu reseña.')">
+        ✎ &nbsp; ESCRIBIR RESEÑA
+      </button>
+
+    </div>
+  </section>
+
+</main>
+
+
+<!-- FOOTER -->
+<footer class="site-footer">
+
+  <h2 class="footer-brand">
+    BRN <span class="footer-brand-blue">STORE</span>
+  </h2>
+
+  <p class="footer-description">
+    Tu arsenal gamer premium. Entregas al instante y el mejor precio
+    garantizado en toda Latinoamérica.
+  </p>
+
+  <div class="footer-socials">
+    <a href="#" class="footer-social" aria-label="Instagram">◎</a>
+    <a href="#" class="footer-social" aria-label="Facebook">f</a>
+    <a href="#" class="footer-social" aria-label="WhatsApp">◔</a>
+  </div>
+
+  <div class="footer-column">
+    <h3 class="footer-heading">AYUDA</h3>
+    <a href="#" class="footer-link">¿Cómo comprar?</a>
+    <a href="#" class="footer-link">Contactar Agente</a>
+  </div>
+
+  <div class="footer-column">
+    <h3 class="footer-heading">CATEGORÍAS</h3>
+    <a href="#" class="footer-link">Juegos de Recarga</a>
+  </div>
+
+  <div class="footer-security">
+    <div class="footer-security-icon">🛡️</div>
+    <div>
+      <div class="footer-security-title">COMPRA 100% SEGURA</div>
+      <div class="footer-security-text">ENCRIPCIÓN SSL DE GRADO BANCARIO</div>
+    </div>
+  </div>
+
+  <h3 class="footer-pay-title">ACEPTAMOS:</h3>
+
+  <div class="footer-payments">
+    <div class="footer-payment">
+      <span class="footer-payment-icon">🌐</span>
+      BINANCE PAY
+    </div>
+    <div class="footer-payment">
+      <span class="footer-payment-icon">📱</span>
+      YAPPY
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    © 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.
+  </div>
+
+</footer>
+
+<!-- BARRA INFERIOR -->
+<div id="summaryBar" class="summary-bar">
+  <div class="summary-content">
+
+    <div class="summary-top">
+
+      <div class="selected-product">
+        <div class="summary-icon">🪙</div>
+        <div>
+          <div class="summary-label">PAQUETE SELECCIONADO</div>
+          <div id="summaryName" class="summary-name">---</div>
+        </div>
+      </div>
+
+      <div class="summary-total">
+        <div class="summary-label">TOTAL</div>
+        <div id="summaryPrice" class="summary-price">$ 0,00</div>
+      </div>
+
+    </div>
+
+    <button id="summaryButton" class="summary-button" type="button">
+      VERIFICAR ID &gt;
+    </button>
+
+  </div>
+</div>
+
+<script>
+let selectedPackageName = "";
+let selectedPackagePrice = 0;
+let playerVerified = false;
+
+const packageCards = document.querySelectorAll(".package-card");
+
+packageCards.forEach(function(card) {
+  card.addEventListener("click", function() {
+
+    packageCards.forEach(function(item) {
+      item.classList.remove("selected");
+    });
+
+    card.classList.add("selected");
+
+    selectedPackageName = card.dataset.name;
+    selectedPackagePrice = parseFloat(card.dataset.price);
+
+    document.getElementById("summaryName").textContent =
+      selectedPackageName;
+
+    document.getElementById("summaryPrice").textContent =
+      "$ " + selectedPackagePrice.toFixed(2).replace(".", ",");
+
+    document.getElementById("summaryBar").style.display = "block";
+
+    updateSummaryButton();
+  });
+});
+
+document.getElementById("verifyButton").addEventListener("click", function() {
+
+  const id = document.getElementById("playerId").value.trim();
+
+  if (!id) {
+    alert("Ingresa tu ID de Blood Strike.");
+    document.getElementById("playerId").focus();
+    return;
+  }
+
+  document.getElementById("verifiedPlayerId").textContent = id;
+
+  document.getElementById("playerForm").style.display = "none";
+
+  document.getElementById("verifiedAccount").style.display = "flex";
+
+  playerVerified = true;
+
+  updateSummaryButton();
+});
+
+document.getElementById("changeIdButton").addEventListener("click", function() {
+
+  playerVerified = false;
+
+  document.getElementById("playerForm").style.display = "block";
+
+  document.getElementById("verifiedAccount").style.display = "none";
+
+  document.getElementById("playerId").value = "";
+
+  updateSummaryButton();
+});
+
+function updateSummaryButton() {
+
+  const button = document.getElementById("summaryButton");
+
+  if (playerVerified) {
+    button.textContent = "SIGUIENTE >";
+  } else {
+    button.textContent = "VERIFICAR ID >";
+  }
+}
+</script>
+
+</body>
+</html>
