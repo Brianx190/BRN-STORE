@@ -1,43 +1,62 @@
-:root {
-  --bg-deep: #000000;
-  --accent-blue: #1677ff;
-  --text-white: #ffffff;
-  --text-gray: #9aa8bd;
+:root{
+  --bg-deep:#000000;
+  --accent-blue:#1677ff;
+  --accent-purple:#6b21a8;
+  --text-white:#ffffff;
+  --text-gray:#9aa8bd;
 }
 
-/* Reset / base */
+/* Reset y base */
 *{box-sizing:border-box;margin:0;padding:0}
-html,body,#root{height:100%}
+html,body{height:100%}
 body{
-  font-family: Arial, Helvetica, sans-serif;
-  background-color: var(--bg-deep);
-  color: var(--text-white);
+  font-family:Arial, Helvetica, sans-serif;
+  background-color:var(--bg-deep);
+  color:var(--text-white);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
 }
 
 /* HEADER */
-.header{ width:100%; background:#07080b; border-bottom:1px solid #0f1114; position:sticky; top:0; z-index:1000; }
-.header-content{ max-width:1200px; margin:0 auto; height:68px; display:flex; align-items:center; justify-content:space-between; padding:0 20px; gap:12px; }
+.header{
+  width:100%;
+  background:#07080b;
+  border-bottom:1px solid #0f1114;
+  position:sticky;
+  top:0;
+  z-index:1000;
+}
+.header-content{
+  max-width:1200px;
+  margin:0 auto;
+  height:68px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:0 20px;
+  gap:12px;
+}
 .header-left{ display:flex; align-items:center; gap:10px; }
-.menu-btn{ border:none; background:transparent; color:var(--text-white); font-size:26px; cursor:pointer; padding:6px; }
-.search-btn{ border:none; background:transparent; color:var(--text-white); font-size:20px; cursor:pointer; padding:6px 8px; border-radius:8px; }
+.menu-btn{ border:none;background:transparent;color:var(--text-white);font-size:26px;cursor:pointer;padding:6px; }
+.search-btn{ border:none;background:transparent;color:var(--text-white);font-size:20px;cursor:pointer;padding:6px 8px;border-radius:8px; }
 .search-btn:hover{ background: rgba(255,255,255,0.02); }
 
 /* Logo centrado */
 .logo{ display:flex; align-items:center; gap:8px; font-weight:900; font-size:20px; text-decoration:none; }
-.logo-brn{ color: var(--text-white); }
-.logo-store{ color: var(--accent-blue); }
+.logo-brn{ color:var(--text-white); }
+.logo-store{ color:var(--accent-blue); }
 
-/* Acciones derechas */
+/* Acciones derecha */
 .header-actions{ display:flex; align-items:center; gap:10px; }
 .header-btn{ border:1px solid #141619; background:transparent; color:var(--text-white); padding:8px 12px; border-radius:10px; cursor:pointer; }
-.btn-entrar-blue{ background: var(--accent-blue); color: white; border-radius:10px; padding:9px 14px; font-weight:800; border:none; cursor:pointer; }
+.btn-entrar-blue{ background:var(--accent-blue); color:#fff; border-radius:10px; padding:9px 14px; font-weight:800; border:none; cursor:pointer; }
 
-/* CONTENEDOR */
+/* Contenedor */
 .container{ max-width:1200px; margin:20px auto; padding:0 20px 50px; }
 
-/* BANNERS - imagen completa (contain) */
+/* BANNERS */
 .banner-slider{ width:100%; border-radius:14px; overflow:hidden; background:#000; box-shadow:0 10px 30px rgba(22,119,255,0.12); margin-bottom:24px; }
-.banner-track{ display:flex; width:200%; transition: transform .5s ease; }
+.banner-track{ display:flex; width:200%; transition:transform .5s ease; }
 .banner{ width:50%; display:flex; align-items:center; justify-content:center; padding:10px 0; box-sizing:border-box; }
 .banner img{ width:100%; height:auto; max-height:360px; object-fit:contain; display:block; }
 
@@ -46,63 +65,91 @@ body{
 .banner-dot{ width:9px; height:9px; border-radius:50%; background:rgba(255,255,255,.18); border:0; cursor:pointer; }
 .banner-dot.active{ background:var(--text-white); transform:scale(1.15); }
 
-/* SECCIÓN TÍTULO con barra vertical del tamaño de la "J" */
-.section-title{ margin-top:35px; margin-bottom:18px; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-.section-heading{ font-size:24px; color:var(--text-white); display:flex; align-items:center; gap:10px; margin:0; font-weight:800; }
-.heading-bar{
-  width:6px;
-  height:1em; /* altura igual a la "J" (tamaño de la fuente) */
-  background:var(--accent-blue);
-  display:inline-block;
-  border-radius:3px;
-  transform:translateY(-0.08em);
+/* SECTION TITULO: 'Juegos' en blanco, barra azul vertical */
+.section-title{ margin-top:35px; margin-bottom:18px; display:flex; justify-content:flex-start; align-items:center; gap:12px; }
+.section-heading{ font-size:28px; color:var(--text-white); display:flex; align-items:center; gap:12px; margin:0; font-weight:900; }
+.heading-bar{ width:8px; height:1.05em; background:var(--accent-blue); display:inline-block; border-radius:4px; transform:translateY(-0.06em); }
+
+/* GAMES - scroll horizontal */
+.games-wrapper{ width:100%; overflow-x:auto; padding-bottom:10px; scrollbar-width:thin; }
+.games{ display:flex; gap:20px; padding:6px 4px; width:max-content; }
+
+/* TARJETA */
+.game-card{
+  width:260px;
+  min-width:260px;
+  background:transparent;
+  border-radius:18px;
+  overflow:hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  display:flex;
+  flex-direction:column;
+  text-decoration:none;
 }
 
-/* GAMES / CARDS */
-.games-wrapper{ width:100%; overflow-x:auto; padding-bottom:10px; scrollbar-width:thin; }
-.games{ display:flex; gap:18px; width:max-content; }
-.game-card{ width:210px; min-width:210px; height:285px; background:#fff; border-radius:12px; overflow:hidden; display:flex; flex-direction:column; }
-.game-image img{ width:100%; height:100%; object-fit:cover; display:block; }
+/* Imagen superior */
+.card-image{
+  width:100%;
+  height:260px;
+  background:#222;
+  overflow:hidden;
+  border-top-left-radius:18px;
+  border-top-right-radius:18px;
+}
+.card-image img{ width:100%; height:100%; object-fit:cover; display:block; transition:transform .35s ease; }
+.game-card:hover .card-image img{ transform:scale(1.03); }
 
-/* FOOTER: vertical and centered */
+/* PANEL INFERIOR OSCURO (títulos en blanco) */
+.card-body{
+  background:#0f1114;
+  color:var(--text-white);
+  padding:18px;
+  display:flex;
+  flex-direction:column;
+  gap:12px;
+  border-bottom-left-radius:18px;
+  border-bottom-right-radius:18px;
+}
+
+/* Título en blanco, sin subrayado */
+.game-title{
+  color: var(--text-white);
+  font-weight:900;
+  font-size:20px;
+  text-decoration: none;
+  line-height:1.05;
+}
+
+/* Enlace 'RECARGAR AHORA' morado subrayado para contraste */
+.recharge-link{
+  color: var(--accent-purple);
+  font-weight:900;
+  font-size:16px;
+  text-decoration: underline;
+  text-decoration-thickness: 4px;
+  text-underline-offset: 6px;
+  letter-spacing:1px;
+  align-self:flex-start;
+  padding-top:2px;
+}
+
+/* Footer */
 footer{ background:#070812; color:var(--text-gray); padding:40px 20px 80px; }
 .footer-content{ max-width:720px; margin:0 auto; text-align:center; display:flex; flex-direction:column; align-items:center; gap:18px; }
 
-/* NUEVO: Footer brand grande (logo tipo ASSAX pero con BRN/STORE) */
-.footer-brand{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  gap:6px;
-  font-weight:900;
-  letter-spacing:2px;
-  margin-bottom:4px;
-}
-.brand-brn{
-  color: var(--text-white);
-  font-size:56px;
-  line-height:1;
-}
-.brand-store{
-  color: var(--accent-blue);
-  font-size:56px;
-  line-height:1;
-}
+/* Marca grande BRN/STORE */
+.footer-brand{ display:flex; align-items:center; justify-content:center; gap:6px; font-weight:900; letter-spacing:2px; margin-bottom:4px; }
+.brand-brn{ color: var(--text-white); font-size:56px; line-height:1; }
+.brand-store{ color: var(--accent-blue); font-size:56px; line-height:1; }
 
-/* Slogan centrado grande */
-.footer-slogan{
-  color:#9aa8bd;
-  font-size:20px;
-  line-height:1.5;
-  font-weight:500;
-  max-width:680px;
-}
+/* Slogan */
+.footer-slogan{ color:#9aa8bd; font-size:18px; line-height:1.5; font-weight:500; max-width:680px; }
 
-/* Iconos sociales en cuadros redondeados */
+/* Sociales */
 .footer-socials{ display:flex; gap:16px; justify-content:center; align-items:center; }
 .social-icon{ width:58px; height:58px; background:#0e1116; border:1px solid rgba(255,255,255,0.04); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--text-gray); font-size:22px; text-decoration:none; }
 
-/* Bloques de footer (apilados) */
+/* Columnas footer */
 .footer-columns{ display:flex; flex-direction:column; align-items:center; gap:16px; width:100%; margin-top:8px; }
 .footer-block{ width:100%; max-width:420px; }
 .footer-heading{ color:var(--text-white); font-weight:800; letter-spacing:2px; margin-bottom:12px; text-align:center; }
@@ -112,15 +159,19 @@ footer{ background:#070812; color:var(--text-gray); padding:40px 20px 80px; }
 /* WhatsApp flotante */
 .whatsapp{ position:fixed; right:20px; bottom:20px; width:55px; height:55px; border-radius:50%; background:#25d366; color:#fff; display:flex; align-items:center; justify-content:center; font-size:24px; z-index:9999; }
 
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 900px){
+  .game-card{ width:220px; min-width:220px; }
+  .card-image{ height:200px; }
   .brand-brn, .brand-store{ font-size:44px; }
 }
-@media (max-width: 700px){
-  .header-content{ padding:0 14px; height:62px; }
+@media (max-width:700px){
   .brand-brn, .brand-store{ font-size:32px; }
-  .footer-slogan{ font-size:18px; }
   .banner img{ max-height:220px; }
-  .section-heading{ font-size:20px; }
-  .heading-bar{ height:1em; width:5px; }
+  .section-heading{ font-size:22px; }
+  .heading-bar{ height:1em; width:6px; }
+  .game-card{ width:180px; min-width:180px; }
+  .card-image{ height:150px; }
+  .game-title{ font-size:16px; }
+  .recharge-link{ font-size:14px; }
 }

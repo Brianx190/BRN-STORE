@@ -1,184 +1,177 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>BRN STORE - Recargas de Juegos</title>
-    <meta name="description" content="BRN STORE - Recargas rápidas y seguras para tus juegos favoritos.">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>BRN STORE - Recargas de Juegos</title>
+  <meta name="description" content="BRN STORE - Recargas rápidas y seguras para tus juegos favoritos." />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<header class="header">
+  <header class="header">
     <div class="header-content">
-        <!-- Grupo izquierdo: hamburguesa + lupa -->
-        <div class="header-left">
-            <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
-            <button class="search-btn" type="button" onclick="openSearch()" aria-label="Buscar">🔍</button>
-        </div>
+      <!-- Izquierda: hamburguesa + lupa -->
+      <div class="header-left">
+        <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+        <button class="search-btn" type="button" onclick="openSearch()" aria-label="Buscar">🔍</button>
+      </div>
 
-        <!-- Logo centrado -->
-        <a href="index.html" class="logo" aria-label="BRN STORE">
-            <span class="logo-brn">BRN</span>
-            <span class="logo-store">STORE</span>
-        </a>
+      <!-- Logo centrado -->
+      <a href="index.html" class="logo" aria-label="BRN STORE">
+        <span class="logo-brn">BRN</span>
+        <span class="logo-store">STORE</span>
+      </a>
 
-        <!-- Acciones (derecha) -->
-        <div class="header-actions">
-            <button class="header-btn" type="button" onclick="changeLanguage()" aria-label="Cambiar idioma">🌐 ES</button>
-            <button class="btn-entrar-blue" type="button" onclick="login()" aria-label="Entrar">Entrar</button>
-        </div>
+      <!-- Derecha: acciones -->
+      <div class="header-actions">
+        <button class="header-btn" type="button" onclick="changeLanguage()" aria-label="Cambiar idioma">🌐 ES</button>
+        <button class="btn-entrar-blue" type="button" onclick="login()" aria-label="Entrar">Entrar</button>
+      </div>
     </div>
-</header>
+  </header>
 
-<main class="container">
+  <main class="container">
 
-    <!-- CARRUSEL CON TUS 2 BANNERS (mostrando imagen completa) -->
+    <!-- Carrusel / banners -->
     <section class="banner-slider" aria-label="Promociones">
-        <div class="banner-track" id="bannerTrack">
-            <div class="banner">
-                <img src="assets/banner1.jpg" alt="Promoción BRN STORE 1" loading="lazy">
-            </div>
-
-            <div class="banner">
-                <img src="assets/banner2.jpg" alt="Promoción BRN STORE 2" loading="lazy">
-            </div>
+      <div class="banner-track" id="bannerTrack">
+        <div class="banner">
+          <img src="assets/banner1.jpg" alt="Promoción BRN STORE 1" loading="lazy">
         </div>
 
-        <div class="banner-dots">
-            <button class="banner-dot active" type="button" onclick="showBanner(0)" aria-label="Banner 1"></button>
-            <button class="banner-dot" type="button" onclick="showBanner(1)" aria-label="Banner 2"></button>
+        <div class="banner">
+          <img src="assets/banner2.jpg" alt="Promoción BRN STORE 2" loading="lazy">
         </div>
+      </div>
+
+      <div class="banner-dots" aria-hidden="false">
+        <button class="banner-dot active" type="button" onclick="showBanner(0)" aria-label="Banner 1"></button>
+        <button class="banner-dot" type="button" onclick="showBanner(1)" aria-label="Banner 2"></button>
+      </div>
     </section>
 
-    <!-- SECCIÓN JUEGOS: título actualizado con barra vertical azul del tamaño de la "J" -->
+    <!-- Sección Juegos (título blanco, sin 'Ver todos') -->
     <div class="section-title" id="juegos">
-        <h2 class="section-heading"><span class="heading-bar" aria-hidden="true"></span>Juegos</h2>
-        <a href="#juegos">Ver todos</a>
+      <h2 class="section-heading"><span class="heading-bar" aria-hidden="true"></span>Juegos</h2>
     </div>
 
-    <div class="games-wrapper">
-        <div class="games">
+    <!-- Tarjetas estilo imagen arriba + panel oscuro abajo -->
+    <div class="games-wrapper" aria-label="Lista de juegos">
+      <div class="games">
 
-            <!-- FREE FIRE -->
-            <a href="freefire.html" class="game-card">
-                <div class="game-image">
-                    <img src="assets/freefire.jpg" alt="Free Fire" loading="lazy">
-                </div>
-                <div class="game-info">
-                    <div class="game-name">Free Fire</div>
-                    <span class="recharge-btn">RECARGAR AHORA</span>
-                </div>
-            </a>
+        <!-- Free Fire -->
+        <a href="freefire.html" class="game-card" aria-label="Free Fire - Recargar">
+          <div class="card-image">
+            <img src="assets/freefire.jpg" alt="Free Fire" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="game-title">Free Fire</div>
+            <a class="recharge-link" href="freefire.html">RECARGAR AHORA</a>
+          </div>
+        </a>
 
-            <!-- BLOOD STRIKE -->
-            <a href="bloodstrike.html" class="game-card">
-                <div class="game-image">
-                    <img src="assets/bloodstrike.jpg" alt="Blood Strike" loading="lazy">
-                </div>
-                <div class="game-info">
-                    <div class="game-name">Blood Strike</div>
-                    <span class="recharge-btn">RECARGAR AHORA</span>
-                </div>
-            </a>
+        <!-- Blood Strike -->
+        <a href="bloodstrike.html" class="game-card" aria-label="Blood Strike - Recargar">
+          <div class="card-image">
+            <img src="assets/bloodstrike.jpg" alt="Blood Strike" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="game-title">Blood Strike</div>
+            <a class="recharge-link" href="bloodstrike.html">RECARGAR AHORA</a>
+          </div>
+        </a>
 
-            <!-- CALL OF DUTY MOBILE -->
-            <a href="codmobile.html" class="game-card">
-                <div class="game-image">
-                    <img src="assets/codm.jpg" alt="Call of Duty: Mobile" loading="lazy">
-                </div>
-                <div class="game-info">
-                    <div class="game-name">Call of Duty: Mobile</div>
-                    <span class="recharge-btn">RECARGAR AHORA</span>
-                </div>
-            </a>
+        <!-- Call of Duty -->
+        <a href="codmobile.html" class="game-card" aria-label="Call of Duty Mobile - Recargar">
+          <div class="card-image">
+            <img src="assets/codm.jpg" alt="Call of Duty: Mobile" loading="lazy">
+          </div>
+          <div class="card-body">
+            <div class="game-title">Call of Duty: Mobile</div>
+            <a class="recharge-link" href="codmobile.html">RECARGAR AHORA</a>
+          </div>
+        </a>
 
-        </div>
+      </div>
     </div>
 
-    <!-- (Sección 'Ventajas' eliminada según pedido) -->
+  </main>
 
-</main>
-
-<footer>
+  <footer>
     <div class="footer-content">
 
-        <!-- NUEVO: Logo grande tipo ASSAX reemplazado por BRN / STORE (BRN blanco, STORE azul) -->
-        <div class="footer-brand" aria-hidden="false">
-            <span class="brand-brn">BRN</span><span class="brand-store">STORE</span>
+      <!-- Marca grande BRN / STORE -->
+      <div class="footer-brand" aria-hidden="false">
+        <span class="brand-brn">BRN</span>
+        <span class="brand-store">STORE</span>
+      </div>
+
+      <!-- Slogan -->
+      <div class="footer-slogan">
+        Tu arsenal gamer premium. Entregas al instante<br>
+        y el mejor precio garantizado en toda<br>
+        Latinoamérica.
+      </div>
+
+      <!-- Iconos sociales -->
+      <div class="footer-socials">
+        <a class="social-icon" href="#" aria-label="Instagram">📷</a>
+        <a class="social-icon" href="#" aria-label="Facebook">f</a>
+        <a class="social-icon" href="https://wa.me/50768000685" aria-label="WhatsApp">💬</a>
+      </div>
+
+      <!-- Columnas centradas -->
+      <div class="footer-columns">
+        <div class="footer-block">
+          <h4 class="footer-heading">AYUDA</h4>
+          <ul class="footer-links">
+            <li><a href="#">¿Cómo comprar?</a></li>
+            <li><a href="#">Contactar Agente</a></li>
+            <li><a href="#">Preguntas Frecuentes</a></li>
+          </ul>
         </div>
 
-        <!-- Slogan debajo del logo (mantengo texto que ya tenías) -->
-        <div class="footer-slogan">
-            Tu arsenal gamer premium. Entregas al instante<br/>
-            y el mejor precio garantizado en toda<br/>
-            Latinoamérica.
+        <div class="footer-block">
+          <h4 class="footer-heading">CATEGORÍAS</h4>
+          <ul class="footer-links">
+            <li><a href="#">Todo el Catálogo</a></li>
+            <li><a href="#">Juegos de Recarga</a></li>
+          </ul>
         </div>
 
-        <div class="footer-socials">
-            <a class="social-icon" href="#" aria-label="Instagram">📷</a>
-            <a class="social-icon" href="#" aria-label="Facebook">f</a>
-            <a class="social-icon" href="https://wa.me/50768000685" aria-label="WhatsApp">💬</a>
+        <div class="footer-block">
+          <h4 class="footer-heading">SOPORTE Y LEGAL</h4>
+          <ul class="footer-links">
+            <li><a href="#">Términos y Condiciones</a></li>
+            <li><a href="#">Política de Privacidad</a></li>
+            <li><a href="#">Políticas de Reembolso</a></li>
+          </ul>
         </div>
-
-        <div class="footer-columns">
-
-            <div class="footer-block">
-                <h4 class="footer-heading">AYUDA</h4>
-                <ul class="footer-links">
-                    <li><a href="#">¿Cómo comprar?</a></li>
-                    <li><a href="#">Contactar Agente</a></li>
-                    <li><a href="#">Preguntas Frecuentes</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-block">
-                <h4 class="footer-heading">CATEGORÍAS</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Todo el Catálogo</a></li>
-                    <li><a href="#">Juegos de Recarga</a></li>
-                </ul>
-            </div>
-
-            <div class="footer-block">
-                <h4 class="footer-heading">SOPORTE Y LEGAL</h4>
-                <ul class="footer-links">
-                    <li><a href="#">Términos y Condiciones</a></li>
-                    <li><a href="#">Política de Privacidad</a></li>
-                    <li><a href="#">Políticas de Reembolso</a></li>
-                </ul>
-            </div>
-
-        </div>
+      </div>
 
     </div>
-</footer>
+  </footer>
 
-<a class="whatsapp" href="https://wa.me/50768000685" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+  <a class="whatsapp" href="https://wa.me/50768000685" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
 
-<script>
+  <script>
     let currentBanner = 0;
-
     function showBanner(index) {
-        currentBanner = index;
-        const track = document.getElementById("bannerTrack");
-        const dots = document.querySelectorAll(".banner-dot");
-        track.style.transform = "translateX(-" + (index * 50) + "%)";
-        dots.forEach((dot, i) => {
-            dot.classList.toggle("active", i === index);
-        });
+      currentBanner = index;
+      const track = document.getElementById("bannerTrack");
+      const dots = document.querySelectorAll(".banner-dot");
+      // Si el contenedor tiene clase banner-track o id bannerTrack
+      if (track) track.style.transform = "translateX(-" + (index * 50) + "%)";
+      dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
     }
-
-    setInterval(function () {
-        showBanner(currentBanner === 0 ? 1 : 0);
-    }, 5000);
+    setInterval(() => showBanner(currentBanner === 0 ? 1 : 0), 5000);
 
     function toggleMenu() { alert("Menú próximamente disponible."); }
     function openSearch() { alert("Buscar (implementa un campo de búsqueda aquí)."); }
     function changeLanguage() { alert("Idioma: Español"); }
     function login() { alert("El inicio de sesión estará disponible próximamente."); }
-</script>
+  </script>
 
 </body>
 </html>
