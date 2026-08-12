@@ -11,21 +11,18 @@
 
   <header class="header">
     <div class="header-content">
-      <!-- Izquierda: hamburguesa + lupa -->
       <div class="header-left">
         <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
         <button class="search-btn" type="button" onclick="openSearch()" aria-label="Buscar">🔍</button>
       </div>
 
-      <!-- Logo centrado -->
       <a href="index.html" class="logo" aria-label="BRN STORE">
         <span class="logo-brn">BRN</span>
         <span class="logo-store">STORE</span>
       </a>
 
-      <!-- Derecha: acciones -->
       <div class="header-actions">
-        <button class="header-btn" type="button" onclick="changeLanguage()" aria-label="Cambiar idioma">🌐 ES</button>
+        <button class="header-btn" type="button" onclick="changeLanguage()" aria-label="Cambiar idioma">ES</button>
         <button class="btn-entrar-blue" type="button" onclick="login()" aria-label="Entrar">Entrar</button>
       </div>
     </div>
@@ -33,95 +30,79 @@
 
   <main class="container">
 
-    <!-- Carrusel / banners -->
     <section class="banner-slider" aria-label="Promociones">
       <div class="banner-track" id="bannerTrack">
         <div class="banner">
           <img src="assets/banner1.jpg" alt="Promoción BRN STORE 1" loading="lazy">
         </div>
-
         <div class="banner">
           <img src="assets/banner2.jpg" alt="Promoción BRN STORE 2" loading="lazy">
         </div>
       </div>
 
-      <div class="banner-dots" aria-hidden="false">
+      <div class="banner-dots">
         <button class="banner-dot active" type="button" onclick="showBanner(0)" aria-label="Banner 1"></button>
         <button class="banner-dot" type="button" onclick="showBanner(1)" aria-label="Banner 2"></button>
       </div>
     </section>
 
-    <!-- Sección Juegos (título blanco, sin 'Ver todos') -->
     <div class="section-title" id="juegos">
       <h2 class="section-heading"><span class="heading-bar" aria-hidden="true"></span>Juegos</h2>
     </div>
 
-    <!-- Tarjetas estilo imagen arriba + panel oscuro abajo -->
-    <div class="games-wrapper" aria-label="Lista de juegos">
-      <div class="games">
+    <section class="games-row" aria-label="Juegos destacados">
+      <a href="freefire.html" class="card-vertical">
+        <div class="card-img">
+          <img src="assets/freefire.jpg" alt="Free Fire" loading="lazy">
+        </div>
+        <div class="card-footer">
+          <div class="card-title">Free Fire</div>
+          <div class="card-region">LATAM</div>
+        </div>
+      </a>
 
-        <!-- Free Fire -->
-        <a href="freefire.html" class="game-card" aria-label="Free Fire - Recargar">
-          <div class="card-image">
-            <img src="assets/freefire.jpg" alt="Free Fire" loading="lazy">
-          </div>
-          <div class="card-body">
-            <div class="game-title">Free Fire</div>
-            <a class="recharge-link" href="freefire.html">RECARGAR AHORA</a>
-          </div>
-        </a>
+      <a href="bloodstrike.html" class="card-vertical">
+        <div class="card-img">
+          <img src="assets/bloodstrike.jpg" alt="Blood Strike" loading="lazy">
+        </div>
+        <div class="card-footer">
+          <div class="card-title">Blood Strike</div>
+          <div class="card-region">GLOBAL</div>
+        </div>
+      </a>
 
-        <!-- Blood Strike -->
-        <a href="bloodstrike.html" class="game-card" aria-label="Blood Strike - Recargar">
-          <div class="card-image">
-            <img src="assets/bloodstrike.jpg" alt="Blood Strike" loading="lazy">
-          </div>
-          <div class="card-body">
-            <div class="game-title">Blood Strike</div>
-            <a class="recharge-link" href="bloodstrike.html">RECARGAR AHORA</a>
-          </div>
-        </a>
-
-        <!-- Call of Duty -->
-        <a href="codmobile.html" class="game-card" aria-label="Call of Duty Mobile - Recargar">
-          <div class="card-image">
-            <img src="assets/codm.jpg" alt="Call of Duty: Mobile" loading="lazy">
-          </div>
-          <div class="card-body">
-            <div class="game-title">Call of Duty: Mobile</div>
-            <a class="recharge-link" href="codmobile.html">RECARGAR AHORA</a>
-          </div>
-        </a>
-
-      </div>
-    </div>
+      <a href="codmobile.html" class="card-vertical">
+        <div class="card-img">
+          <img src="assets/codm.jpg" alt="Call of Duty: Mobile" loading="lazy">
+        </div>
+        <div class="card-footer">
+          <div class="card-title">Call of Duty: Mobile</div>
+          <div class="card-region">GLOBAL</div>
+        </div>
+      </a>
+    </section>
 
   </main>
 
   <footer>
     <div class="footer-content">
-
-      <!-- Marca grande BRN / STORE -->
-      <div class="footer-brand" aria-hidden="false">
+      <div class="footer-brand">
         <span class="brand-brn">BRN</span>
         <span class="brand-store">STORE</span>
       </div>
 
-      <!-- Slogan -->
       <div class="footer-slogan">
         Tu arsenal gamer premium. Entregas al instante<br>
         y el mejor precio garantizado en toda<br>
         Latinoamérica.
       </div>
 
-      <!-- Iconos sociales -->
       <div class="footer-socials">
         <a class="social-icon" href="#" aria-label="Instagram">📷</a>
         <a class="social-icon" href="#" aria-label="Facebook">f</a>
         <a class="social-icon" href="https://wa.me/50768000685" aria-label="WhatsApp">💬</a>
       </div>
 
-      <!-- Columnas centradas -->
       <div class="footer-columns">
         <div class="footer-block">
           <h4 class="footer-heading">AYUDA</h4>
@@ -161,16 +142,14 @@
       currentBanner = index;
       const track = document.getElementById("bannerTrack");
       const dots = document.querySelectorAll(".banner-dot");
-      // Si el contenedor tiene clase banner-track o id bannerTrack
       if (track) track.style.transform = "translateX(-" + (index * 50) + "%)";
       dots.forEach((dot, i) => dot.classList.toggle("active", i === index));
     }
     setInterval(() => showBanner(currentBanner === 0 ? 1 : 0), 5000);
-
-    function toggleMenu() { alert("Menú próximamente disponible."); }
-    function openSearch() { alert("Buscar (implementa un campo de búsqueda aquí)."); }
-    function changeLanguage() { alert("Idioma: Español"); }
-    function login() { alert("El inicio de sesión estará disponible próximamente."); }
+    function toggleMenu() {}
+    function openSearch() {}
+    function changeLanguage() {}
+    function login() {}
   </script>
 
 </body>
