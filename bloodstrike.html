@@ -248,6 +248,15 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         <span class="package-price">$ 1,00</span>
       </div>
 
+      <!-- Paquete 300 + 20 (precio corregido a 3.25) -->
+      <div class="package-card" data-name="300 + 20" data-price="3.25">
+        <div class="package-left">
+          <span class="gold-icon">💰</span>
+          <span class="package-name">300 + 20</span>
+        </div>
+        <span class="package-price">$ 3,25</span>
+      </div>
+
       <div class="package-card" data-name="500 + 40" data-price="5.00">
         <div class="package-left">
           <span class="gold-icon">💰</span>
@@ -270,14 +279,6 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
           <span class="package-name">2000 + 260</span>
         </div>
         <span class="package-price">$ 20,00</span>
-      </div>
-
-      <div class="package-card" data-name="300 + 20" data-price="0.95">
-        <div class="package-left">
-          <span class="gold-icon">💰</span>
-          <span class="package-name">300 + 20</span>
-        </div>
-        <span class="package-price">$ 0,95</span>
       </div>
 
       <div class="package-card" data-name="5000 + 580" data-price="48.50">
@@ -389,76 +390,125 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 </div>
 
 <script>
-let selectedPackageName = "";
-let selectedPackagePrice = 0;
-let playerVerified = false;
+/*
+  Script actualizado:
+  - Ordena automáticamente las tarjetas .package-card por la cantidad (número antes del '+')
+  - Usa delegación de eventos para manejar la selección (funciona después de reordenar)
+  - Mantiene la lógica de verificación de ID y la barra inferior
+*/
+document.addEventListener('DOMContentLoaded', function() {
+  const packagesContainer = document.querySelector('.packages');
 
-const packageCards = document.querySelectorAll(".package-card");
-
-packageCards.forEach(function(card) {
-  card.addEventListener("click", function() {
-    packageCards.forEach(function(item) {
-      item.classList.remove("selected");
+  // Ordena las tarjetas por la cantidad (primer número en data-name, ej. "300 + 20")
+  function sortPackagesByAmount() {
+    const cards = Array.from(packagesContainer.querySelectorAll('.package-card'));
+    const parsed = cards.map(card => {
+      const name = card.dataset.name || '';
+      const match = name.match(/^(\d[\d.,]*)/); // toma el primer número
+      let amount = 0;
+      if (match) {
+        // Extrae sólo dígitos por si hay puntos/comas
+        amount = parseInt(match[1].replace(/[^\d]/g, ''), 10) || 0;
+      } else {
+        // fallback: usa el precio si no se puede parsear
+        amount = Math.round((parseFloat(card.dataset.price) || 0) * 100);
+      }
+      return { card, amount };
     });
 
-    card.classList.add("selected");
-    selectedPackageName = card.dataset.name;
-    selectedPackagePrice = parseFloat(card.dataset.price);
+    // Orden menor a mayor (cambia a b.amount - a.amount si quieres mayor->menor)
+    parsed.sort((a, b) => a.amount - b.amount);
 
-    document.getElementById("summaryName").textContent = selectedPackageName;
-    document.getElementById("summaryPrice").textContent =
-      "$ " + selectedPackagePrice.toFixed(2).replace(".", ",");
+    // Re-append en el contenedor en el nuevo orden
+    parsed.forEach(p => packagesContainer.appendChild(p.card));
+  }
 
-    document.getElementById("summaryBar").style.display = "block";
+  // Manejo de selección usando delegación (funciona aunque reordenes DOM)
+  let selectedPackageName = "";
+  let selectedPackagePrice = 0;
+  let playerVerified = false;
+
+  function formatPriceForDisplay(num) {
+    return "$ " + num.toFixed(2).replace(".", ",");
+  }
+
+  function clearSelected() {
+    packagesContainer.querySelectorAll('.package-card').forEach(item => item.classList.remove('selected'));
+  }
+
+  function updateSummaryBar() {
+    document.getElementById("summaryName").textContent = selectedPackageName || '---';
+    document.getElementById("summaryPrice").textContent = formatPriceForDisplay(selectedPackagePrice || 0);
+    document.getElementById("summaryBar").style.display = selectedPackageName ? 'block' : 'none';
+    updateSummaryButton();
+  }
+
+  // Delegated click handler
+  packagesContainer.addEventListener('click', function(e) {
+    const card = e.target.closest('.package-card');
+    if (!card) return;
+
+    clearSelected();
+    card.classList.add('selected');
+    selectedPackageName = card.dataset.name || '';
+    selectedPackagePrice = parseFloat(card.dataset.price) || 0;
+
+    updateSummaryBar();
+  });
+
+  // Inicializa verificación / botones (mantengo la lógica que ya tenías)
+  document.getElementById("verifyButton").addEventListener("click", function() {
+    const id = document.getElementById("playerId").value.trim();
+
+    if (!id) {
+      alert("Ingresa tu ID de Blood Strike.");
+      document.getElementById("playerId").focus();
+      return;
+    }
+
+    document.getElementById("verifiedPlayerId").textContent = id;
+    document.getElementById("playerForm").style.display = "none";
+    document.getElementById("verifiedAccount").style.display = "flex";
+    playerVerified = true;
     updateSummaryButton();
   });
-});
 
-document.getElementById("verifyButton").addEventListener("click", function() {
-  const id = document.getElementById("playerId").value.trim();
+  document.getElementById("changeIdButton").addEventListener("click", function() {
+    playerVerified = false;
+    document.getElementById("playerForm").style.display = "block";
+    document.getElementById("verifiedAccount").style.display = "none";
+    document.getElementById("playerId").value = "";
+    updateSummaryButton();
+  });
 
-  if (!id) {
-    alert("Ingresa tu ID de Blood Strike.");
-    document.getElementById("playerId").focus();
-    return;
+  document.getElementById("summaryButton").addEventListener("click", function() {
+    if (!selectedPackageName) return;
+
+    if (!playerVerified) {
+      document.getElementById("playerId").focus();
+      alert("Primero verifica tu ID de Blood Strike.");
+      return;
+    }
+
+    alert(
+      "Pedido seleccionado:\n" +
+      selectedPackageName + "\n" +
+      "ID: " + document.getElementById("verifiedPlayerId").textContent +
+      "\nTotal: " + formatPriceForDisplay(selectedPackagePrice)
+    );
+  });
+
+  function updateSummaryButton() {
+    const button = document.getElementById("summaryButton");
+    button.textContent = playerVerified ? "SIGUIENTE >" : "VERIFICAR ID >";
   }
 
-  document.getElementById("verifiedPlayerId").textContent = id;
-  document.getElementById("playerForm").style.display = "none";
-  document.getElementById("verifiedAccount").style.display = "flex";
-  playerVerified = true;
-  updateSummaryButton();
+  // Ejecuta ordenamiento al inicio
+  sortPackagesByAmount();
+
+  // Si más adelante necesitas reordenar (por ejemplo, agregas paquetes dinámicamente),
+  // puedes llamar sortPackagesByAmount() de nuevo.
 });
-
-document.getElementById("changeIdButton").addEventListener("click", function() {
-  playerVerified = false;
-  document.getElementById("playerForm").style.display = "block";
-  document.getElementById("verifiedAccount").style.display = "none";
-  document.getElementById("playerId").value = "";
-  updateSummaryButton();
-});
-
-document.getElementById("summaryButton").addEventListener("click", function() {
-  if (!selectedPackageName) return;
-
-  if (!playerVerified) {
-    document.getElementById("playerId").focus();
-    alert("Primero verifica tu ID de Blood Strike.");
-    return;
-  }
-
-  alert(
-    "Pedido seleccionado:\n" +
-    selectedPackageName + "\n" +
-    "ID: " + document.getElementById("verifiedPlayerId").textContent +
-    "\nTotal: $ " + selectedPackagePrice.toFixed(2).replace(".", ",")
-  );
-});
-
-function updateSummaryButton() {
-  const button = document.getElementById("summaryButton");
-  button.textContent = playerVerified ? "SIGUIENTE >" : "VERIFICAR ID >";
-}
 </script>
 
 </body>
