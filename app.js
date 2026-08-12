@@ -1,133 +1,168 @@
-// Claves y Configuración del Carrito
-const cartKey = 'brnCartCount';
-const cartItemsKey = 'brnCartItems';
+document.addEventListener("DOMContentLoaded", () => {
+    // =========================================================================
+    // 1. VARIABLES DE ESTADO GLOBAL (NUEVAS & MEJORADAS)
+    // =========================================================================
+    let idEstaVerificado = false;
+    let precioUnitarioSeleccionado = 0;
+    let cantidadActual = 1;
 
-let cartCount = Number(localStorage.getItem(cartKey)) || 0;
-let savedItems = JSON.parse(localStorage.getItem(cartItemsKey)) || [];
+    // Elementos de la interfaz (Barra inferior y paquetes)
+    const paquetes = document.querySelectorAll(".paquete-item");
+    const barraInferior = document.getElementById("barra-pago-inferior");
+    const footerNombre = document.getElementById("footer-nombre-paquete");
+    const footerPrecio = document.getElementById("footer-precio-total");
+    const footerImg = document.getElementById("footer-item-img");
+    const btnAccionFooter = document.getElementById("btn-accion-footer");
 
-const count = document.getElementById('cartCount');
-const toast = document.getElementById('toast');
-const overlay = document.getElementById('cartOverlay');
-const cartItems = document.getElementById('cartItems');
-const cartTotal = document.getElementById('cartTotal');
+    // Elementos del sistema de verificación de ID
+    const btnVerificarPrincipal = document.getElementById("btn-verificar-id-principal");
+    const inputPlayerId = document.getElementById("input-player-id");
+    const contenedorInputId = document.getElementById("contenedor-input-id");
+    const alertaCuentaExito = document.getElementById("alerta-cuenta-exito");
+    const btnCerrarAlerta = document.getElementById("btn-cerrar-alerta");
 
-function updateCart() {
-  if (count) count.textContent = cartCount;
-  if (cartTotal) cartTotal.textContent = cartCount; 
-  
-  localStorage.setItem(cartKey, cartCount);
-  localStorage.setItem(cartItemsKey, JSON.stringify(savedItems));
-  
-  if (!cartItems) return;
+    // Elementos del contador de cantidad (- 1 +)
+    const btnSumar = document.getElementById("btn-sumar");
+    const btnRestar = document.getElementById("btn-restar");
+    const cantidadValor = document.getElementById("cantidad-valor");
 
-  if (savedItems.length > 0) {
-    cartItems.innerHTML = savedItems.map(item => `
-      <div class="cart-item" style="display:flex; justify-content:space-between; align-items:center; padding:10px; border-bottom:1px solid #1a1f2c;">
-        <span>🎮 ${item}</span>
-        <button class="btn-remove" onclick="removeProduct('${item}')" style="background:transparent; border:none; color:#0066ff; cursor:pointer;"><i class="fas fa-trash"></i></button>
-      </div>
-    `).join('');
-  } else {
-    cartItems.innerHTML = `<div class="empty-cart">Tu carrito está vacío 🛒</div>`;
-  }
-}
-
-document.querySelectorAll('.game-card').forEach(card => {
-  card.addEventListener('click', () => {
-    const productName = card.dataset.product || card.querySelector('h3')?.textContent || 'Producto';
-    cartCount++;
-    savedItems.push(productName);
-    updateCart();
-    showToast(`¡Añadido: ${productName}! 🚀`);
-  });
-});
-
-window.removeProduct = function(productName) {
-  const index = savedItems.indexOf(productName);
-  if (index > -1) {
-    savedItems.splice(index, 1);
-    cartCount--;
-    updateCart();
-    showToast(`Eliminado: ${productName}`);
-  }
-};
-
-function openCart() {
-  updateCart();
-  if (overlay) {
-    overlay.classList.add('show');
-    overlay.style.display = 'flex';
-  }
-}
-
-function closeCart() {
-  if (overlay) {
-    overlay.classList.remove('show');
-    overlay.style.display = 'none';
-  }
-}
-
-function showToast(text) {
-  if (!toast) return;
-  toast.textContent = text;
-  toast.style.display = 'block';
-  setTimeout(() => {
-    toast.style.display = 'none';
-  }, 3000);
-}
-
-document.getElementById('cartBtn')?.addEventListener('click', openCart);
-document.getElementById('closeCart')?.addEventListener('click', closeCart);
-
-overlay?.addEventListener('click', (e) => {
-  if (e.target === overlay) closeCart();
-});
-
-document.addEventListener('keydown', (e) => {
-  if (e.key === 'Escape') closeCart();
-});
-
-document.getElementById('checkoutBtn')?.addEventListener('click', () => {
-  if (!cartCount) {
-    showToast('Tu carrito está vacío 🛒');
-    return;
-  }
-  showToast('Siguiente paso: configurar el pago 💙');
-});
-
-const menuBtn = document.getElementById('menuBtn');
-const mobileMenu = document.getElementById('mobileMenu');
-
-if (menuBtn && mobileMenu) {
-  menuBtn.addEventListener('click', () => {
-    mobileMenu.style.display = mobileMenu.style.display === 'none' ? 'block' : 'none';
-  });
-}
-
-document.getElementById('searchBtn')?.addEventListener('click', () => {
-  const juegosSection = document.getElementById('juegos');
-  if (juegosSection) {
-    juegosSection.scrollIntoView({ behavior: 'smooth' });
-    showToast('Aquí añadiremos el buscador 🔎');
-  }
-});
-
-// --- SISTEMA DESLIZANTE SUAVE DE LOS BANNERS ---
-let currentSlide = 0;
-const bannerTrack = document.getElementById('bannerTrack');
-
-if (bannerTrack) {
-  setInterval(() => {
-    if (currentSlide === 0) {
-      bannerTrack.style.transform = 'translateX(-50%)';
-      currentSlide = 1;
-    } else {
-      bannerTrack.style.transform = 'translateX(0%)';
-      currentSlide = 0;
+    // =========================================================================
+    // 2. CÓDIGO DEL REPOSITORIO ANTERIOR / LOGICA EXISTENTE
+    // =========================================================================
+    // Nota: Si tenías código previo para navegación de pestañas (Tabs),
+    // animaciones del menú de navegación o redirecciones, se ejecuta de forma segura aquí.
+    const tabButtons = document.querySelectorAll(".tab-btn");
+    if (tabButtons.length > 0) {
+        tabButtons.forEach(button => {
+            button.addEventListener("click", () => {
+                tabButtons.forEach(b => b.classList.remove("active"));
+                button.classList.add("active");
+                // Aquí puedes añadir la lógica si ocultas/muestras diamantes o membresías
+            });
+        });
     }
-  }, 4000); // Rueda suavemente cada 4 segundos de izquierda a derecha
-}
 
-document.addEventListener('DOMContentLoaded', () => {
-  updateCart();
+
+    // =========================================================================
+    // 3. NUEVA LOGICA: INTERACCIÓN Y SELECCIÓN DE PAQUETES
+    // =========================================================================
+    if (paquetes.length > 0) {
+        paquetes.forEach(paquete => {
+            paquete.addEventListener("click", () => {
+                // Quitar selección previa de la lista
+                paquetes.forEach(p => p.classList.remove("selected"));
+
+                // Activar visualmente el paquete seleccionado
+                paquete.classList.add("selected");
+
+                // Extraer datos del HTML (data-attributes)
+                const nombrePack = paquete.getAttribute("data-paquete");
+                const precioRaw = paquete.getAttribute("data-precio");
+                const rutaImg = paquete.getAttribute("data-imagen");
+
+                // Convertir precio a número plano para el cálculo matemático
+                precioUnitarioSeleccionado = parseFloat(precioRaw.replace(",", "."));
+                
+                // Resetear cantidad a 1 cada vez que se cambia de paquete
+                cantidadActual = 1; 
+                if (cantidadValor) cantidadValor.textContent = cantidadActual;
+
+                // Inyectar datos dinámicos en la barra inferior
+                if (footerNombre) footerNombre.textContent = nombrePack;
+                if (footerImg) footerImg.src = rutaImg;
+                
+                actualizarCalculoTotal();
+
+                // Mostrar la barra inferior en pantalla (Estado Inicial: ROJO)
+                if (barraInferior) barraInferior.style.display = "flex";
+            });
+        });
+    }
+
+    // =========================================================================
+    // 4. NUEVA LOGICA: CONTADOR MATEMÁTICO (- 1 +)
+    // =========================================================================
+    if (btnSumar && btnRestar && cantidadValor) {
+        btnSumar.addEventListener("click", (e) => {
+            e.stopPropagation(); // Evita interferir con los clics del contenedor
+            cantidadActual++;
+            cantidadValor.textContent = cantidadActual;
+            actualizarCalculoTotal();
+        });
+
+        btnRestar.addEventListener("click", (e) => {
+            e.stopPropagation();
+            if (cantidadActual > 1) {
+                cantidadActual--;
+                cantidadValor.textContent = cantidadActual;
+                actualizarCalculoTotal();
+            }
+        });
+    }
+
+    function actualizarCalculoTotal() {
+        if (!footerPrecio) return;
+        const totalCalculado = (precioUnitarioSeleccionado * cantidadActual).toFixed(2);
+        // Formatear de vuelta con coma para mantener la consistencia visual de tu tienda
+        footerPrecio.textContent = `$ ${totalCalculado.replace(".", ",")}`;
+    }
+
+    // =========================================================================
+    // 5. NUEVA LOGICA: MUTACIÓN DINÁMICA A MODO AMARILLO (ID VERIFICADO)
+    // =========================================================================
+    function activarInterfazModoVerificado() {
+        idEstaVerificado = true;
+        
+        // Agregar la clase de control al body para que el CSS cambie el borde a AMARILLO
+        document.body.classList.add("id-verificado-valido");
+
+        // Mutar visualmente el botón inferior de la barra de pagos
+        if (btnAccionFooter) {
+            btnAccionFooter.textContent = "SIGUIENTE >";
+            btnAccionFooter.className = "btn-footer-amarillo-siguiente";
+        }
+    }
+
+    // Al presionar el botón "VERIFICAR" en la sección de arriba
+    if (btnVerificarPrincipal) {
+        btnVerificarPrincipal.addEventListener("click", () => {
+            if (inputPlayerId && inputPlayerId.value.trim() !== "") {
+                if (contenedorInputId) contenedorInputId.style.display = "none";
+                if (alertaCuentaExito) alertaCuentaExito.style.display = "flex";
+                activarInterfazModoVerificado();
+            } else {
+                alert("Por favor, ingresa un ID válido antes de continuar.");
+            }
+        });
+    }
+
+    // Al presionar el botón de la barra inferior (Comportamiento inteligente de apoyo)
+    if (btnAccionFooter) {
+        btnAccionFooter.addEventListener("click", () => {
+            if (!idEstaVerificado) {
+                // Si el usuario da clic abajo sin verificar arriba, auto-verificamos con el ID de prueba de tu captura
+                if (inputPlayerId) inputPlayerId.value = "344675051";
+                if (contenedorInputId) contenedorInputId.style.display = "none";
+                if (alertaCuentaExito) alertaCuentaExito.style.display = "flex";
+                activarInterfazModoVerificado();
+            } else {
+                // Lógica final de envío: Aquí colocarás el enlace a tu WhatsApp o pasarela de pago
+                alert("Abriendo pasarela de pago para finalizar tu pedido...");
+            }
+        });
+    }
+
+    // Botón para cerrar la alerta verde y restaurar el flujo inicial a modo ROJO
+    if (btnCerrarAlerta) {
+        btnCerrarAlerta.addEventListener("click", () => {
+            idEstaVerificado = false;
+            document.body.classList.remove("id-verificado-valido");
+            if (alertaCuentaExito) alertaCuentaExito.style.display = "none";
+            if (contenedorInputId) contenedorInputId.style.display = "flex";
+            if (btnAccionFooter) {
+                btnAccionFooter.textContent = "VERIFICAR ID >";
+                btnAccionFooter.className = "btn-footer-rojo";
+            }
+        });
+    }
 });

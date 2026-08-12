@@ -1,235 +1,285 @@
-/* Paleta de Colores: Negro, Blanco y Azul Eléctrico */
-:root {
-  --bg-deep: #000000;          
-  --bg-card: #0a0c10;          
-  --bg-card-border: #1a1f2c;   
-  --accent-blue: #0066ff;      
-  --accent-blue-glow: rgba(0, 102, 255, 0.3);
-  --text-white: #ffffff;       
-  --text-gray: #94a3b8;        
-}
-
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-}
-
+/* --- ESTILOS GENERALES Y CONTENEDORES --- */
 body {
-  background-color: var(--bg-deep);
-  color: var(--text-white);
-  padding-bottom: 40px;
+    background-color: #0b0b0b;
+    color: #ffffff;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding-bottom: 120px; /* Espacio para que la barra inferior no tape el contenido */
+}
+.seccion-contenedor {
+    padding: 15px;
+    margin-bottom: 10px;
+}
+.titulo-seccion {
+    font-weight: bold;
+    font-style: italic;
+    color: #ff3a3a;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 15px;
+}
+.numero-alerta {
+    background-color: #ff3a3a;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-style: normal;
 }
 
-.container {
-  padding: 0 16px;
+/* --- SECCIÓN ALERTA DE JUGADOR --- */
+.grupo-input {
+    display: flex;
+    gap: 10px;
+}
+.grupo-input input {
+    flex: 1;
+    background: #151515;
+    border: 1px solid #333;
+    color: white;
+    padding: 10px;
+    border-radius: 6px;
+}
+.grupo-input button {
+    background: #ff3a3a;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+.alerta-verde {
+    background-color: rgba(0, 50, 20, 0.6);
+    border: 1px solid #00aa44;
+    border-radius: 8px;
+    padding: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.alerta-contenido {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.alerta-titulo {
+    color: #00ff66;
+    font-size: 11px;
+    margin: 0;
+    font-weight: bold;
+}
+.alerta-subtitulo {
+    color: #cccccc;
+    margin: 2px 0 0 0;
+    font-size: 14px;
+}
+.btn-close {
+    background: none;
+    border: none;
+    color: #888;
+    font-size: 20px;
+    cursor: pointer;
 }
 
-/* Barra superior de divisas */
-.top-bar {
-  background-color: #050505;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 8px 16px;
-  font-size: 0.75rem;
-  color: var(--text-gray);
-  font-weight: bold;
-  border-bottom: 1px solid #111111;
+/* --- BOTONES DE PESTAÑAS --- */
+.pestañas-categorias {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 15px;
 }
-.currency-btn {
-  background: #0a0a0a;
-  color: var(--text-white);
-  border: 1px solid #222222;
-  padding: 4px 10px;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
+.tab-btn {
+    background: #1a1a1a;
+    border: none;
+    color: #888;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.tab-btn.active {
+    background: #ff3a3a;
+    color: white;
 }
 
-/* Navbar */
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 16px;
-  background-color: var(--bg-deep);
+/* --- CONTENEDORES DE LOS PAQUETES --- */
+.grid-paquetes {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }
-.logo {
-  font-size: 1.5rem;
-  font-weight: 900;
-  letter-spacing: 2px;
+.paquete-item {
+    background-color: #121212;
+    border: 1px solid #222;
+    border-radius: 12px;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    cursor: pointer;
+    transition: all 0.2s ease;
 }
-.logo-brn { color: var(--text-white); }
-.logo-x { color: var(--accent-blue); }
-
-.btn-entrar {
-  background-color: var(--text-white);
-  color: #000000;
-  border: none;
-  padding: 8px 18px;
-  font-weight: bold;
-  border-radius: 8px;
-  font-size: 0.85rem;
-  cursor: pointer;
+.check-indicador {
+    position: absolute;
+    left: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ff3a3a;
+    color: white;
+    border-radius: 50%;
+    width: 16px;
+    height: 16px;
+    font-size: 10px;
+    display: none;
+    align-items: center;
+    justify-content: center;
 }
-
-/* Banner Deslizable */
-.banner-carousel {
-  overflow: hidden; 
-  width: 100%; 
-  border-radius: 16px; 
-  border: 1px solid var(--accent-blue); 
-  box-shadow: 0 0 15px var(--accent-blue-glow); 
-  position: relative; 
-  margin-top: 10px; 
-  margin-bottom: 25px;
+.paquete-info-izq {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding-left: 20px;
 }
-.banner-track {
-  display: flex; 
-  width: 200%; 
-  transition: transform 0.5s ease-in-out;
+.paquete-info-izq img {
+    width: 32px;
 }
-.banner-slide {
-  width: 50%; 
-  height: 125px; 
-  background-size: 100% 100%; 
-  background-position: center; 
-  background-repeat: no-repeat;
+.paquete-precio-der {
+    text-align: right;
 }
-.slide-ff { background-image: url('assets/banner1.jpg'); }
-.slide-bs { background-image: url('assets/banner2.jpg'); }
-
-/* Secciones Generales */
-.section { margin-bottom: 30px; }
-.section-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
+.badge-ahorra {
+    color: #ff3a3a;
+    font-size: 10px;
+    font-weight: bold;
+    display: block;
 }
-.section-title { font-size: 1.3rem; font-weight: bold; }
-.view-all { color: var(--text-gray); text-decoration: none; font-size: 0.8rem; font-weight: bold; }
-
-/* --- GRILLA Y RECORTE DE PORTADAS CORREGIDO --- */
-.games-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: 12px;
-  width: 100%;
+.precio-dinamico {
+    color: #ffcc00; /* Color amarillo por defecto */
+    font-size: 18px;
+    font-weight: bold;
+    margin: 4px 0;
 }
-.game-card {
-  background-color: var(--bg-card);
-  border: 1px solid var(--bg-card-border);
-  border-radius: 14px;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
+.precio-antiguo {
+    color: #666;
+    text-decoration: line-through;
+    font-size: 12px;
 }
 
-/* Asignamos una altura fija exacta e implementamos cover centrado para evitar desvíos */
-.game-image { 
-  height: 145px; 
-  background-size: cover !important; 
-  background-position: center center !important; 
-  background-repeat: no-repeat;
-  width: 100%;
-  border: none !important;
-  outline: none !important;
+/* --- ESTADOS DE SELECCIÓN DINÁMICOS --- */
+/* Cuando se selecciona, el precio se vuelve blanco en cualquier estado */
+.paquete-item.selected .precio-dinamico {
+    color: #ffffff !important;
+}
+.paquete-item.selected .check-indicador {
+    display: flex;
 }
 
-/* Clases específicas para vincular las imágenes sin interferencias de clases viejas */
-.img-ff { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/freefire.jpg'); }
-.img-bs { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/bloodstrike.jpg'); }
-.img-codm { background-image: linear-gradient(to bottom, transparent 40%, #000000), url('assets/codm.jpg'); }
-
-.game-footer { padding: 12px; display: flex; flex-direction: column; gap: 6px; }
-.game-footer h3 { font-size: 0.95rem; font-weight: bold; color: var(--text-white); margin: 0; }
-.region-badge {
-  background-color: #161a24;
-  color: var(--text-gray);
-  font-size: 0.65rem;
-  font-weight: bold;
-  padding: 4px 8px;
-  border-radius: 6px;
-  display: inline-block;
-  align-self: flex-start;
+/* ESTADO ROJO (Antes de verificar ID) */
+.paquete-item.selected {
+    border: 1px solid #ff3a3a;
+    background-color: rgba(255, 58, 58, 0.03);
 }
 
-/* --- ESTILOS DEL FOOTER --- */
-.main-footer {
-  background-color: #030407;
-  padding: 40px 20px 20px 20px;
-  border-top: 1px solid #0f1322;
-  text-align: center;
+/* ESTADO AMARILLO (Cuando la clase global 'id-verificado-valido' está activa) */
+.id-verificado-valido .paquete-item.selected {
+    border: 1px solid #ffcc00;
+    background-color: rgba(255, 204, 0, 0.02);
 }
-.footer-logo { font-size: 1.6rem; font-weight: 900; letter-spacing: 1px; margin-bottom: 10px; }
-.footer-slogan { color: var(--text-gray); font-size: 0.85rem; line-height: 1.5; max-width: 450px; margin: 0 auto 25px auto; }
-.footer-socials {
-  display: flex !important;
-  justify-content: center !important;
-  gap: 15px !important;
-  margin-bottom: 35px !important;
-  width: 100% !important;
+.id-verificado-valido .check-indicador {
+    background: #ffcc00;
+    color: black;
 }
-.social-icon {
-  width: 44px !important;
-  height: 44px !important;
-  background-color: #ffffff !important; 
-  border: 1px solid #ffffff !important;
-  border-radius: 10px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  text-decoration: none !important;
-  cursor: pointer !important;
-}
-.social-icon svg {
-  display: block !important;
-}
-.footer-links-container { display: flex; flex-direction: column; gap: 30px; margin-bottom: 40px; }
-.footer-group h3 { font-size: 0.9rem; letter-spacing: 1px; color: var(--text-white); margin-bottom: 12px; }
-.footer-group ul { list-style: none; }
-.footer-group ul li { margin-bottom: 10px; }
-.footer-group ul li a { color: var(--text-gray); text-decoration: none; font-size: 0.85rem; }
 
-/* Compra Segura */
-.footer-security-bar { display: flex; justify-content: center; margin-top: 20px; margin-bottom: 25px; }
-.security-badge {
-  background-color: #090d16;
-  border: 1px solid #131929;
-  border-radius: 12px;
-  padding: 12px 20px;
-  display: flex;
-  align-items: center;
-  gap: 15px;
-  text-align: left;
-  width: 100%;
-  max-width: 400px;
+/* --- BARRA FLOTANTE INFERIOR --- */
+.barra-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #0d0d0d;
+    border-top: 1px solid #222;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    z-index: 9999;
 }
-.security-badge h4 { font-size: 0.8rem; color: var(--text-white); margin-bottom: 2px; }
-.security-badge p { font-size: 0.65rem; color: var(--text-gray); letter-spacing: 0.5px; }
-
-/* Métodos de Pago */
-.payment-methods-container { display: flex; flex-direction: column; align-items: center; gap: 12px; margin-bottom: 35px; }
-.payment-title { font-size: 0.8rem; font-weight: bold; letter-spacing: 1.5px; color: var(--text-gray); }
-.payment-badges { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; width: 100%; max-width: 450px; }
-.payment-badge {
-  background-color: #0a0c10;
-  border: 1px solid #1a1f2c;
-  border-radius: 10px;
-  padding: 10px 18px;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  flex: 1;
-  min-width: 150px;
-  justify-content: center;
+.footer-bloque-izq {
+    display: flex;
+    align-items: center;
+    gap: 12px;
 }
-.payment-badge span { font-size: 0.8rem; font-weight: bold; letter-spacing: 0.5px; }
+.footer-bloque-izq img {
+    width: 30px;
+}
+.footer-subtext {
+    color: #666;
+    font-size: 9px;
+    display: block;
+    font-weight: bold;
+}
+.footer-maintext {
+    font-size: 15px;
+    font-weight: bold;
+    margin: 2px 0 0 0;
+}
+.footer-bloque-der {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.footer-precio-verde {
+    color: #00ff88;
+    font-size: 20px;
+    font-weight: bold;
+    margin: 2px 0 0 0;
+}
 
-/* Copyright */
-.footer-copyright { border-top: 1px solid #0f1322; padding-top: 20px; margin-top: 20px; }
-.footer-copyright p { font-size: 0.75rem; color: var(--text-gray); letter-spacing: 1px; }
+/* CONTADOR DE CANTIDAD (- 1 +) */
+.contador-cantidad {
+    display: flex;
+    align-items: center;
+    background: #1c1c1c;
+    border-radius: 6px;
+    overflow: hidden;
+}
+.contador-cantidad button {
+    background: none;
+    border: none;
+    color: white;
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.contador-cantidad .btn-mas {
+    background: #ff3a3a;
+}
+.id-verificado-valido .contador-cantidad .btn-mas {
+    background: #ffcc00;
+    color: black;
+}
+#cantidad-valor {
+    padding: 0 10px;
+    font-weight: bold;
+}
+
+/* BOTONES DE LA BARRA INFERIOR */
+.btn-footer-rojo {
+    background-color: #ff3a3a;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-footer-amarillo-siguiente {
+    background-color: #ffcc00;
+    color: black;
+    border: none;
+    padding: 12px 35px;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    text-transform: uppercase;
+}
