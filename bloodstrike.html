@@ -1,32 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>BRN STORE | Blood Strike</title>
 
-<!-- Fuente añadida -->
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-
 <style>
-/* Fuente Bebas Neue para el apartado Blood Strike */
-.blood-font {
-  font-family: 'Bebas Neue', Arial, Helvetica, sans-serif;
-  letter-spacing: 1px;
-}
-
-/* Excepción: sección de reseñas y todo su contenido volverá a la fuente por defecto */
-.blood-font .reviews-section,
-.blood-font .reviews-section * {
-  font-family: Arial, Helvetica, sans-serif !important;
-}
-
-/* Resto del CSS (sin cambios funcionales) */
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
 body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;padding-bottom:180px}
 
-/* NAVBAR — mismo estilo que Free Fire */
+/* NAVBAR */
 .navbar{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:25px}
 .back-button{color:#fff;text-decoration:none;font-size:1rem;font-weight:700}
 .logo{font-size:1.15rem;font-weight:900}
@@ -69,7 +53,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   border-radius:12px;padding:0 18px;font-weight:900;cursor:pointer;white-space:nowrap
 }
 
-/* CUENTA VERIFICADA */
+/* VERIFIED */
 .verified-account{
   display:none;align-items:center;gap:13px;background:#061b10;
   border:1px solid #00b95c;border-left:5px solid #00d66b;
@@ -131,83 +115,66 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   box-shadow:0 0 20px rgba(0,102,255,.22)
 }
 
-/* BARRA INFERIOR - Ajustada a tamaño más compacto */
+/* SUMMARY BAR - ajustada para verse como la referencia */
 .summary-bar{
   position:fixed;left:0;right:0;bottom:0;display:none;
-  background:rgba(5,7,15,.98);border-top:1px solid #1a1f2c;
-  padding:12px 16px 14px;box-shadow:0 -8px 30px rgba(0,0,0,.7);z-index:9999
+  background:linear-gradient(180deg, rgba(5,7,15,0.98), rgba(5,7,15,0.98));
+  border-top:1px solid rgba(26,31,44,0.9);
+  padding:12px 16px 14px;box-shadow:0 -10px 30px rgba(0,0,0,.7);z-index:9999
 }
 .summary-content{width:100%;max-width:900px;margin:auto}
-.summary-top{display:flex;align-items:center;justify-content:space-between;gap:15px;margin-bottom:10px}
+.summary-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:10px}
 .selected-product{display:flex;align-items:center;gap:10px;min-width:0}
 .summary-icon{
   width:36px;height:36px;display:flex;align-items:center;justify-content:center;
   background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;font-size:1rem;flex-shrink:0
 }
-.summary-label{color:#64748b;font-size:.6rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
-.summary-name{color:#fff;font-size:.95rem;font-weight:900}
+.summary-label{color:#64748b;font-size:.63rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
+.summary-name{color:#fff;font-size:0.95rem;font-weight:900}
 .summary-total{text-align:right;flex-shrink:0}
-.summary-price{color:#00ff83;font-size:1.15rem;font-weight:900} /* Precio verde */
-.summary-actions{display:flex;align-items:center;gap:12px}
-/* Controles de cantidad (más compactos) */
-.quantity-controls{display:flex;align-items:center;gap:10px}
+.summary-price{color:#00ff83;font-size:1.45rem;font-weight:900;line-height:1} /* verde, tamaño mayor */
+
+/* layout de acciones: controles compactos a la izquierda, botón-pill centro, precio a la derecha */
+.summary-actions{
+  display:flex;align-items:center;gap:12px;justify-content:space-between;
+}
+
+/* Controles de cantidad (compactos) */
+.quantity-controls{display:flex;align-items:center;gap:10px;margin-right:6px}
 .qty-button{
-  width:40px;height:40px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;
-  color:#fff;font-size:1.15rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center
+  width:44px;height:44px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;
+  color:#fff;font-size:1.2rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center
 }
-.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9);font-size:1.1rem}
-.qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:0.98rem}
+.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9);font-size:1.15rem}
+.qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
 
-/* Botón principal (AZUL) más compacto */
+/* Botón principal tipo "pill" (ocupa el espacio central, altura mayor y bordes redondeados) */
 .summary-button{
-  height:44px;background:#0066ff;color:#001b10;border:none;
-  border-radius:12px;padding:0 20px;font-size:0.98rem;font-weight:900;cursor:pointer;
-  box-shadow:0 6px 24px rgba(0,102,255,.22);display:flex;align-items:center;justify-content:center;
-  flex:1;white-space:nowrap
+  height:56px;background:#0066ff;color:#001b10;border:none;
+  border-radius:28px;padding:0 28px;font-size:1.05rem;font-weight:900;cursor:pointer;
+  box-shadow:0 10px 40px rgba(0,102,255,.22), 0 2px 0 rgba(0,0,0,.35);
+  display:flex;align-items:center;justify-content:center;flex:1;white-space:nowrap;
 }
 
-/* FOOTER — mismo estilo */
+/* Para que el pill no esté justo en el borde izquierdo cuando hay controles, usamos un contenedor flexible */
+.actions-row{display:flex;align-items:center;gap:12px;flex:1}
+
+/* Footer */
 .site-footer{background-color:#030407;padding:40px 20px 20px;border-top:1px solid #0f1322;text-align:center;margin-top:40px}
 .footer-brand{margin:0 0 10px;font-size:1.6rem;font-weight:900;letter-spacing:1px}
 .footer-brand-blue{color:#0066ff}
 .footer-description{color:#94a3b8;font-size:.85rem;line-height:1.5;max-width:450px;margin:0 auto 25px;font-weight:700}
-.footer-socials{display:flex;justify-content:center;gap:15px;margin-bottom:35px}
-.footer-social{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;color:#000;border:1px solid #fff;border-radius:10px;text-decoration:none;font-size:1.35rem;font-weight:900}
-.footer-column{margin-bottom:30px}
-.footer-heading{margin:0 0 12px;color:#fff;font-size:.9rem;font-weight:900;letter-spacing:1px}
-.footer-link{display:block;margin:0 0 10px;color:#94a3b8;text-decoration:none;font-size:.85rem;font-weight:700}
-.footer-security{
-  width:100%;max-width:400px;display:flex;align-items:center;gap:15px;
-  padding:12px 20px;margin:20px auto 25px;background:#090d16;
-  border:1px solid #131929;border-radius:12px;text-align:left
-}
-.footer-security-icon{font-size:1.4rem;flex-shrink:0}
-.footer-security-title{color:#fff;font-size:.8rem;font-weight:900;margin-bottom:2px}
-.footer-security-text{color:#94a3b8;font-size:.65rem;letter-spacing:.5px;font-weight:700}
-.footer-pay-title{margin:0 0 12px;color:#94a3b8;font-size:.8rem;font-weight:900;letter-spacing:1.5px}
-.footer-payments{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;width:100%;max-width:450px;margin:0 auto 35px}
-.footer-payment{background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;padding:10px 18px;min-width:150px;flex:1;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:.8rem;font-weight:900;letter-spacing:.5px}
-.footer-bottom{border-top:1px solid #0f1322;padding-top:20px;margin-top:20px;color:#94a3b8;font-size:.75rem;letter-spacing:1px;font-weight:700}
 
+/* responsive adjustments */
 @media(max-width:500px){
-  .navbar{padding:14px 12px}
-  .container{padding:0 12px}
-  .game-title{font-size:1.4rem}
-  .game-image{width:68px;height:68px}
-  .package-card{min-height:74px;padding:16px 14px}
-  .package-price{font-size:1rem}
-  .reviews-box{padding:24px 15px}
-  .rating-number{font-size:3.5rem}
-  .rating-stars{font-size:1.5rem}
-  .summary-bar{padding:10px 12px 13px}
-  .summary-actions{flex-direction:column;align-items:stretch;gap:10px}
-  .summary-button{width:100%;height:44px}
-  .qty-button{width:44px;height:44px}
-  .site-footer{padding:40px 20px 20px}
+  .summary-button{height:52px;border-radius:22px;font-size:1rem;padding:0 18px}
+  .summary-price{font-size:1.25rem}
+  .qty-button{width:40px;height:40px}
+  .summary-top{gap:8px}
+  .summary-content{padding:0 6px}
 }
 </style>
 </head>
-
 <body>
 
 <header class="navbar">
@@ -216,8 +183,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   <div style="width:55px;"></div>
 </header>
 
-<!-- Aplico la fuente Bebas Neue a todo el main (Blood Strike) -->
-<main class="container blood-font">
+<main class="container">
 
   <div class="game-header">
     <div class="game-image"></div>
@@ -240,11 +206,8 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
     <div id="playerForm">
       <label class="field-label">PLAYER ID</label>
       <div class="id-row">
-        <input type="text" id="playerId" class="id-input"
-               placeholder="Ingresa tu ID" inputmode="numeric">
-        <button id="verifyButton" class="verify-button" type="button">
-          VERIFICAR &gt;
-        </button>
+        <input type="text" id="playerId" class="id-input" placeholder="Ingresa tu ID" inputmode="numeric">
+        <button id="verifyButton" class="verify-button" type="button">VERIFICAR &gt;</button>
       </div>
     </div>
 
@@ -274,7 +237,6 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
     </div>
 
     <div class="packages">
-
       <div class="package-card" data-name="100 + 5" data-price="1.00">
         <div class="package-left">
           <span class="gold-icon">💰</span>
@@ -283,7 +245,6 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         <span class="package-price">$ 1,00</span>
       </div>
 
-      <!-- Paquete 300 + 20 (precio corregido a 3.25) -->
       <div class="package-card" data-name="300 + 20" data-price="3.25">
         <div class="package-left">
           <span class="gold-icon">💰</span>
@@ -323,7 +284,6 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         </div>
         <span class="package-price">$ 48,50</span>
       </div>
-
     </div>
   </section>
 
@@ -346,8 +306,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         <div class="rating-row"><span class="rating-number-small">1</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill"></div></div><span class="rating-count">0</span></div>
       </div>
 
-      <button type="button" class="review-button"
-              onclick="alert('Próximamente podrás dejar tu reseña.')">
+      <button type="button" class="review-button" onclick="alert('Próximamente podrás dejar tu reseña.')">
         ✎ &nbsp; ESCRIBIR RESEÑA
       </button>
     </div>
@@ -355,52 +314,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 
 </main>
 
-<!-- FOOTER -->
-<footer class="site-footer">
-  <h2 class="footer-brand">BRN <span class="footer-brand-blue">STORE</span></h2>
-
-  <p class="footer-description">
-    Tu arsenal gamer premium. Entregas al instante y el mejor precio
-    garantizado en toda Latinoamérica.
-  </p>
-
-  <div class="footer-socials">
-    <a href="#" class="footer-social" aria-label="Instagram">◎</a>
-    <a href="#" class="footer-social" aria-label="Facebook">f</a>
-    <a href="#" class="footer-social" aria-label="WhatsApp">◔</a>
-  </div>
-
-  <div class="footer-column">
-    <h3 class="footer-heading">AYUDA</h3>
-    <a href="#" class="footer-link">¿Cómo comprar?</a>
-    <a href="#" class="footer-link">Contactar Agente</a>
-  </div>
-
-  <div class="footer-column">
-    <h3 class="footer-heading">CATEGORÍAS</h3>
-    <a href="#" class="footer-link">Juegos de Recarga</a>
-  </div>
-
-  <div class="footer-security">
-    <div class="footer-security-icon">🛡️</div>
-    <div>
-      <div class="footer-security-title">COMPRA 100% SEGURA</div>
-      <div class="footer-security-text">ENCRIPCIÓN SSL DE GRADO BANCARIO</div>
-    </div>
-  </div>
-
-  <h3 class="footer-pay-title">ACEPTAMOS:</h3>
-  <div class="footer-payments">
-    <div class="footer-payment"><span>🌐</span> BINANCE PAY</div>
-    <div class="footer-payment"><span>📱</span> YAPPY</div>
-  </div>
-
-  <div class="footer-bottom">
-    © 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.
-  </div>
-</footer>
-
-<!-- BARRA INFERIOR (la dejamos fuera del main porque es global en el layout) -->
+<!-- BARRA INFERIOR -->
 <div id="summaryBar" class="summary-bar" aria-live="polite">
   <div class="summary-content">
     <div class="summary-top">
@@ -419,21 +333,57 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
     </div>
 
     <div class="summary-actions">
-      <div class="quantity-controls" aria-label="Selector de cantidad">
-        <button id="qtyMinus" class="qty-button" type="button" aria-label="Disminuir">−</button>
-        <div id="qtyNumber" class="qty-number">1</div>
-        <button id="qtyPlus" class="qty-button plus" type="button" aria-label="Aumentar">+</button>
-      </div>
+      <div class="actions-row">
+        <div class="quantity-controls" aria-label="Selector de cantidad">
+          <button id="qtyMinus" class="qty-button" type="button" aria-label="Disminuir">−</button>
+          <div id="qtyNumber" class="qty-number">1</div>
+          <button id="qtyPlus" class="qty-button plus" type="button" aria-label="Aumentar">+</button>
+        </div>
 
-      <button id="summaryButton" class="summary-button" type="button">
-        VERIFICAR ID &nbsp;›
-      </button>
+        <button id="summaryButton" class="summary-button" type="button">
+          VERIFICAR ID &nbsp;›
+        </button>
+      </div>
     </div>
   </div>
 </div>
 
+<!-- FOOTER -->
+<footer class="site-footer">
+  <h2 class="footer-brand">BRN <span class="footer-brand-blue">STORE</span></h2>
+  <p class="footer-description">
+    Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.
+  </p>
+  <div class="footer-socials">
+    <a href="#" class="footer-social" aria-label="Instagram">◎</a>
+    <a href="#" class="footer-social" aria-label="Facebook">f</a>
+    <a href="#" class="footer-social" aria-label="WhatsApp">◔</a>
+  </div>
+  <div class="footer-column">
+    <h3 class="footer-heading">AYUDA</h3>
+    <a href="#" class="footer-link">¿Cómo comprar?</a>
+    <a href="#" class="footer-link">Contactar Agente</a>
+  </div>
+  <div class="footer-column">
+    <h3 class="footer-heading">CATEGORÍAS</h3>
+    <a href="#" class="footer-link">Juegos de Recarga</a>
+  </div>
+  <div class="footer-security">
+    <div class="footer-security-icon">🛡️</div>
+    <div>
+      <div class="footer-security-title">COMPRA 100% SEGURA</div>
+      <div class="footer-security-text">ENCRIPCIÓN SSL DE GRADO BANCARIO</div>
+    </div>
+  </div>
+  <h3 class="footer-pay-title">ACEPTAMOS:</h3>
+  <div class="footer-payments">
+    <div class="footer-payment"><span>🌐</span> BINANCE PAY</div>
+    <div class="footer-payment"><span>📱</span> YAPPY</div>
+  </div>
+  <div class="footer-bottom">© 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.</div>
+</footer>
+
 <script>
-/* Mantengo la lógica JS previa: orden, selección, cantidad, verificación */
 document.addEventListener('DOMContentLoaded', function() {
   const packagesContainer = document.querySelector('.packages');
 
@@ -488,6 +438,7 @@ document.addEventListener('DOMContentLoaded', function() {
     summaryButton.textContent = playerVerified ? "SIGUIENTE  ›" : "VERIFICAR ID  ›";
   }
 
+  // Delegated click handler for packages
   packagesContainer.addEventListener('click', function(e) {
     const card = e.target.closest('.package-card');
     if (!card) return;
@@ -524,13 +475,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   document.getElementById("verifyButton").addEventListener("click", function() {
     const id = document.getElementById("playerId").value.trim();
-
     if (!id) {
       alert("Ingresa tu ID de Blood Strike.");
       document.getElementById("playerId").focus();
       return;
     }
-
     document.getElementById("verifiedPlayerId").textContent = id;
     document.getElementById("playerForm").style.display = "none";
     document.getElementById("verifiedAccount").style.display = "flex";
@@ -548,13 +497,11 @@ document.addEventListener('DOMContentLoaded', function() {
 
   summaryButton.addEventListener('click', function() {
     if (!selectedPackageName) return;
-
     if (!playerVerified) {
       document.getElementById("playerId").focus();
       alert("Primero verifica tu ID de Blood Strike.");
       return;
     }
-
     alert(
       "Pedido seleccionado:\n" +
       selectedPackageName + " × " + quantity + "\n" +
@@ -563,6 +510,7 @@ document.addEventListener('DOMContentLoaded', function() {
     );
   });
 
+  // init
   updateSummaryButtonText();
   sortPackagesByAmount();
   openSummaryBar(false);
