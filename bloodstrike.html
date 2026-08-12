@@ -7,10 +7,10 @@
 <style>
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;padding-bottom:180px}
+body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;padding-bottom:220px}
 
 /* NAVBAR */
-.navbar{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:25px}
+.navbar{display:flex;align-items:center;justify-content:space-between;padding:16px;border-bottom:1px solid #1a1f2c;margin-bottom:18px}
 .back-button{color:#fff;text-decoration:none;font-size:1rem;font-weight:700}
 .logo{font-size:1.15rem;font-weight:900}
 .logo-store{color:#0066ff}
@@ -19,15 +19,15 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 .container{width:100%;max-width:900px;margin:auto;padding:0 16px}
 
 /* HEADER */
-.game-header{display:flex;align-items:center;gap:16px;margin-bottom:32px}
+.game-header{display:flex;align-items:center;gap:16px;margin-bottom:24px}
 .game-image{width:75px;height:75px;border-radius:16px;background-image:url("assets/bloodstrike.jpg");background-size:cover;background-position:center;border:1px solid #1a1f2c;flex-shrink:0}
 .game-title{margin:0;font-size:1.6rem;font-weight:900;letter-spacing:1px}
 .game-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:7px}
 .game-tag{background:#0a0c10;border:1px solid #1a1f2c;color:#94a3b8;font-size:.7rem;padding:5px 8px;border-radius:6px}
 
 /* STEPS */
-.step-section{margin-bottom:35px}
-.step-title{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.step-section{margin-bottom:28px}
+.step-title{display:flex;align-items:center;gap:10px;margin-bottom:12px}
 .step-number{width:34px;height:34px;display:flex;align-items:center;justify-content:center;background:#0066ff;border-radius:8px;font-size:1rem;font-weight:900;flex-shrink:0}
 .step-heading{margin:0;color:#0066ff;font-size:1.05rem;font-weight:900;letter-spacing:.5px}
 
@@ -35,8 +35,17 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 .field-label{display:block;color:#94a3b8;font-size:.78rem;font-weight:900;letter-spacing:.5px;margin-bottom:8px}
 .id-row{display:flex;gap:10px;width:100%}
 .id-input{flex:1;min-width:0;background:#0a0c10;border:1px solid #1a1f2c;border-radius:12px;padding:15px;color:#fff;font-size:1rem;outline:none}
+.id-input::placeholder{color:#6b6f73}
 .id-input:focus{border-color:#0066ff}
 .verify-button{background:#111522;color:#0066ff;border:1px solid #1a1f2c;border-radius:12px;padding:0 18px;font-weight:900;cursor:pointer;white-space:nowrap}
+
+/* VERIFIED */
+.verified-account{display:none;align-items:center;gap:13px;background:#061b10;border:1px solid #00b95c;border-left:5px solid #00d66b;border-radius:15px;padding:14px;margin-top:12px}
+.verified-icon{width:45px;height:45px;display:flex;align-items:center;justify-content:center;background:#073d25;border:1px solid #00a957;border-radius:12px;font-size:1.35rem;flex-shrink:0}
+.verified-info{flex:1;min-width:0}
+.verified-label{color:#00d66b;font-size:.65rem;font-weight:900;margin-bottom:4px}
+.verified-name{font-size:.95rem;font-weight:900;word-break:break-word}
+.change-id{width:32px;height:32px;border-radius:50%;border:1px solid #64748b;background:transparent;color:#94a3b8;font-size:1.1rem;cursor:pointer}
 
 /* TABS centradas - activo AZUL */
 .tabs{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:18px}
@@ -65,11 +74,28 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 
 /* PAQUETES selected: filled blue-dark background + white price */
 .package-card.selected-paq{
-  background:linear-gradient(180deg,#0a2434,#07212b); /* blueish filled */
+  background:linear-gradient(180deg,#0a2434,#07212b);
   border:1px solid rgba(0,102,255,.18);
   box-shadow:0 12px 40px rgba(0,102,255,.10);
 }
 .package-card.selected-paq .package-price{color:#fff}
+
+/* RESEÑAS (tarjeta grande) */
+.reviews-section{margin-top:28px;margin-bottom:28px}
+.reviews-box{background:#101116;border:1px solid #202431;border-radius:22px;padding:22px}
+.reviews-title{margin:0 0 18px;color:#fff;font-size:1.15rem;font-weight:900;letter-spacing:.5px}
+.rating-main{text-align:center;margin-bottom:18px;padding-top:6px}
+.rating-number{color:#fff;font-size:3.8rem;line-height:1;font-weight:900;margin-bottom:8px}
+.rating-stars{color:#fff;font-size:1.6rem;letter-spacing:6px;margin-bottom:6px}
+.rating-text{color:#718096;font-size:.78rem;font-weight:900;text-transform:uppercase}
+.rating-bars{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.rating-row{display:flex;align-items:center;gap:10px;padding:10px;border-radius:20px;background:#0a0b0e;border:1px solid #171a21}
+.rating-number-small{width:18px;color:#94a3b8;font-size:.9rem;font-weight:900}
+.rating-star-small{color:#fff;font-size:1rem}
+.rating-progress{flex:1;height:7px;background:#25282e;border-radius:20px;overflow:hidden}
+.rating-progress-fill{height:100%;width:0%;background:#0066ff;border-radius:20px}
+.rating-count{width:25px;text-align:right;color:#718096;font-size:.85rem;font-weight:900}
+.review-button{width:100%;height:48px;margin-top:18px;background:#0066ff;color:#fff;border:none;border-radius:12px;font-size:0.95rem;font-weight:900;cursor:pointer;box-shadow:0 8px 30px rgba(0,102,255,.18)}
 
 /* SUMMARY BAR - GREEN + + blue */
 .summary-bar{position:fixed;left:0;right:0;bottom:0;display:none;background:linear-gradient(180deg, rgba(5,7,15,0.98), rgba(5,7,15,0.98));border-top:1px solid rgba(26,31,44,0.9);padding:12px 16px 14px;box-shadow:0 -10px 30px rgba(0,0,0,.7);z-index:9999}
@@ -87,12 +113,29 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 .actions-row{display:flex;align-items:center;gap:12px;flex:1}
 .quantity-controls{display:flex;align-items:center;gap:10px;margin-right:6px}
 .qty-button{width:44px;height:44px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;color:#fff;font-size:1.2rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center}
-/* + AZUL */
+/* + blue */
 .qty-button.plus{background:#0066ff;border:1px solid rgba(0,102,255,.95);font-size:1.15rem;box-shadow:0 8px 24px rgba(0,102,255,.12)}
 .qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
-
-/* summary pill GREEN */
+/* summary pill green */
 .summary-button{height:56px;background:#00c878;color:#001b10;border:none;border-radius:28px;padding:0 28px;font-size:1.05rem;font-weight:900;cursor:pointer;box-shadow:0 10px 40px rgba(0,200,120,.18),0 2px 0 rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center;flex:1;white-space:nowrap}
+
+/* FOOTER */
+.site-footer{background-color:#030407;padding:40px 20px 20px;border-top:1px solid #0f1322;text-align:center;margin-top:28px}
+.footer-brand{margin:0 0 10px;font-size:1.6rem;font-weight:900;letter-spacing:1px}
+.footer-brand-blue{color:#0066ff}
+.footer-description{color:#94a3b8;font-size:.85rem;line-height:1.5;max-width:680px;margin:0 auto 20px;font-weight:700}
+.footer-socials{display:flex;justify-content:center;gap:15px;margin-bottom:20px}
+.footer-social{width:44px;height:44px;display:flex;align-items:center;justify-content:center;background:#fff;color:#000;border:1px solid #fff;border-radius:10px;text-decoration:none;font-size:1.35rem;font-weight:900}
+.footer-column{margin-bottom:18px}
+.footer-heading{margin:0 0 12px;color:#fff;font-size:.9rem;font-weight:900;letter-spacing:1px}
+.footer-link{display:block;margin:0 0 10px;color:#94a3b8;text-decoration:none;font-size:.85rem;font-weight:700}
+.footer-security{width:100%;max-width:640px;display:flex;align-items:center;gap:15px;padding:12px 20px;margin:20px auto 25px;background:#090d16;border:1px solid #131929;border-radius:12px;text-align:left}
+.footer-security-icon{font-size:1.4rem;flex-shrink:0}
+.footer-security-title{color:#fff;font-size:.9rem;font-weight:900;margin-bottom:2px}
+.footer-security-text{color:#94a3b8;font-size:.75rem;letter-spacing:.5px;font-weight:700}
+.footer-payments{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;width:100%;max-width:640px;margin:0 auto 20px}
+.footer-payment{background:#0a0c10;border:1px solid #1a1f2c;border-radius:10px;padding:10px 18px;min-width:150px;flex:1;display:flex;align-items:center;justify-content:center;gap:10px;color:#fff;font-size:.85rem;font-weight:900;letter-spacing:.5px}
+.footer-bottom{border-top:1px solid #0f1322;padding-top:20px;margin-top:20px;color:#94a3b8;font-size:.75rem;letter-spacing:1px;font-weight:700}
 
 /* responsive */
 @media(max-width:500px){
@@ -100,6 +143,8 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   .summary-button{height:52px;border-radius:22px;font-size:1rem;padding:0 18px}
   .qty-button{width:40px;height:40px}
   .summary-price{font-size:1.25rem}
+  .reviews-box{padding:18px}
+  .reviews-title{font-size:1rem}
 }
 </style>
 </head>
@@ -139,7 +184,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
       </div>
     </div>
 
-    <div id="verifiedAccount" class="verified-account">
+    <div id="verifiedAccount" class="verified-account" aria-hidden="true">
       <div class="verified-icon">🛡️</div>
       <div class="verified-info">
         <div class="verified-label">ID VERIFICADO</div>
@@ -163,7 +208,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
     </div>
 
     <div class="packages" id="packagesList">
-      <!-- ORO category -->
+      <!-- ORO -->
       <div class="package-card" data-category="oro" data-name="100 + 5" data-price="1.00">
         <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">100 + 5</span></div>
         <span class="package-price">$ 1,00</span>
@@ -184,7 +229,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         <span class="package-price">$ 10,00</span>
       </div>
 
-      <!-- PAQUETES category items -->
+      <!-- PAQUETES -->
       <div class="package-card" data-category="paquetes" data-name="Pase Elite" data-price="4.50" style="display:none">
         <div class="package-left"><span class="gold-icon">🎟️</span><span class="package-name">Pase Elite</span></div>
         <span class="package-price">$ 4,50</span>
@@ -199,6 +244,29 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
         <div class="package-left"><span class="gold-icon">🎟️</span><span class="package-name">Pase de Mejora</span></div>
         <span class="package-price">$ 4,00</span>
       </div>
+    </div>
+  </section>
+
+  <!-- RESEÑAS -->
+  <section class="reviews-section" aria-labelledby="reviews-title">
+    <div class="reviews-box">
+      <h2 id="reviews-title" class="reviews-title">CALIFICACIÓN GENERAL</h2>
+
+      <div class="rating-main">
+        <div class="rating-number">0.0</div>
+        <div class="rating-stars">☆ ☆ ☆ ☆ ☆</div>
+        <div class="rating-text">0 RESEÑAS</div>
+      </div>
+
+      <div class="rating-bars">
+        <div class="rating-row"><span class="rating-number-small">5</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" style="width:0%"></div></div><span class="rating-count">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">4</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" style="width:0%"></div></div><span class="rating-count">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">3</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" style="width:0%"></div></div><span class="rating-count">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">2</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" style="width:0%"></div></div><span class="rating-count">0</span></div>
+        <div class="rating-row"><span class="rating-number-small">1</span><span class="rating-star-small">☆</span><div class="rating-progress"><div class="rating-progress-fill" style="width:0%"></div></div><span class="rating-count">0</span></div>
+      </div>
+
+      <button type="button" class="review-button" onclick="alert('Próximamente podrás dejar tu reseña.')">✎ &nbsp; ESCRIBIR RESEÑA</button>
     </div>
   </section>
 
@@ -236,9 +304,40 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 </div>
 
 <!-- FOOTER -->
-<footer class="site-footer">
+<footer class="site-footer" role="contentinfo">
   <h2 class="footer-brand">BRN <span class="footer-brand-blue">STORE</span></h2>
   <p class="footer-description">Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.</p>
+
+  <div class="footer-socials">
+    <a href="#" class="footer-social" aria-label="Instagram">◎</a>
+    <a href="#" class="footer-social" aria-label="Facebook">f</a>
+    <a href="#" class="footer-social" aria-label="WhatsApp">◔</a>
+  </div>
+
+  <div class="footer-column">
+    <h3 class="footer-heading">AYUDA</h3>
+    <a href="#" class="footer-link">¿Cómo comprar?</a>
+    <a href="#" class="footer-link">Contactar Agente</a>
+  </div>
+
+  <div class="footer-column">
+    <h3 class="footer-heading">CATEGORÍAS</h3>
+    <a href="#" class="footer-link">Juegos de Recarga</a>
+  </div>
+
+  <div class="footer-security">
+    <div class="footer-security-icon">🛡️</div>
+    <div>
+      <div class="footer-security-title">COMPRA 100% SEGURA</div>
+      <div class="footer-security-text">ENCRIPCIÓN SSL DE GRADO BANCARIO</div>
+    </div>
+  </div>
+
+  <div class="footer-payments">
+    <div class="footer-payment"><span>🌐</span> BINANCE PAY</div>
+    <div class="footer-payment"><span>📱</span> YAPPY</div>
+  </div>
+
   <div class="footer-bottom">© 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.</div>
 </footer>
 
@@ -257,7 +356,6 @@ document.addEventListener('DOMContentLoaded', function() {
   let selectedPrice = 0;
   let quantity = 1;
 
-  // Ordena tarjetas por cantidad (si aplica)
   function sortPackagesByAmount() {
     const cards = Array.from(packagesContainer.querySelectorAll('.package-card'));
     const parsed = cards.map(card => {
@@ -272,7 +370,6 @@ document.addEventListener('DOMContentLoaded', function() {
     parsed.forEach(p=>packagesContainer.appendChild(p.card));
   }
 
-  // Mostrar u ocultar por categoría y reset selección
   function showCategory(cat) {
     const cards = packagesContainer.querySelectorAll('.package-card');
     cards.forEach(c => {
@@ -283,7 +380,6 @@ document.addEventListener('DOMContentLoaded', function() {
         c.classList.remove('selected-oro','selected-paq','selected');
       }
     });
-    // hide summary when switching categories
     summaryBar.style.display = 'none';
     summaryName.textContent = '---';
     selectedPrice = 0;
@@ -307,24 +403,20 @@ document.addEventListener('DOMContentLoaded', function() {
   tabOro.addEventListener('click', ()=>setActiveTab('oro'));
   tabPaq.addEventListener('click', ()=>setActiveTab('paquetes'));
 
-  // Inicial: ordenar y mostrar oro
+  // init
   sortPackagesByAmount();
   setActiveTab('oro');
 
-  // Delegated click handler for package selection
+  // package click
   packagesContainer.addEventListener('click', function(e) {
     const card = e.target.closest('.package-card');
     if (!card || card.style.display==='none') return;
-    // clear previous selection classes
     packagesContainer.querySelectorAll('.package-card').forEach(c => c.classList.remove('selected-oro','selected-paq','selected'));
-    // add selected marker
     const cat = card.dataset.category;
-    if (cat === 'oro') {
-      card.classList.add('selected-oro');
-    } else {
-      card.classList.add('selected-paq');
-    }
+    if (cat === 'oro') card.classList.add('selected-oro');
+    else card.classList.add('selected-paq');
     card.classList.add('selected');
+
     const name = card.dataset.name || '';
     selectedPrice = parseFloat(card.dataset.price) || 0;
     quantity = 1;
@@ -340,7 +432,6 @@ document.addEventListener('DOMContentLoaded', function() {
   qtyPlus.addEventListener('click', ()=>{ if(quantity<99){ quantity++; qtyNumber.textContent=quantity; updateTotal(); }});
   qtyMinus.addEventListener('click', ()=>{ if(quantity>1){ quantity--; qtyNumber.textContent=quantity; updateTotal(); }});
 
-  // Verify button behavior (keeps previous behavior)
   document.getElementById("verifyButton").addEventListener("click", function() {
     const id = document.getElementById("playerId").value.trim();
     if (!id) { alert("Ingresa tu ID de Blood Strike."); document.getElementById("playerId").focus(); return; }
