@@ -6,7 +6,7 @@
     <title>Venium Store - Free Fire</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="pagina-freefire">
 
     <!-- SECCIÓN 1: DATOS DEL JUGADOR -->
     <div class="seccion-contenedor">
@@ -14,7 +14,7 @@
             <span class="numero-alerta">1</span> DATOS DEL JUGADOR
         </div>
         
-        <!-- Input para ingresar el ID antes de verificar -->
+        <!-- Input inicial -->
         <div id="contenedor-input-id" class="grupo-input">
             <input type="text" id="input-player-id" placeholder="Ingresa ID del jugador">
             <button id="btn-verificar-id-principal">VERIFICAR</button>
@@ -34,6 +34,104 @@
     </div>
 
     <!-- SECCIÓN 2: SELECCIONA TU PAQUETE -->
+    <div class="seccion-contenedor">
+        <div class="titulo-seccion">
+            <span class="numero-alerta">2</span> SELECCIONA TU PAQUETE
+        </div>
+        
+        <div class="pestañas-categorias">
+            <button class="tab-btn active">DIAMANTES</button>
+            <button class="tab-btn">MEMBRESÍAS</button>
+        </div>
+
+        <!-- LISTA DE PAQUETES -->
+        <div class="grid-paquetes">
+            
+            <div class="paquete-item" data-paquete="100+10" data-precio="0,90" data-imagen="assets/diamante.png">
+                <div class="check-indicador">✓</div>
+                <div class="paquete-info-izq">
+                    <!-- Si tu imagen está en otra carpeta de tu repositorio, asegúrate de cambiar 'assets/' por la ruta correcta -->
+                    <img src="assets/diamante.png" alt="Diamantes" onerror="this.src='https://vexels.com'">
+                    <span>100+10</span>
+                </div>
+                <div class="paquete-precio-der">
+                    <span class="badge-ahorra">AHORRA 24%</span>
+                    <p class="precio-dinamico">$ 0,90</p>
+                    <span class="precio-antiguo">$ 1,18</span>
+                </div>
+            </div>
+
+            <div class="paquete-item" data-paquete="310+31" data-precio="2,71" data-imagen="assets/diamante.png">
+                <div class="check-indicador">✓</div>
+                <div class="paquete-info-izq">
+                    <img src="assets/diamante.png" alt="Diamantes" onerror="this.src='https://vexels.com'">
+                    <span>310+31</span>
+                </div>
+                <div class="paquete-precio-der">
+                    <span class="badge-ahorra">AHORRA 29%</span>
+                    <p class="precio-dinamico">$ 2,71</p>
+                    <span class="precio-antiguo">$ 3,62</span>
+                </div>
+            </div>
+
+            <div class="paquete-item" data-paquete="520+52" data-precio="4,51" data-imagen="assets/diamante.png">
+                <div class="check-indicador">✓</div>
+                <div class="paquete-info-izq">
+                    <img src="assets/diamante.png" alt="Diamantes" onerror="this.src='https://vexels.com'">
+                    <span>520+52</span>
+                </div>
+                <div class="paquete-precio-der">
+                    <span class="badge-ahorra">AHORRA 24%</span>
+                    <p class="precio-dinamico">$ 4,51</p>
+                    <span class="precio-antiguo">$ 5,93</span>
+                </div>
+            </div>
+
+            <div class="paquete-item" data-paquete="1060+106" data-precio="9,02" data-imagen="assets/diamante.png">
+                <div class="check-indicador">✓</div>
+                <div class="paquete-info-izq">
+                    <img src="assets/diamante.png" alt="Diamantes" onerror="this.src='https://vexels.com'">
+                    <span>1060+106</span>
+                </div>
+                <div class="paquete-precio-der">
+                    <span class="badge-ahorra">AHORRA 22%</span>
+                    <p class="precio-dinamico">$ 9,02</p>
+                    <span class="precio-antiguo">$ 11,56</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- BARRA FLOTANTE INFERIOR -->
+    <div id="barra-pago-inferior" class="barra-footer" style="display: none;">
+        <div class="footer-bloque-izq">
+            <img id="footer-item-img" src="" alt="pack">
+            <div class="footer-texto-contenedor">
+                <span class="footer-subtext">PAQUETE SELECCIONADO</span>
+                <p id="footer-nombre-paquete" class="footer-maintext">-</p>
+            </div>
+        </div>
+        
+        <div class="footer-bloque-der">
+            <div class="contador-cantidad">
+                <button id="btn-restar">-</button>
+                <span id="cantidad-valor">1</span>
+                <button id="btn-sumar" class="btn-mas">+</button>
+            </div>
+            
+            <div class="footer-total-datos">
+                <span class="footer-subtext">TOTAL</span>
+                <p id="footer-precio-total" class="footer-precio-verde">$ 0,00</p>
+            </div>
+            
+            <button id="btn-accion-footer" class="btn-footer-rojo">VERIFICAR ID ></button>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
     <div class="seccion-contenedor">
         <div class="titulo-seccion">
             <span class="numero-alerta">2</span> SELECCIONA TU PAQUETE
