@@ -1,273 +1,151 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>BRN STORE | Inicio</title>
-  <style>
-    :root{
-      --bg:#05060a;
-      --panel:#0b0d11;
-      --muted:#9aa6b3;
-      --accent-blue:#0066ff;
-      --accent-blue-dark:#0047c2;
-      --card-border: rgba(255,255,255,0.03);
-      --glass: rgba(255,255,255,0.02);
-      --accent-green:#00d07a;
-      --max-width:1100px;
-      --gap:18px;
-    }
-    *{box-sizing:border-box}
-    html,body{height:100%;margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,Arial,Helvetica,sans-serif;-webkit-font-smoothing:antialiased}
-    a{color:inherit;text-decoration:none}
-    img{display:block;max-width:100%}
-    button{font:inherit;cursor:pointer;border:0;background:transparent;color:inherit}
-
-    /* HEADER */
-    header.site-header{
-      position:sticky;top:0;z-index:120;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
-      border-bottom:1px solid rgba(255,255,255,0.03);
-    }
-    .header-inner{
-      max-width:var(--max-width);margin:0 auto;padding:12px 18px;
-      display:flex;align-items:center;justify-content:space-between;gap:12px;
-    }
-    .header-left,.header-right{display:flex;align-items:center;gap:12px}
-    .icon-btn{width:40px;height:40px;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;color:var(--muted);background:transparent}
-    .brand{font-weight:900;font-size:22px;color:#fff;letter-spacing:1px;display:inline-flex;align-items:center;gap:8px}
-    .brand .store{color:var(--accent-blue)}
-    .globe-box{
-      width:42px;height:42px;border-radius:12px;
-      background:linear-gradient(180deg, rgba(0,102,255,0.06), rgba(0,70,192,0.04));
-      display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,102,255,0.12);
-      color:var(--accent-blue);box-shadow:0 6px 18px rgba(0,102,255,0.06) inset;
-    }
-    .btn-enter{
-      padding:10px 18px;border-radius:999px;
-      background:linear-gradient(180deg,var(--accent-blue),var(--accent-blue-dark));
-      color:#fff;font-weight:900;box-shadow:0 10px 30px rgba(0,102,255,0.14);
-    }
-
-    /* LAYOUT */
-    .container{max-width:var(--max-width);margin:20px auto;padding:0 18px}
-
-    /* CAROUSEL */
-    .carousel{
-      position:relative;height:160px;border-radius:14px;overflow:hidden;
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));
-      border:1px solid var(--card-border);margin-bottom:28px;
-    }
-    .carousel-track{height:100%;display:flex;transition:transform .55s cubic-bezier(.2,.9,.2,1)}
-    .carousel-slide{min-width:100%;height:100%;background-size:cover;background-position:center}
-    .carousel-dots{position:absolute;left:50%;transform:translateX(-50%);bottom:12px;display:flex;gap:8px}
-    .dot{width:8px;height:8px;border-radius:999px;background:rgba(255,255,255,0.18);cursor:pointer}
-    .dot.active{width:28px;border-radius:12px;background:var(--accent-blue)}
-
-    /* SECTION HEADER */
-    .section-header{display:flex;align-items:center;justify-content:space-between;margin:6px 0 18px}
-    .section-title{font-size:1.6rem;font-weight:900;margin:0}
-    .section-title .accent{color:var(--accent-blue);margin-left:8px}
-    .view-all{color:var(--muted);font-weight:800}
-
-    /* GAMES GRID (vertical compact cards) */
-    .games-grid{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:var(--gap);
-      margin-bottom:36px;
-    }
-    @media(max-width:900px){ .games-grid{grid-template-columns:1fr} }
-
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.03));
-      border-radius:14px;border:1px solid var(--card-border);overflow:hidden;box-shadow:0 8px 26px rgba(0,0,0,0.6);
-      display:flex;flex-direction:column;min-height:220px;
-    }
-    .card .media{padding:12px}
-    .card .thumb{
-      width:100%;height:140px;border-radius:12px;object-fit:cover;border:1px solid rgba(255,255,255,0.02);
-      box-shadow: inset 0 -12px 20px rgba(0,0,0,0.45);display:block;
-    }
-    .card .card-body{padding:12px 14px 18px 14px;display:flex;flex-direction:column;gap:8px}
-    .card h3{margin:0;font-size:1rem;font-weight:900;color:#fff}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.02);color:var(--muted);font-weight:800;font-size:.72rem;border:1px solid rgba(255,255,255,0.02);width:max-content}
-
-    /* FOOTER */
-    footer.site-footer{margin-top:18px;padding:36px 20px;color:var(--muted);border-top:1px solid rgba(255,255,255,0.03)}
-    .footer-inner{max-width:var(--max-width);margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:18px;text-align:center}
-    .socials{display:flex;gap:12px}
-    .social-btn{width:44px;height:44px;border-radius:10px;border:1px solid rgba(255,255,255,0.03);display:flex;align-items:center;justify-content:center;color:var(--muted)}
-    .security-pill{display:flex;align-items:center;gap:12px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(0,0,0,0.04));padding:12px 18px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);box-shadow:0 8px 30px rgba(0,0,0,0.45)}
-    .security-title{font-weight:900;color:#fff}
-    .security-sub{color:var(--muted);font-weight:700;font-size:.85rem}
-
-    .whatsapp-fab{position:fixed;right:18px;bottom:18px;width:58px;height:58px;border-radius:999px;background:var(--accent-green);display:flex;align-items:center;justify-content:center;box-shadow:0 10px 36px rgba(0,0,0,0.5);z-index:160}
-
-    @media(max-width:600px){ .header-inner{padding:10px 12px} }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BRN STORE - Recargas de Juegos</title>
+    <meta name="description" content="BRN STORE - Recargas rápidas y seguras para tus juegos favoritos.">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        *{box-sizing:border-box;margin:0;padding:0}
+        body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#111827}
+        a{text-decoration:none;color:inherit}
+        .header{width:100%;background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000}
+        .header-content{max-width:1200px;margin:auto;height:70px;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
+        .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:#1677ff}
+        .logo span{color:#111827}
+        .menu-btn{border:none;background:transparent;font-size:25px;cursor:pointer;display:none}
+        .header-actions{display:flex;align-items:center;gap:12px}
+        .header-btn{border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:10px 15px;cursor:pointer;font-size:14px;font-weight:600}
+        .header-btn:hover{border-color:#1677ff;color:#1677ff}
+        .container{max-width:1200px;margin:auto;padding:25px 20px 50px}
+        .hero{width:100%;min-height:230px;border-radius:18px;overflow:hidden;position:relative;background:linear-gradient(120deg,rgba(14,91,255,.95),rgba(0,166,255,.75));display:flex;align-items:center;padding:35px;color:#fff;box-shadow:0 10px 30px rgba(0,90,255,.15)}
+        .hero-content{max-width:600px;position:relative;z-index:2}
+        .hero h1{font-size:38px;margin-bottom:10px}
+        .hero p{font-size:17px;opacity:.95;margin-bottom:20px}
+        .hero-btn{display:inline-block;background:#fff;color:#1265e8;padding:12px 20px;border-radius:10px;font-weight:700}
+        .section-title{margin-top:35px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
+        .section-title h2{font-size:24px}
+        .section-title a{color:#1677ff;font-size:14px;font-weight:700}
+        .games-wrapper{width:100%;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
+        .games{display:flex;gap:18px;width:max-content}
+        .game-card{width:210px;min-width:210px;height:285px;background:#fff;border:1px solid #e6eaf0;border-radius:16px;overflow:hidden;display:flex;flex-direction:column;box-shadow:0 5px 18px rgba(0,0,0,.06);transition:transform .2s ease,box-shadow .2s ease}
+        .game-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
+        .game-image{width:100%;height:190px;flex-shrink:0;overflow:hidden;background:#e9edf3}
+        .game-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
+        .game-card:hover .game-image img{transform:scale(1.05)}
+        .game-info{height:95px;padding:13px;display:flex;flex-direction:column;justify-content:space-between}
+        .game-name{font-size:16px;font-weight:800;color:#111827;line-height:1.2}
+        .recharge-btn{width:100%;border:none;background:#1677ff;color:#fff;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:700;text-align:center;cursor:pointer;transition:background .2s ease}
+        .recharge-btn:hover{background:#075dcc}
+        .advantages{margin-top:45px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
+        .advantage{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:20px;text-align:center}
+        .advantage-icon{font-size:30px;margin-bottom:10px}
+        .advantage h3{font-size:16px;margin-bottom:6px}
+        .advantage p{color:#6b7280;font-size:13px}
+        footer{background:#111827;color:#fff;margin-top:50px}
+        .footer-content{max-width:1200px;margin:auto;padding:35px 20px;text-align:center}
+        .footer-logo{font-size:23px;font-weight:800;color:#4d9aff;margin-bottom:8px}
+        .footer-text{color:#9ca3af;font-size:14px}
+        .payment-methods{margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+        .payment{background:#1f2937;padding:8px 14px;border-radius:8px;font-size:13px}
+        .whatsapp{position:fixed;right:20px;bottom:20px;width:55px;height:55px;border-radius:50%;background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;font-size:27px;box-shadow:0 5px 20px rgba(0,0,0,.2);z-index:999}
+        @media(max-width:700px){
+            .header-content{height:62px;padding:0 15px}.menu-btn{display:block}.header-actions{gap:5px}
+            .header-btn{padding:8px 10px;font-size:12px}.container{padding:15px 12px 40px}
+            .hero{min-height:210px;padding:25px 20px;border-radius:15px}.hero h1{font-size:29px}.hero p{font-size:14px}
+            .section-title{margin-top:28px}.section-title h2{font-size:20px}
+            .game-card{width:180px;min-width:180px;height:255px}.game-image{height:165px}
+            .game-info{height:90px;padding:10px}.game-name{font-size:14px}.recharge-btn{padding:8px;font-size:12px}
+            .advantages{grid-template-columns:1fr}
+        }
+    </style>
 </head>
 <body>
-
-  <!-- HEADER -->
-  <header class="site-header" role="banner" aria-label="Encabezado">
-    <div class="header-inner">
-      <div class="header-left">
-        <button id="menuBtn" class="icon-btn" aria-label="Abrir menú">
-          <svg width="18" height="14" viewBox="0 0 18 14" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><rect y="1" width="18" height="2" rx="1" fill="currentColor"/><rect y="6" width="18" height="2" rx="1" fill="currentColor"/><rect y="11" width="18" height="2" rx="1" fill="currentColor"/></svg>
-        </button>
-
-        <button id="searchBtn" class="icon-btn" aria-label="Buscar">
-          <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><circle cx="11" cy="11" r="6"></circle><path d="M21 21l-4.3-4.3"></path></svg>
-        </button>
-      </div>
-
-      <div style="flex:1;display:flex;align-items:center;justify-content:center">
-        <div class="brand" aria-label="Logo">ASSA<span class="store">X</span></div>
-      </div>
-
-      <div class="header-right">
-        <div class="globe-box" aria-hidden="true" title="Cambiar región">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M12 2a10 10 0 100 20 10 10 0 000-20z"></path><path d="M2 12h20"></path><path d="M12 2c2.8 3 2.8 9 0 12M12 22c-2.8-3-2.8-9 0-12"></path></svg>
+<header class="header">
+    <div class="header-content">
+        <button class="menu-btn" type="button" onclick="toggleMenu()">☰</button>
+        <a href="index.html" class="logo">💙 <span>BRN STORE</span></a>
+        <div class="header-actions">
+            <button class="header-btn" type="button" onclick="changeLanguage()">🌐 ES</button>
+            <button class="header-btn" type="button" onclick="login()">Entrar</button>
         </div>
-
-        <button class="btn-enter" id="loginBtn" aria-label="Entrar">ENTRAR</button>
-      </div>
     </div>
-  </header>
+</header>
 
-  <!-- MAIN -->
-  <main class="container" role="main">
-
-    <!-- CAROUSEL -->
-    <div class="carousel" aria-roledescription="carousel" aria-label="Promociones">
-      <div class="carousel-track" id="carouselTrack">
-        <div class="carousel-slide" style="background-image:url('assets/banner1.jpg')"></div>
-        <div class="carousel-slide" style="background-image:url('assets/banner2.jpg')"></div>
-      </div>
-      <div class="carousel-dots" id="carouselDots" role="tablist" aria-hidden="false"></div>
-    </div>
-
-    <!-- SECTION HEADER -->
-    <div class="section-header">
-      <h2 class="section-title">Juegos de <span class="accent">Recarga</span></h2>
-      <a class="view-all" href="#juegos">VER TODOS</a>
-    </div>
-
-    <!-- GAMES GRID -->
-    <section id="juegos" class="games-grid" role="list" aria-label="Listado de juegos">
-      <article class="card" role="listitem" aria-label="Free Fire">
-        <div class="media thumb-wrap">
-          <img class="thumb" src="assets/freefire.jpg" alt="Free Fire portada" loading="lazy">
+<main class="container">
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Recarga tus juegos favoritos</h1>
+            <p>Compra tus diamantes, CP y monedas de forma rápida, segura y sencilla.</p>
+            <a href="#juegos" class="hero-btn">Ver juegos</a>
         </div>
-        <div class="card-body">
-          <h3>Free Fire</h3>
-          <span class="badge">NORTE / SUR</span>
-        </div>
-      </article>
-
-      <article class="card" role="listitem" aria-label="Blood Strike">
-        <div class="media thumb-wrap">
-          <img class="thumb" src="assets/bloodstrike.jpg" alt="Blood Strike portada" loading="lazy">
-        </div>
-        <div class="card-body">
-          <h3>Blood Strike</h3>
-          <span class="badge">GLOBAL</span>
-        </div>
-      </article>
-
-      <article class="card" role="listitem" aria-label="Call of Duty: Mobile">
-        <div class="media thumb-wrap">
-          <img class="thumb" src="assets/codm.jpg" alt="Call of Duty Mobile portada" loading="lazy">
-        </div>
-        <div class="card-body">
-          <h3>Call of Duty: Mobile</h3>
-          <span class="badge">GLOBAL</span>
-        </div>
-      </article>
     </section>
 
-  </main>
-
-  <!-- FOOTER -->
-  <footer class="site-footer" role="contentinfo">
-    <div class="footer-inner">
-      <div style="max-width:720px;color:var(--muted);text-align:center;">Tu arsenal gamer premium. Entregas al instante y el mejor precio garantizado en toda Latinoamérica.</div>
-
-      <div class="socials" role="navigation" aria-label="Redes sociales">
-        <button class="social-btn" aria-label="Instagram">IG</button>
-        <button class="social-btn" aria-label="Facebook">f</button>
-        <button class="social-btn" aria-label="Chat">💬</button>
-      </div>
-
-      <div>
-        <div style="font-weight:900;color:#fff;margin-bottom:8px">AYUDA</div>
-        <div style="display:flex;flex-direction:column;gap:10px;align-items:center">
-          <a href="#">¿Cómo comprar?</a>
-          <a href="https://api.whatsapp.com/send/?phone=50768000685&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener">Contactar Agente</a>
-          <a href="#">Preguntas Frecuentes</a>
-        </div>
-      </div>
-
-      <div class="security-block" aria-hidden="false">
-        <div class="security-pill" role="status" aria-label="Compra segura">
-          <div class="shield" aria-hidden="true">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#00d07a" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l7 4v6c0 5-3.6 9.7-7 10-3.4-.3-7-5-7-10V6l7-4z"/><path d="M9.5 12.5l1.9 2.2 3.6-4.4" stroke="#00d07a" stroke-width="1.6"/></svg>
-          </div>
-          <div>
-            <div class="security-title">COMPRA 100% SEGURA</div>
-            <div class="security-sub">ENCRIPTACIÓN SSL DE GRADO BANCARIO</div>
-          </div>
-        </div>
-      </div>
-
-      <div style="width:100%;display:flex;justify-content:center;margin-top:8px">
-        <div style="text-transform:uppercase;color:var(--muted);font-weight:900;margin-right:12px;align-self:center;">Aceptamos:</div>
-        <div style="display:flex;gap:12px;align-items:center">
-          <div style="background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);font-weight:900">🪙 BINANCE PAY</div>
-          <div style="background:rgba(255,255,255,0.02);padding:10px 14px;border-radius:12px;border:1px solid rgba(255,255,255,0.03);font-weight:900">📱 PAGO MÓVIL</div>
-        </div>
-      </div>
-
-      <div style="color:var(--muted);font-weight:700;letter-spacing:1px;margin-top:12px">© 2026 BRN STORE. TODOS LOS DERECHOS RESERVADOS.</div>
+    <div class="section-title" id="juegos">
+        <h2>🎮 Juegos de recarga</h2>
+        <a href="#juegos">Ver todos</a>
     </div>
-  </footer>
 
-  <!-- WHATSAPP FAB -->
-  <a class="whatsapp-fab" href="https://api.whatsapp.com/send/?phone=50768000685&text&type=phone_number&app_absent=0&wame_ctl=1" target="_blank" rel="noopener noreferrer" aria-label="Contactar por WhatsApp">
-    <svg width="26" height="26" viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><path d="M20.52 3.48A11.88 11.88 0 0 0 12.02.5a11.85 11.85 0 0 0-10.21 6.1C.58 10.2.81 13.9 3.4 17.1L2 22l5-1.4c3.04 1.65 6.9 1.4 9.58-0.68 2.65-2.06 3.93-5.5 3.94-8.92a11.9 11.9 0 0 0-1.5-5.5zM12 20c-2.5 0-4.9-.7-6.95-2.05L4 18.2l1-2.06C4.3 14.33 3.9 12.2 5.25 9.85 6.98 6.7 9.91 5.9 12 6c4 .2 6.95 4.6 6.74 8.86-.17 3.19-2.04 5.5-6 5.1z"/><path d="M17.2 14.1c-.26-.13-1.53-.75-1.76-.83-.23-.08-.4-.12-.58.13-.17.26-.64.83-.78 1-.14.17-.29.19-.55.06-.26-.12-1.1-.4-2.1-1.29-.78-.7-1.3-1.56-1.45-1.82-.15-.26-.02-.4.11-.53.12-.12.26-.29.39-.43.13-.14.17-.24.26-.4.09-.16.04-.31-.02-.44-.06-.13-.58-1.4-.8-1.92-.21-.5-.42-.43-.58-.44-.15-.01-.33-.01-.51-.01s-.44.06-.67.31c-.23.26-.88.86-.88 2.09s.9 2.42 1.03 2.59c.13.17 1.8 2.77 4.36 3.88 2.56 1.12 2.56.75 3.02.71.45-.04 1.45-.59 1.65-1.16.2-.56.2-1.03.14-1.16-.06-.13-.22-.18-.47-.31z"/></svg>
-  </a>
+    <div class="games-wrapper">
+        <div class="games">
+            <a href="freefire.html" class="game-card">
+                <div class="game-image">
+                    <img src="assets/freefire.jpg" alt="Free Fire" loading="lazy">
+                </div>
+                <div class="game-info">
+                    <div class="game-name">Free Fire</div>
+                    <span class="recharge-btn">RECARGAR AHORA</span>
+                </div>
+            </a>
 
-  <script>
-    // Carousel (auto-play + dots)
-    (function(){
-      const track = document.getElementById('carouselTrack');
-      const slides = Array.from(track.children);
-      const dotsContainer = document.getElementById('carouselDots');
-      let current = 0, timer = null;
-      function goTo(i){
-        current = (i + slides.length) % slides.length;
-        track.style.transform = `translateX(-${current * 100}%)`;
-        updateDots();
-      }
-      function updateDots(){ Array.from(dotsContainer.children).forEach((d, idx)=> d.classList.toggle('active', idx === current)); }
-      function start(){ timer = setInterval(()=> goTo(current + 1), 4500); }
-      function stop(){ clearInterval(timer); timer = null; }
-      slides.forEach((_, i) => {
-        const b = document.createElement('button'); b.className = 'dot'; b.setAttribute('aria-label','Ir a slide '+(i+1));
-        b.addEventListener('click', ()=> { goTo(i); stop(); start(); });
-        dotsContainer.appendChild(b);
-      });
-      goTo(0); start();
-      const carousel = document.querySelector('.carousel');
-      carousel.addEventListener('mouseenter', stop);
-      carousel.addEventListener('mouseleave', start);
-    })();
+            <a href="bloodstrike.html" class="game-card">
+                <div class="game-image">
+                    <img src="assets/bloodstrike.jpg" alt="Blood Strike" loading="lazy">
+                </div>
+                <div class="game-info">
+                    <div class="game-name">Blood Strike</div>
+                    <span class="recharge-btn">RECARGAR AHORA</span>
+                </div>
+            </a>
 
-    // Basic interactions
-    document.getElementById('menuBtn').addEventListener('click', ()=> alert('Abrir menú — implementar'));
-    document.getElementById('searchBtn').addEventListener('click', ()=> { const q = prompt('Buscar en la tienda:'); if(q) console.log('Buscar:', q); });
-    document.getElementById('loginBtn').addEventListener('click', ()=> alert('Entrar — implementar login'));
-  </script>
+            <a href="codmobile.html" class="game-card">
+                <div class="game-image">
+                    <img src="assets/codm.jpg" alt="Call of Duty: Mobile" loading="lazy">
+                </div>
+                <div class="game-info">
+                    <div class="game-name">Call of Duty: Mobile</div>
+                    <span class="recharge-btn">RECARGAR AHORA</span>
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <section class="advantages">
+        <div class="advantage"><div class="advantage-icon">⚡</div><h3>Entrega rápida</h3><p>Recibe tu recarga rápidamente.</p></div>
+        <div class="advantage"><div class="advantage-icon">🛡️</div><h3>Compra segura</h3><p>Tus pedidos son procesados de forma segura.</p></div>
+        <div class="advantage"><div class="advantage-icon">💙</div><h3>Soporte</h3><p>Estamos disponibles para ayudarte.</p></div>
+    </section>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div class="footer-logo">BRN STORE 💙</div>
+        <div class="footer-text">Recargas de juegos rápidas y seguras.</div>
+        <div class="payment-methods">
+            <span class="payment">Yappy</span>
+            <span class="payment">Binance</span>
+            <span class="payment">PayPal</span>
+        </div>
+    </div>
+</footer>
+
+<a class="whatsapp" href="https://wa.me/50768000685" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">💬</a>
+
+<script>
+function toggleMenu(){alert("Menú próximamente disponible.");}
+function changeLanguage(){alert("Idioma: Español");}
+function login(){alert("El inicio de sesión estará disponible próximamente.");}
+</script>
 </body>
 </html>
