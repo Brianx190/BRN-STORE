@@ -6,7 +6,6 @@
   <title>BRN STORE | Recarga Free Fire</title>
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Estilos adaptados en color azul y negro */
     .badge-step {
       background: #0066ff;
       color: white;
@@ -19,6 +18,8 @@
       font-weight: bold;
       font-size: 0.9rem;
     }
+    
+    /* Estilo Base de las Tarjetas de Paquetes */
     .package-card {
       background: #0a0c10;
       border: 1px solid #1a1f2c;
@@ -31,14 +32,102 @@
       margin-bottom: 12px;
       transition: all 0.2s ease;
     }
+    
+    /* Color inicial del precio en amarillo */
+    .package-price {
+      font-weight: bold;
+      color: #ffe600;
+      font-size: 1.05rem;
+      transition: color 0.2s ease;
+    }
+
+    /* --- ESTILO SELECCIONADO (ACTIVO) --- */
+    .package-card.selected {
+      background: #0d1527 !important;
+      border-color: #0066ff !important;
+      box-shadow: 0 0 12px rgba(0, 102, 255, 0.2);
+    }
+    
+    /* Fuerza al precio a cambiar a BLANCO al seleccionar */
+    .package-card.selected .package-price {
+      color: #ffffff !important;
+    }
+
+    /* --- NUEVA BARRA FIJA DE CONFIRMACIÓN INFERIOR --- */
+    .fixed-summary-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background: #05070f;
+      border-top: 1px solid #1a1f2c;
+      padding: 14px 16px;
+      box-shadow: 0 -5px 25px rgba(0,0,0,0.6);
+      z-index: 2000;
+      display: none; /* Se mantiene oculta hasta que el usuario elija un paquete */
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .summary-info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+    }
+
+    .summary-product-box {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .summary-title-label {
+      font-size: 0.65rem;
+      color: #64748b;
+      font-weight: bold;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .summary-product-name {
+      font-size: 0.95rem;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    .summary-total-box {
+      text-align: right;
+    }
+
+    .summary-total-price {
+      font-size: 1.15rem;
+      font-weight: 900;
+      color: #00ffaa; /* Verde vibrante idéntico a tu referencia */
+    }
+
+    /* Botón de pago estilo inline interactivo abajo */
+    .btn-yappy-submit {
+      width: 100%;
+      background: #0066ff;
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      font-weight: bold;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-align: center;
+      letter-spacing: 0.5px;
+      box-shadow: 0 0 15px rgba(0, 102, 255, 0.3);
+    }
   </style>
 </head>
-<body style="background: #000000; color: #ffffff;">
+<body style="background: #000000; color: #ffffff; padding-bottom: 140px;"> <!-- Espacio amplio abajo para que la barra no cubra los productos -->
 
   <!-- Navbar Superior -->
   <header class="navbar" style="padding: 16px; border-bottom: 1px solid #1a1f2c; margin-bottom: 25px;">
     <div class="nav-left">
-      <!-- Enlace físico de regreso al index principal -->
       <a href="index.html" style="color: white; text-decoration: none; font-size: 1.1rem; font-weight: bold;">✕ Volver</a>
     </div>
     <div class="logo">
@@ -48,7 +137,7 @@
   </header>
 
   <main class="container" style="padding: 0 16px;">
-    <!-- Detalles de Cabecera del Juego -->
+    <!-- Detalles de Cabecera -->
     <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 30px;">
       <div style="width: 75px; height: 75px; background-image: url('assets/freefire.jpg'); background-size: cover; background-position: center; border-radius: 16px; border: 1px solid #1a1f2c;"></div>
       <div>
@@ -56,7 +145,6 @@
         <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
           <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">🌐 LATAM</span>
           <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">⚡ Entrega Instantánea</span>
-          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">🛡️ Pago Seguro</span>
         </div>
       </div>
     </div>
@@ -86,54 +174,72 @@
         <button style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">MEMBRESÍAS</button>
       </div>
 
-      <!-- Lista Vertical de Precios -->
+      <!-- Lista de Diamantes -->
       <div style="display: flex; flex-direction: column;">
+        
         <div class="package-card" onclick="selectPackage(this, '100+10 Diamantes', '0.90')">
           <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">100+10</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 0,90</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span class="package-price">$ 0,90</span></div>
         </div>
 
         <div class="package-card" onclick="selectPackage(this, '310+31 Diamantes', '2.71')">
           <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">310+31</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 29%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 2,71</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 29%</span><span class="package-price">$ 2,71</span></div>
         </div>
 
         <div class="package-card" onclick="selectPackage(this, '520+52 Diamantes', '4.51')">
           <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">520+52</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 4,51</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span class="package-price">$ 4,51</span></div>
         </div>
 
         <div class="package-card" onclick="selectPackage(this, '1060+106 Diamantes', '9.02')">
           <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">1060+106</span></div>
-          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 22%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 9,02</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 22%</span><span class="package-price">$ 9,02</span></div>
         </div>
+        
       </div>
     </section>
-
-    <button onclick="sendOrder()" style="width: 100%; background: #0066ff; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 15px; box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);">COMPRAR AHORA 🚀</button>
   </main>
+
+  <!-- --- NUEVA BARRA DE CONFIRMACIÓN INFERIOR DINÁMICA --- -->
+  <div id="summaryBar" class="fixed-summary-bar">
+    <div class="summary-info">
+      <div class="summary-product-box">
+        <span style="font-size: 1.2rem;">💎</span>
+        <div>
+          <p class="summary-title-label">Paquete Seleccionado</p>
+          <p id="summaryName" class="summary-product-name">---</p>
+        </div>
+      </div>
+      <div class="summary-total-box">
+        <p class="summary-title-label">Total</p>
+        <p id="summaryPrice" class="summary-total-price">$ 0.00</p>
+      </div>
+    </div>
+    <!-- Botón que ejecuta la acción final -->
+    <button class="btn-yappy-submit" onclick="sendOrder()">VERIFICAR ID / PAGAR CON YAPPY 🚀</button>
+  </div>
 
   <script>
     let selectedPackageName = "";
     let selectedPackagePrice = "";
 
     function selectPackage(element, name, price) {
+      // Limpiar selección previa
       document.querySelectorAll('.package-card').forEach(card => {
-        card.style.borderColor = '#1a1f2c';
+        card.classList.remove('selected');
       });
-      element.style.borderColor = '#0066ff';
+      
+      // Activar clase visual (borde azul y precio blanco)
+      element.classList.add('selected');
+      
       selectedPackageName = name;
       selectedPackagePrice = price;
+
+      // Inyectar datos reales dentro de la barra inferior y mostrarla con Flexbox
+      document.getElementById('summaryName').textContent = name;
+      document.getElementById('summaryPrice').textContent = `$ ${price}`;
+      document.getElementById('summaryBar').style.display = 'flex';
     }
 
-    function sendOrder() {
-      const id = document.getElementById('playerId').value;
-      if (!id) { alert("Por favor, ingresa tu ID de Jugador."); return; }
-      if (!selectedPackageName) { alert("Por favor, selecciona un paquete."); return; }
-      
-      const baseText = `👋 ¡Hola BRN STORE! Quiero realizar una recarga:\n\n🎮 *Juego:* Free Fire\n🆔 *Player ID:* ${id}\n💎 *Paquete:* ${selectedPackageName}\n💰 *Precio:* $${selectedPackagePrice}`;
-      window.open(`https://wa.me{encodeURIComponent(baseText)}`, '_blank');
-    }
-  </script>
-</body>
-</html>
+    
