@@ -468,9 +468,7 @@ document.addEventListener('DOMContentLoaded', function() {
       if(card.dataset.category === cat) { card.style.display = ''; }
       else { card.style.display = 'none'; card.classList.remove('selected-diam','selected-memb'); card.setAttribute('aria-pressed','false'); }
     });
-    // auto-select first visible
-    const first = Array.from(document.querySelectorAll('.package-card')).find(c=>c.style.display !== 'none');
-    selectCard(first, false);
+    // NOTE: no auto-selection here — user must pick a package manually
   }
 
   /* Select card */
@@ -533,12 +531,16 @@ document.addEventListener('DOMContentLoaded', function() {
     tabMemb.classList.remove('tab-alt-active'); tabMemb.classList.add('tab-disabled');
     tabDiam.setAttribute('aria-selected','true'); tabMemb.setAttribute('aria-selected','false');
     showCategory('diamantes');
+    // ensure nothing is selected after switching category
+    selectCard(null, false);
   });
   tabMemb.addEventListener('click', function(){
     tabMemb.classList.add('tab-alt-active'); tabMemb.classList.remove('tab-disabled');
     tabDiam.classList.remove('tab-alt-active'); tabDiam.classList.add('tab-disabled');
     tabMemb.setAttribute('aria-selected','true'); tabDiam.setAttribute('aria-selected','false');
     showCategory('membresias');
+    // ensure nothing is selected after switching category
+    selectCard(null, false);
   });
 
   /* Quantity */
@@ -672,7 +674,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
   /* Initialize */
   renderStats();
-  showCategory('diamantes'); // show diamonds by default
+  showCategory('diamantes'); // show diamonds list, but do NOT auto-select any package
+  // ensure summary hidden and nothing selected
+  selectCard(null, false);
   summaryBar.style.display = 'none';
   summaryBar.setAttribute('aria-hidden','true');
   updateSummaryButton();
