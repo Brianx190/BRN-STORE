@@ -70,11 +70,23 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 .verified-id{color:#94a3b8;font-weight:600}
 .change-id{width:32px;height:32px;border-radius:50%;border:1px solid #64748b;background:transparent;color:#94a3b8;font-size:1.1rem;cursor:pointer}
 
-/* TABS */
-.tabs{display:flex;gap:9px;margin-bottom:18px}
-.tab{border-radius:8px;padding:9px 16px;font-size:.82rem;font-weight:900;cursor:pointer}
-.tab-active{background:#0066ff;color:#fff;border:1px solid #0066ff}
-.tab-disabled{background:#0a0c10;color:#94a3b8;border:1px solid #1a1f2c}
+/* TABS - centradas y estilo "pill" */
+.tabs{display:flex;justify-content:center;align-items:center;gap:18px;margin-bottom:18px}
+.tab{
+  display:inline-flex;align-items:center;justify-content:center;
+  min-width:150px;padding:12px 28px;border-radius:28px;
+  background:#0d1013;border:1px solid #1a1f2c;color:#94a3b8;
+  font-weight:900;letter-spacing:2px;font-size:0.95rem;cursor:pointer;
+  text-transform:uppercase;box-shadow:0 6px 0 rgba(0,0,0,.25);
+  transition:transform .12s ease, box-shadow .12s ease;
+}
+.tab:active{transform:translateY(1px)}
+.tab-active{
+  background:#e53935;color:#081017;border-color:rgba(229,57,53,0.85);
+  box-shadow:0 18px 40px rgba(229,57,53,.14), inset 0 -6px 0 rgba(0,0,0,.08);
+}
+.tab-inactive{background:#0d0f12;color:#667085;border-color:#1a1f2c}
+.tab-label{pointer-events:none}
 
 /* PAQUETES */
 .packages{width:100%}
@@ -115,7 +127,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
   box-shadow:0 0 20px rgba(0,102,255,.22)
 }
 
-/* SUMMARY BAR - ajustada para verse como la referencia */
+/* SUMMARY BAR - ahora VERDE */
 .summary-bar{
   position:fixed;left:0;right:0;bottom:0;display:none;
   background:linear-gradient(180deg, rgba(5,7,15,0.98), rgba(5,7,15,0.98));
@@ -132,7 +144,8 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 .summary-label{color:#64748b;font-size:.63rem;font-weight:900;letter-spacing:.6px;margin-bottom:3px}
 .summary-name{color:#fff;font-size:0.95rem;font-weight:900}
 .summary-total{text-align:right;flex-shrink:0}
-.summary-price{color:#00ff83;font-size:1.45rem;font-weight:900;line-height:1} /* verde, tamaño mayor */
+/* Precio en verde brillante */
+.summary-price{color:#00ff83;font-size:1.45rem;font-weight:900;line-height:1}
 
 /* layout de acciones: controles compactos a la izquierda, botón-pill centro, precio a la derecha */
 .summary-actions{
@@ -140,19 +153,21 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 }
 
 /* Controles de cantidad (compactos) */
+/* - cambiado: .qty-button.plus ahora AZUL */
 .quantity-controls{display:flex;align-items:center;gap:10px;margin-right:6px}
 .qty-button{
   width:44px;height:44px;border-radius:8px;background:#0a0c10;border:1px solid #1a1f2c;
   color:#fff;font-size:1.2rem;font-weight:900;cursor:pointer;display:flex;align-items:center;justify-content:center
 }
-.qty-button.plus{background:#b82a33;border:1px solid rgba(184,42,51,.9);font-size:1.15rem}
+/* + ahora azul */
+.qty-button.plus{background:#0066ff;border:1px solid rgba(0,102,255,.95);font-size:1.15rem;box-shadow:0 8px 24px rgba(0,102,255,.12)}
 .qty-number{min-width:28px;text-align:center;color:#fff;font-weight:900;font-size:1rem}
 
-/* Botón principal tipo "pill" (ocupa el espacio central, altura mayor y bordes redondeados) */
+/* Botón principal tipo "pill" (ahora VERDE) */
 .summary-button{
-  height:56px;background:#0066ff;color:#001b10;border:none;
+  height:56px;background:#00c878;color:#001b10;border:none;
   border-radius:28px;padding:0 28px;font-size:1.05rem;font-weight:900;cursor:pointer;
-  box-shadow:0 10px 40px rgba(0,102,255,.22), 0 2px 0 rgba(0,0,0,.35);
+  box-shadow:0 10px 40px rgba(0,200,120,.18), 0 2px 0 rgba(0,0,0,.35);
   display:flex;align-items:center;justify-content:center;flex:1;white-space:nowrap;
 }
 
@@ -167,6 +182,8 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 
 /* responsive adjustments */
 @media(max-width:500px){
+  .tabs{gap:12px}
+  .tab{min-width:120px;padding:10px 20px}
   .summary-button{height:52px;border-radius:22px;font-size:1rem;padding:0 18px}
   .summary-price{font-size:1.25rem}
   .qty-button{width:40px;height:40px}
@@ -231,9 +248,10 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
       <h2 class="step-heading">SELECCIONA TU PAQUETE</h2>
     </div>
 
-    <div class="tabs">
-      <button type="button" class="tab tab-active">ORO</button>
-      <button type="button" class="tab tab-disabled">PAQUETES</button>
+    <!-- TABS centradas -->
+    <div class="tabs" role="tablist" aria-label="Categorias">
+      <button class="tab tab-active" id="tab-oro" role="tab" aria-selected="true"><span class="tab-label">ORO</span></button>
+      <button class="tab tab-inactive" id="tab-paquetes" role="tab" aria-selected="false"><span class="tab-label">PAQUETES</span></button>
     </div>
 
     <div class="packages">
@@ -509,6 +527,21 @@ document.addEventListener('DOMContentLoaded', function() {
       "Total: " + formatPriceForDisplay((selectedPackagePrice || 0) * quantity)
     );
   });
+
+  // Tab switching logic (solo cambia apariencia)
+  const tabOro = document.getElementById('tab-oro');
+  const tabPaquetes = document.getElementById('tab-paquetes');
+  function setActiveTab(active) {
+    if (active === 'oro') {
+      tabOro.classList.add('tab-active'); tabOro.classList.remove('tab-inactive'); tabOro.setAttribute('aria-selected','true');
+      tabPaquetes.classList.remove('tab-active'); tabPaquetes.classList.add('tab-inactive'); tabPaquetes.setAttribute('aria-selected','false');
+    } else {
+      tabPaquetes.classList.add('tab-active'); tabPaquetes.classList.remove('tab-inactive'); tabPaquetes.setAttribute('aria-selected','true');
+      tabOro.classList.remove('tab-active'); tabOro.classList.add('tab-inactive'); tabOro.setAttribute('aria-selected','false');
+    }
+  }
+  tabOro.addEventListener('click', () => setActiveTab('oro'));
+  tabPaquetes.addEventListener('click', () => setActiveTab('paquetes'));
 
   // init
   updateSummaryButtonText();
