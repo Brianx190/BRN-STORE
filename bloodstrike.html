@@ -56,12 +56,19 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 
 /* PACK CARDS - base */
 .packages{width:100%}
-.package-card{width:100%;min-height:78px;margin-bottom:12px;padding:17px 16px;display:flex;align-items:center;justify-content:space-between;background:#0a0c10;border:1px solid #1a1f2c;border-radius:14px;cursor:pointer;user-select:none;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
+.package-card{width:100%;min-height:78px;margin-bottom:12px;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;background:#0a0c10;border:1px solid #1a1f2c;border-radius:14px;cursor:pointer;user-select:none;transition:transform .12s ease,box-shadow .12s ease,background .12s ease}
 .package-card:active{transform:scale(.995)}
 .package-left{display:flex;align-items:center;gap:12px}
-.gold-icon{font-size:1.25rem}
 .package-name{font-size:.98rem;font-weight:900}
 .package-price{color:#ffe600;font-size:1.08rem;font-weight:900;transition:color .12s ease}
+
+/* ICON in card */
+.package-icon{
+  width:52px;height:52px;border-radius:12px;background-size:cover;background-position:center;background-color:#071018;border:1px solid rgba(255,255,255,.03);box-shadow: inset 0 -6px 12px rgba(0,0,0,.45), 0 6px 18px rgba(0,0,0,.6);flex-shrink:0;display:inline-block
+}
+
+/* smaller icons on mobile */
+@media(max-width:500px){ .package-icon{width:44px;height:44px} }
 
 /* SELECTION STYLES */
 /* ORO selected: blue outline + glow, price white */
@@ -208,50 +215,77 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
     </div>
 
     <div class="packages" id="packagesList">
-      <!-- ORO (ahora incluyendo los paquetes faltantes) -->
-      <div class="package-card" data-category="oro" data-name="100 + 5" data-price="1.00">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">100 + 5</span></div>
+      <!-- ORO -->
+      <div class="package-card" data-category="oro" data-name="100 + 5" data-price="1.00" data-icon="100 + 5.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 100 + 5"></div>
+          <span class="package-name">100 + 5</span>
+        </div>
         <span class="package-price">$ 1,00</span>
       </div>
 
-      <div class="package-card" data-category="oro" data-name="300 + 20" data-price="3.25">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">300 + 20</span></div>
+      <div class="package-card" data-category="oro" data-name="300 + 20" data-price="3.25" data-icon="300 + 20.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 300 + 20"></div>
+          <span class="package-name">300 + 20</span>
+        </div>
         <span class="package-price">$ 3,25</span>
       </div>
 
-      <div class="package-card" data-category="oro" data-name="500 + 40" data-price="5.00">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">500 + 40</span></div>
+      <div class="package-card" data-category="oro" data-name="500 + 40" data-price="5.00" data-icon="500 + 40.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 500 + 40"></div>
+          <span class="package-name">500 + 40</span>
+        </div>
         <span class="package-price">$ 5,00</span>
       </div>
 
-      <div class="package-card" data-category="oro" data-name="1000 + 100" data-price="10.00">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">1000 + 100</span></div>
+      <div class="package-card" data-category="oro" data-name="1000 + 100" data-price="10.00" data-icon="1000 + 100.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 1000 + 100"></div>
+          <span class="package-name">1000 + 100</span>
+        </div>
         <span class="package-price">$ 10,00</span>
       </div>
 
-      <div class="package-card" data-category="oro" data-name="2000 + 260" data-price="20.00">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">2000 + 260</span></div>
+      <div class="package-card" data-category="oro" data-name="2000 + 260" data-price="20.00" data-icon="2000 + 260.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 2000 + 260"></div>
+          <span class="package-name">2000 + 260</span>
+        </div>
         <span class="package-price">$ 20,00</span>
       </div>
 
-      <div class="package-card" data-category="oro" data-name="5000 + 580" data-price="48.50">
-        <div class="package-left"><span class="gold-icon">💰</span><span class="package-name">5000 + 580</span></div>
+      <div class="package-card" data-category="oro" data-name="5000 + 580" data-price="48.50" data-icon="5000 + 580.png">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono 5000 + 580"></div>
+          <span class="package-name">5000 + 580</span>
+        </div>
         <span class="package-price">$ 48,50</span>
       </div>
 
       <!-- PAQUETES -->
-      <div class="package-card" data-category="paquetes" data-name="Pase Elite" data-price="4.50" style="display:none">
-        <div class="package-left"><span class="gold-icon">🎟️</span><span class="package-name">Pase Elite</span></div>
+      <div class="package-card" data-category="paquetes" data-name="Pase Elite" data-price="4.50" data-icon="Pase Elite.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono Pase Elite"></div>
+          <span class="package-name">Pase Elite</span>
+        </div>
         <span class="package-price">$ 4,50</span>
       </div>
 
-      <div class="package-card" data-category="paquetes" data-name="Pase Premium" data-price="10.00" style="display:none">
-        <div class="package-left"><span class="gold-icon">🎟️</span><span class="package-name">Pase Premium</span></div>
+      <div class="package-card" data-category="paquetes" data-name="Pase Premium" data-price="10.00" data-icon="Pase Premium.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono Pase Premium"></div>
+          <span class="package-name">Pase Premium</span>
+        </div>
         <span class="package-price">$ 10,00</span>
       </div>
 
-      <div class="package-card" data-category="paquetes" data-name="Pase de Mejora" data-price="4.00" style="display:none">
-        <div class="package-left"><span class="gold-icon">🎟️</span><span class="package-name">Pase de Mejora</span></div>
+      <div class="package-card" data-category="paquetes" data-name="Pase de Mejora" data-price="4.00" data-icon="Pase de Mejora.png" style="display:none">
+        <div class="package-left">
+          <div class="package-icon" role="img" aria-label="Icono Pase de Mejora"></div>
+          <span class="package-name">Pase de Mejora</span>
+        </div>
         <span class="package-price">$ 4,00</span>
       </div>
     </div>
@@ -352,6 +386,7 @@ body{margin:0;background:#000;color:#fff;font-family:Arial,Helvetica,sans-serif;
 </footer>
 
 <script>
+/* Main interaction + icon assignment */
 document.addEventListener('DOMContentLoaded', function() {
   const packagesContainer = document.getElementById('packagesList');
   const summaryBar = document.getElementById('summaryBar');
@@ -365,6 +400,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   let selectedPrice = 0;
   let quantity = 1;
+
+  // Assign icons from data-icon (handles spaces and + via encodeURIComponent)
+  document.querySelectorAll('.package-card').forEach(card => {
+    const iconFile = card.dataset.icon;
+    const iconEl = card.querySelector('.package-icon');
+    if (!iconFile || !iconEl) return;
+    // Use encodeURIComponent to safely include spaces and plus signs
+    const encoded = encodeURIComponent(iconFile);
+    iconEl.style.backgroundImage = `url('assets/icons/${encoded}')`;
+  });
 
   function sortPackagesByAmount() {
     const cards = Array.from(packagesContainer.querySelectorAll('.package-card'));
