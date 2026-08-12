@@ -6,181 +6,44 @@
     <title>BRN STORE - Recargas de Juegos</title>
     <meta name="description" content="BRN STORE - Recargas rápidas y seguras para tus juegos favoritos.">
     <link rel="stylesheet" href="style.css">
-
-    <style>
-        *{box-sizing:border-box;margin:0;padding:0}
-        html{scroll-behavior:smooth}
-        body{font-family:Arial,Helvetica,sans-serif;background:#f5f7fb;color:#111827}
-        a{text-decoration:none;color:inherit}
-
-        .header{width:100%;background:#fff;border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:1000}
-        .header-content{max-width:1200px;margin:auto;height:70px;padding:0 20px;display:flex;align-items:center;justify-content:space-between}
-        .logo{display:flex;align-items:center;gap:10px;font-size:22px;font-weight:800;color:#1677ff}
-        .logo span{color:#111827}
-        .menu-btn{border:none;background:transparent;font-size:25px;cursor:pointer;display:none}
-        .header-actions{display:flex;align-items:center;gap:12px}
-        .header-btn{border:1px solid #e5e7eb;background:#fff;border-radius:10px;padding:10px 15px;cursor:pointer;font-size:14px;font-weight:600}
-        .header-btn:hover{border-color:#1677ff;color:#1677ff}
-
-        .container{max-width:1200px;margin:auto;padding:25px 20px 50px}
-
-        /* BANNERS */
-        .banner-slider{
-            width:100%;
-            position:relative;
-            overflow:hidden;
-            border-radius:18px;
-            background:#e9edf3;
-            box-shadow:0 10px 30px rgba(0,90,255,.12);
-        }
-
-        .banner-track{
-            display:flex;
-            width:200%;
-            transition:transform .5s ease;
-        }
-
-        .banner{
-            width:50%;
-            flex-shrink:0;
-            display:block;
-        }
-
-        .banner img{
-            width:100%;
-            aspect-ratio:16/6;
-            object-fit:cover;
-            display:block;
-        }
-
-        .banner-dots{
-            position:absolute;
-            left:0;
-            right:0;
-            bottom:12px;
-            display:flex;
-            justify-content:center;
-            gap:8px;
-        }
-
-        .banner-dot{
-            width:9px;
-            height:9px;
-            border-radius:50%;
-            border:0;
-            background:rgba(255,255,255,.65);
-            cursor:pointer;
-            padding:0;
-        }
-
-        .banner-dot.active{background:#fff;transform:scale(1.15)}
-
-        .section-title{margin-top:35px;margin-bottom:18px;display:flex;justify-content:space-between;align-items:center}
-        .section-title h2{font-size:24px}
-        .section-title a{color:#1677ff;font-size:14px;font-weight:700}
-
-        /* JUEGOS */
-        .games-wrapper{width:100%;overflow-x:auto;padding-bottom:10px;scrollbar-width:thin}
-        .games{display:flex;gap:18px;width:max-content}
-
-        .game-card{
-            width:210px;
-            min-width:210px;
-            height:285px;
-            background:#fff;
-            border:1px solid #e6eaf0;
-            border-radius:16px;
-            overflow:hidden;
-            display:flex;
-            flex-direction:column;
-            box-shadow:0 5px 18px rgba(0,0,0,.06);
-            transition:transform .2s ease,box-shadow .2s ease;
-        }
-
-        .game-card:hover{transform:translateY(-5px);box-shadow:0 12px 28px rgba(0,0,0,.12)}
-
-        .game-image{width:100%;height:190px;flex-shrink:0;overflow:hidden;background:#e9edf3}
-        .game-image img{width:100%;height:100%;object-fit:cover;display:block;transition:transform .3s ease}
-        .game-card:hover .game-image img{transform:scale(1.05)}
-
-        .game-info{height:95px;padding:13px;display:flex;flex-direction:column;justify-content:space-between}
-        .game-name{font-size:16px;font-weight:800;color:#111827;line-height:1.2}
-        .recharge-btn{width:100%;background:#1677ff;color:#fff;padding:9px 10px;border-radius:8px;font-size:13px;font-weight:700;text-align:center}
-
-        .advantages{margin-top:45px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px}
-        .advantage{background:#fff;border:1px solid #e5e7eb;border-radius:14px;padding:20px;text-align:center}
-        .advantage-icon{font-size:30px;margin-bottom:10px}
-        .advantage h3{font-size:16px;margin-bottom:6px}
-        .advantage p{color:#6b7280;font-size:13px}
-
-        footer{background:#111827;color:#fff;margin-top:50px}
-        .footer-content{max-width:1200px;margin:auto;padding:35px 20px;text-align:center}
-        .footer-logo{font-size:23px;font-weight:800;color:#4d9aff;margin-bottom:8px}
-        .footer-text{color:#9ca3af;font-size:14px}
-        .payment-methods{margin-top:20px;display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
-        .payment{background:#1f2937;padding:8px 14px;border-radius:8px;font-size:13px}
-
-        .whatsapp{
-            position:fixed;right:20px;bottom:20px;width:55px;height:55px;border-radius:50%;
-            background:#25d366;color:#fff;display:flex;align-items:center;justify-content:center;
-            font-size:27px;box-shadow:0 5px 20px rgba(0,0,0,.2);z-index:999
-        }
-
-        @media(max-width:700px){
-            .header-content{height:62px;padding:0 15px}
-            .menu-btn{display:block}
-            .header-actions{gap:5px}
-            .header-btn{padding:8px 10px;font-size:12px}
-            .container{padding:15px 12px 40px}
-
-            .banner-slider{border-radius:14px}
-            .banner img{aspect-ratio:16/7;object-fit:cover}
-
-            .section-title{margin-top:28px}
-            .section-title h2{font-size:20px}
-
-            .game-card{width:180px;min-width:180px;height:255px}
-            .game-image{height:165px}
-            .game-info{height:90px;padding:10px}
-            .game-name{font-size:14px}
-            .recharge-btn{padding:8px;font-size:12px}
-
-            .advantages{grid-template-columns:1fr}
-        }
-    </style>
 </head>
 
 <body>
 
 <header class="header">
     <div class="header-content">
-        <button class="menu-btn" type="button" onclick="toggleMenu()">☰</button>
+        <!-- Grupo izquierdo: hamburguesa + lupa -->
+        <div class="header-left">
+            <button class="menu-btn" type="button" onclick="toggleMenu()" aria-label="Abrir menú">☰</button>
+            <button class="search-btn" type="button" onclick="openSearch()" aria-label="Buscar">🔍</button>
+        </div>
 
-        <a href="index.html" class="logo">
-            💙 <span>BRN STORE</span>
+        <!-- Logo centrado -->
+        <a href="index.html" class="logo" aria-label="BRN STORE">
+            <span class="logo-brn">BRN</span>
+            <span class="logo-store">STORE</span>
         </a>
 
+        <!-- Acciones (derecha) -->
         <div class="header-actions">
-            <button class="header-btn" type="button" onclick="changeLanguage()">🌐 ES</button>
-            <button class="header-btn" type="button" onclick="login()">Entrar</button>
+            <button class="header-btn" type="button" onclick="changeLanguage()" aria-label="Cambiar idioma">🌐 ES</button>
+            <button class="btn-entrar-blue" type="button" onclick="login()" aria-label="Entrar">Entrar</button>
         </div>
     </div>
 </header>
 
 <main class="container">
 
-    <!-- CARRUSEL CON TUS 2 BANNERS -->
+    <!-- CARRUSEL CON TUS 2 BANNERS (mostrando imagen completa) -->
     <section class="banner-slider" aria-label="Promociones">
         <div class="banner-track" id="bannerTrack">
+            <div class="banner">
+                <img src="assets/banner1.jpg" alt="Promoción BRN STORE 1" loading="lazy">
+            </div>
 
-            <a href="#juegos" class="banner">
-                <img src="assets/banner1.jpg" alt="Promoción BRN STORE 1">
-            </a>
-
-            <a href="#juegos" class="banner">
-                <img src="assets/banner2.jpg" alt="Promoción BRN STORE 2">
-            </a>
-
+            <div class="banner">
+                <img src="assets/banner2.jpg" alt="Promoción BRN STORE 2" loading="lazy">
+            </div>
         </div>
 
         <div class="banner-dots">
@@ -189,9 +52,9 @@
         </div>
     </section>
 
-    <!-- JUEGOS -->
+    <!-- SECCIÓN JUEGOS: título actualizado con barra vertical azul del tamaño de la "J" -->
     <div class="section-title" id="juegos">
-        <h2>🎮 Juegos de recarga</h2>
+        <h2 class="section-heading"><span class="heading-bar" aria-hidden="true"></span>Juegos</h2>
         <a href="#juegos">Ver todos</a>
     </div>
 
@@ -234,39 +97,61 @@
         </div>
     </div>
 
-    <!-- VENTAJAS -->
-    <section class="advantages">
-        <div class="advantage">
-            <div class="advantage-icon">⚡</div>
-            <h3>Entrega rápida</h3>
-            <p>Recibe tu recarga rápidamente.</p>
-        </div>
-
-        <div class="advantage">
-            <div class="advantage-icon">🛡️</div>
-            <h3>Compra segura</h3>
-            <p>Tus pedidos son procesados de forma segura.</p>
-        </div>
-
-        <div class="advantage">
-            <div class="advantage-icon">💙</div>
-            <h3>Soporte</h3>
-            <p>Estamos disponibles para ayudarte.</p>
-        </div>
-    </section>
+    <!-- (Sección 'Ventajas' eliminada según pedido) -->
 
 </main>
 
 <footer>
     <div class="footer-content">
-        <div class="footer-logo">BRN STORE 💙</div>
-        <div class="footer-text">Recargas de juegos rápidas y seguras.</div>
 
-        <div class="payment-methods">
-            <span class="payment">Yappy</span>
-            <span class="payment">Binance</span>
-            <span class="payment">PayPal</span>
+        <!-- NUEVO: Logo grande tipo ASSAX reemplazado por BRN / STORE (BRN blanco, STORE azul) -->
+        <div class="footer-brand" aria-hidden="false">
+            <span class="brand-brn">BRN</span><span class="brand-store">STORE</span>
         </div>
+
+        <!-- Slogan debajo del logo (mantengo texto que ya tenías) -->
+        <div class="footer-slogan">
+            Tu arsenal gamer premium. Entregas al instante<br/>
+            y el mejor precio garantizado en toda<br/>
+            Latinoamérica.
+        </div>
+
+        <div class="footer-socials">
+            <a class="social-icon" href="#" aria-label="Instagram">📷</a>
+            <a class="social-icon" href="#" aria-label="Facebook">f</a>
+            <a class="social-icon" href="https://wa.me/50768000685" aria-label="WhatsApp">💬</a>
+        </div>
+
+        <div class="footer-columns">
+
+            <div class="footer-block">
+                <h4 class="footer-heading">AYUDA</h4>
+                <ul class="footer-links">
+                    <li><a href="#">¿Cómo comprar?</a></li>
+                    <li><a href="#">Contactar Agente</a></li>
+                    <li><a href="#">Preguntas Frecuentes</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-block">
+                <h4 class="footer-heading">CATEGORÍAS</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Todo el Catálogo</a></li>
+                    <li><a href="#">Juegos de Recarga</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-block">
+                <h4 class="footer-heading">SOPORTE Y LEGAL</h4>
+                <ul class="footer-links">
+                    <li><a href="#">Términos y Condiciones</a></li>
+                    <li><a href="#">Política de Privacidad</a></li>
+                    <li><a href="#">Políticas de Reembolso</a></li>
+                </ul>
+            </div>
+
+        </div>
+
     </div>
 </footer>
 
@@ -277,12 +162,9 @@
 
     function showBanner(index) {
         currentBanner = index;
-
         const track = document.getElementById("bannerTrack");
         const dots = document.querySelectorAll(".banner-dot");
-
         track.style.transform = "translateX(-" + (index * 50) + "%)";
-
         dots.forEach((dot, i) => {
             dot.classList.toggle("active", i === index);
         });
@@ -292,17 +174,10 @@
         showBanner(currentBanner === 0 ? 1 : 0);
     }, 5000);
 
-    function toggleMenu() {
-        alert("Menú próximamente disponible.");
-    }
-
-    function changeLanguage() {
-        alert("Idioma: Español");
-    }
-
-    function login() {
-        alert("El inicio de sesión estará disponible próximamente.");
-    }
+    function toggleMenu() { alert("Menú próximamente disponible."); }
+    function openSearch() { alert("Buscar (implementa un campo de búsqueda aquí)."); }
+    function changeLanguage() { alert("Idioma: Español"); }
+    function login() { alert("El inicio de sesión estará disponible próximamente."); }
 </script>
 
 </body>
