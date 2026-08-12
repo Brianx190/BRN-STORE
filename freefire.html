@@ -1,30 +1,8 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
-</style>
 
-<style>
-.package-card {
-    position: relative !important;
-    z-index: 100 !important;
-    pointer-events: auto !important;
-    touch-action: manipulation !important;
-}
-
-.packages {
-    position: relative !important;
-    z-index: 100 !important;
-    pointer-events: auto !important;
-}
-
-.package-card * {
-    pointer-events: none !important;
-}
-</style>
-
-</head>
-
-<body>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -323,9 +301,15 @@
 
     .packages {
       width: 100%;
+      position: relative;
+      z-index: 100;
+      pointer-events: auto;
     }
 
     .package-card {
+      position: relative;
+      z-index: 100;
+
       width: 100%;
       min-height: 78px;
       margin-bottom: 12px;
@@ -349,6 +333,7 @@
         transform .12s ease;
 
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
     }
 
     .package-card:active {
@@ -365,15 +350,18 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      pointer-events: none;
     }
 
     .diamond-icon {
       font-size: 1.25rem;
+      pointer-events: none;
     }
 
     .package-name {
       font-size: .98rem;
       font-weight: 900;
+      pointer-events: none;
     }
 
     .package-price {
@@ -381,10 +369,30 @@
       font-size: 1.08rem;
       font-weight: 900;
       transition: color .18s ease;
+      pointer-events: none;
     }
 
     .package-card.selected .package-price {
       color: #fff;
+    }
+
+
+    /* ==============================
+       OCULTAR SOLO "AHORRA XX%"
+    ============================== */
+
+    .discount,
+    .discount-badge,
+    .discount-label,
+    .savings,
+    .saving,
+    .save,
+    .ahorra,
+    .ahorra-label,
+    .ahorro,
+    .discount-percent,
+    .discount-percentage {
+      display: none !important;
     }
 
 
@@ -535,6 +543,7 @@
     }
 
   </style>
+
 </head>
 
 
@@ -571,6 +580,607 @@
     <!-- ==============================
          FREE FIRE
     ============================== -->
+
+    <div class="game-header">
+
+      <div class="game-image"></div>
+
+      <div>
+
+        <h1 class="game-title">
+          FREE FIRE
+        </h1>
+
+        <div class="game-tags">
+
+          <span class="game-tag">
+            🌐 LATAM
+          </span>
+
+          <span class="game-tag">
+            ⚡ Entrega Instantánea
+          </span>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- ==============================
+         PASO 1
+    ============================== -->
+
+    <section class="step-section">
+
+      <div class="step-title">
+
+        <div class="step-number">
+          1
+        </div>
+
+        <h2 class="step-heading">
+          DATOS DEL JUGADOR
+        </h2>
+
+      </div>
+
+
+      <div id="playerForm">
+
+        <label class="field-label">
+          PLAYER ID
+        </label>
+
+        <div class="id-row">
+
+          <input
+            type="number"
+            id="playerId"
+            class="id-input"
+            placeholder="Ingresa tu ID"
+            inputmode="numeric"
+          >
+
+          <button
+            id="verifyButton"
+            class="verify-button"
+            type="button"
+          >
+            VERIFICAR &gt;
+          </button>
+
+        </div>
+
+      </div>
+
+
+      <!-- ID VERIFICADO -->
+
+      <div
+        id="verifiedAccount"
+        class="verified-account"
+      >
+
+        <div class="verified-icon">
+          🛡️
+        </div>
+
+        <div class="verified-info">
+
+          <div class="verified-label">
+            ID VERIFICADO
+          </div>
+
+          <div class="verified-name">
+
+            <span id="playerName">
+              Rayitaa UwU
+            </span>
+
+            <span class="verified-id">
+              (<span id="verifiedPlayerId"></span>)
+            </span>
+
+          </div>
+
+        </div>
+
+        <button
+          id="changeIdButton"
+          class="change-id"
+          type="button"
+        >
+          ×
+        </button>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ==============================
+         PASO 2
+    ============================== -->
+
+    <section class="step-section">
+
+      <div class="step-title">
+
+        <div class="step-number">
+          2
+        </div>
+
+        <h2 class="step-heading">
+          SELECCIONA TU PAQUETE
+        </h2>
+
+      </div>
+
+
+      <!-- TABS -->
+
+      <div class="tabs">
+
+        <button
+          type="button"
+          class="tab tab-active"
+        >
+          DIAMANTES
+        </button>
+
+        <button
+          type="button"
+          class="tab tab-disabled"
+        >
+          MEMBRESÍAS
+        </button>
+
+      </div>
+
+
+
+      <!-- ==============================
+           PAQUETES
+      ============================== -->
+
+      <div class="packages">
+
+
+        <!-- 100 + 10 -->
+
+        <div
+          class="package-card"
+          data-name="100+10"
+          data-price="1.00"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              100+10
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 1,00
+          </span>
+
+        </div>
+
+
+
+        <!-- 310 + 31 -->
+
+        <div
+          class="package-card"
+          data-name="310+31"
+          data-price="3.15"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              310+31
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 3,15
+          </span>
+
+        </div>
+
+
+
+        <!-- 520 + 52 -->
+
+        <div
+          class="package-card"
+          data-name="520+52"
+          data-price="5.00"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              520+52
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 5,00
+          </span>
+
+        </div>
+
+
+
+        <!-- 1060 + 106 -->
+
+        <div
+          class="package-card"
+          data-name="1060+106"
+          data-price="9.00"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              1060+106
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 9,00
+          </span>
+
+        </div>
+
+
+
+        <!-- 2180 + 218 -->
+
+        <div
+          class="package-card"
+          data-name="2180+218"
+          data-price="18.00"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              2180+218
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 18,00
+          </span>
+
+        </div>
+
+
+
+        <!-- 5600 + 560 -->
+
+        <div
+          class="package-card"
+          data-name="5600+560"
+          data-price="44.00"
+        >
+
+          <div class="package-left">
+
+            <span class="diamond-icon">
+              💎
+            </span>
+
+            <span class="package-name">
+              5600+560
+            </span>
+
+          </div>
+
+          <span class="package-price">
+            $ 44,00
+          </span>
+
+        </div>
+
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- ==============================
+       BARRA INFERIOR
+  ============================== -->
+
+  <div
+    id="summaryBar"
+    class="summary-bar"
+  >
+
+    <div class="summary-content">
+
+
+      <div class="summary-top">
+
+
+        <div class="selected-product">
+
+          <div class="summary-icon">
+            💎
+          </div>
+
+          <div>
+
+            <div class="summary-label">
+              PAQUETE SELECCIONADO
+            </div>
+
+            <div
+              id="summaryName"
+              class="summary-name"
+            >
+              ---
+            </div>
+
+          </div>
+
+        </div>
+
+
+        <div class="summary-total">
+
+          <div class="summary-label">
+            TOTAL
+          </div>
+
+          <div
+            id="summaryPrice"
+            class="summary-price"
+          >
+            $ 0,00
+          </div>
+
+        </div>
+
+
+      </div>
+
+
+      <button
+        id="summaryButton"
+        class="summary-button"
+        type="button"
+      >
+        VERIFICAR ID &gt;
+      </button>
+
+
+    </div>
+
+  </div>
+
+
+
+  <!-- ==============================
+       JAVASCRIPT
+  ============================== -->
+
+  <script>
+
+    let selectedPackageName = "";
+    let selectedPackagePrice = 0;
+    let playerVerified = false;
+
+
+    /* =================================
+       SELECCIÓN DE PAQUETES
+    ================================= */
+
+    const packageCards =
+      document.querySelectorAll(".package-card");
+
+
+    packageCards.forEach(function(card) {
+
+      card.addEventListener("click", function() {
+
+        packageCards.forEach(function(item) {
+          item.classList.remove("selected");
+        });
+
+
+        card.classList.add("selected");
+
+
+        selectedPackageName =
+          card.dataset.name;
+
+
+        selectedPackagePrice =
+          parseFloat(card.dataset.price);
+
+
+        document.getElementById("summaryName")
+          .textContent =
+          selectedPackageName;
+
+
+        document.getElementById("summaryPrice")
+          .textContent =
+          "$ " +
+          selectedPackagePrice
+            .toFixed(2)
+            .replace(".", ",");
+
+
+        document.getElementById("summaryBar")
+          .style.display = "block";
+
+
+        updateSummaryButton();
+
+      });
+
+    });
+
+
+
+    /* =================================
+       VERIFICAR ID
+    ================================= */
+
+    document
+      .getElementById("verifyButton")
+      .addEventListener("click", function() {
+
+        const id =
+          document
+            .getElementById("playerId")
+            .value
+            .trim();
+
+
+        if (!id) {
+
+          alert(
+            "Ingresa tu ID de Free Fire."
+          );
+
+          document
+            .getElementById("playerId")
+            .focus();
+
+          return;
+
+        }
+
+
+        document
+          .getElementById("verifiedPlayerId")
+          .textContent = id;
+
+
+        document
+          .getElementById("playerForm")
+          .style.display = "none";
+
+
+        document
+          .getElementById("verifiedAccount")
+          .style.display = "flex";
+
+
+        playerVerified = true;
+
+
+        updateSummaryButton();
+
+      });
+
+
+
+    /* =================================
+       CAMBIAR ID
+    ================================= */
+
+    document
+      .getElementById("changeIdButton")
+      .addEventListener("click", function() {
+
+        playerVerified = false;
+
+
+        document
+          .getElementById("playerForm")
+          .style.display = "block";
+
+
+        document
+          .getElementById("verifiedAccount")
+          .style.display = "none";
+
+
+        document
+          .getElementById("playerId")
+          .value = "";
+
+
+        updateSummaryButton();
+
+      });
+
+
+
+    /* =================================
+       BOTÓN INFERIOR
+    ================================= */
+
+    function updateSummaryButton() {
+
+      const button =
+        document.getElementById("summaryButton");
+
+
+      if (playerVerified) {
+
+        button.textContent =
+          "SIGUIENTE >";
+
+      } else {
+
+        button.textContent =
+          "VERIFICAR ID >";
+
+      }
+
+    }
+
+
+
+    /* =================================
+       ELIMINAR ETIQUETAS "AHORRA XX%"
+       ================================= */
+
+    function removeSavingsLabels() {
+
+      const al========= -->
 
     <div class="game-header">
 
