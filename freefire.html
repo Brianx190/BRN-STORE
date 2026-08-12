@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BRN STORE | Recarga Free Fire</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* Estilos adaptados en color azul y negro */
+    .badge-step {
+      background: #0066ff;
+      color: white;
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 6px;
+      font-weight: bold;
+      font-size: 0.9rem;
+    }
+    .package-card {
+      background: #0a0c10;
+      border: 1px solid #1a1f2c;
+      border-radius: 14px;
+      padding: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      margin-bottom: 12px;
+      transition: all 0.2s ease;
+    }
+  </style>
+</head>
+<body style="background: #000000; color: #ffffff;">
+
+  <!-- Navbar Superior -->
+  <header class="navbar" style="padding: 16px; border-bottom: 1px solid #1a1f2c; margin-bottom: 25px;">
+    <div class="nav-left">
+      <!-- Enlace físico de regreso al index principal -->
+      <a href="index.html" style="color: white; text-decoration: none; font-size: 1.1rem; font-weight: bold;">✕ Volver</a>
+    </div>
+    <div class="logo">
+      <span class="logo-brn">BRN</span><span class="logo-x" style="color: #0066ff;"> STORE</span>
+    </div>
+    <button class="btn-entrar" style="visibility: hidden;">ENTRAR</button>
+  </header>
+
+  <main class="container" style="padding: 0 16px;">
+    <!-- Detalles de Cabecera del Juego -->
+    <div style="display: flex; align-items: center; gap: 16px; margin-bottom: 30px;">
+      <div style="width: 75px; height: 75px; background-image: url('assets/freefire.jpg'); background-size: cover; background-position: center; border-radius: 16px; border: 1px solid #1a1f2c;"></div>
+      <div>
+        <h1 style="font-size: 1.6rem; font-weight: 900; letter-spacing: 1px;">FREE FIRE</h1>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-top: 6px;">
+          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">🌐 LATAM</span>
+          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">⚡ Entrega Instantánea</span>
+          <span style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; font-size: 0.7rem; padding: 4px 8px; border-radius: 6px;">🛡️ Pago Seguro</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASO 1: Datos del Jugador -->
+    <section style="margin-bottom: 35px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <span class="badge-step">1</span>
+        <h2 style="font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; color: #0066ff;">DATOS DEL JUGADOR</h2>
+      </div>
+      <p style="color: #94a3b8; font-size: 0.8rem; font-weight: bold; margin-bottom: 8px; letter-spacing: 0.5px;">PLAYER ID</p>
+      <div style="display: flex; gap: 12px; width: 100%;">
+        <input type="number" id="playerId" placeholder="Ingresa tu ID" style="flex: 1; background: #0a0c10; border: 1px solid #1a1f2c; border-radius: 12px; padding: 14px; color: white; font-size: 1rem; outline: none;">
+        <button style="background: #111522; color: #0066ff; border: 1px solid #1a1f2c; padding: 0 20px; border-radius: 12px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">VERIFICAR ></button>
+      </div>
+    </section>
+
+    <!-- PASO 2: Selección de Paquetes -->
+    <section style="margin-bottom: 30px;">
+      <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 15px;">
+        <span class="badge-step">2</span>
+        <h2 style="font-size: 1.1rem; font-weight: bold; letter-spacing: 0.5px; color: #0066ff;">SELECCIONA TU PAQUETE</h2>
+      </div>
+
+      <div style="display: flex; gap: 10px; margin-bottom: 20px;">
+        <button style="background: #0066ff; color: white; border: none; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">DIAMANTES</button>
+        <button style="background: #0a0c10; border: 1px solid #1a1f2c; color: #94a3b8; padding: 8px 16px; border-radius: 8px; font-weight: bold; font-size: 0.85rem; cursor: pointer;">MEMBRESÍAS</button>
+      </div>
+
+      <!-- Lista Vertical de Precios -->
+      <div style="display: flex; flex-direction: column;">
+        <div class="package-card" onclick="selectPackage(this, '100+10 Diamantes', '0.90')">
+          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">100+10</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 0,90</span></div>
+        </div>
+
+        <div class="package-card" onclick="selectPackage(this, '310+31 Diamantes', '2.71')">
+          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">310+31</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 29%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 2,71</span></div>
+        </div>
+
+        <div class="package-card" onclick="selectPackage(this, '520+52 Diamantes', '4.51')">
+          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">520+52</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 24%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 4,51</span></div>
+        </div>
+
+        <div class="package-card" onclick="selectPackage(this, '1060+106 Diamantes', '9.02')">
+          <div style="display: flex; align-items: center; gap: 12px;"><span>💎</span><span style="font-weight: bold; font-size: 0.95rem;">1060+106</span></div>
+          <div style="text-align: right;"><span style="display: block; font-size: 0.65rem; color: #0066ff; font-weight: bold; margin-bottom: 2px;">AHORRA 22%</span><span style="font-weight: bold; color: #ffe600; font-size: 1.05rem;">$ 9,02</span></div>
+        </div>
+      </div>
+    </section>
+
+    <button onclick="sendOrder()" style="width: 100%; background: #0066ff; color: white; border: none; padding: 16px; border-radius: 12px; font-weight: bold; font-size: 1.1rem; cursor: pointer; margin-top: 15px; box-shadow: 0 0 15px rgba(0, 102, 255, 0.4);">COMPRAR AHORA 🚀</button>
+  </main>
+
+  <script>
+    let selectedPackageName = "";
+    let selectedPackagePrice = "";
+
+    function selectPackage(element, name, price) {
+      document.querySelectorAll('.package-card').forEach(card => {
+        card.style.borderColor = '#1a1f2c';
+      });
+      element.style.borderColor = '#0066ff';
+      selectedPackageName = name;
+      selectedPackagePrice = price;
+    }
+
+    function sendOrder() {
+      const id = document.getElementById('playerId').value;
+      if (!id) { alert("Por favor, ingresa tu ID de Jugador."); return; }
+      if (!selectedPackageName) { alert("Por favor, selecciona un paquete."); return; }
+      
+      const baseText = `👋 ¡Hola BRN STORE! Quiero realizar una recarga:\n\n🎮 *Juego:* Free Fire\n🆔 *Player ID:* ${id}\n💎 *Paquete:* ${selectedPackageName}\n💰 *Precio:* $${selectedPackagePrice}`;
+      window.open(`https://wa.me{encodeURIComponent(baseText)}`, '_blank');
+    }
+  </script>
+</body>
+</html>
